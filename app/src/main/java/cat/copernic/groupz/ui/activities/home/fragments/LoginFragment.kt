@@ -12,7 +12,7 @@ import cat.copernic.groupz.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
-class loginFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
 
@@ -37,7 +37,7 @@ class loginFragment : Fragment() {
                     binding.etPassword.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        findNavController().navigate(R.id.action_login_to_swaipActivity)
+                        findNavController().navigate(R.id.action_login_to_logOutFragment)
                     } else {
                         binding.etEmail.error = getString(R.string.error_authe_email_password)
                         binding.etPassword.error = getString(R.string.error_authe_email_password)
