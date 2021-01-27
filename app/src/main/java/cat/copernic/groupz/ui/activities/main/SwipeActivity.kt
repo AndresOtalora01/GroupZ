@@ -7,6 +7,6 @@ import cat.copernic.groupz.R
 class SwipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_swaip)
+        setContentView(R.layout.activity_swipe)
     }
 }
