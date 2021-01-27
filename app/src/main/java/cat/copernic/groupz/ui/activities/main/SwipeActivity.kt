@@ -1,11 +1,12 @@
-package cat.copernic.groupz
+package cat.copernic.groupz.ui.activities.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import cat.copernic.groupz.R
 
-class MainActivity : AppCompatActivity() {
+class SwipeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_swaip)
     }
 }

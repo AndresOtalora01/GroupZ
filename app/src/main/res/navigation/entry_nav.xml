@@ -7,16 +7,24 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="cat.copernic.groupz.login"
+        android:name="cat.copernic.groupz.ui.activities.home.fragments.loginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_swaipActivity"
+            app:destination="@id/swaipActivity" />
     </fragment>
     <fragment
         android:id="@+id/register"
-        android:name="cat.copernic.groupz.register"
+        android:name="cat.copernic.groupz.ui.activities.home.fragments.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <activity
+        android:id="@+id/swaipActivity"
+        android:name="cat.copernic.groupz.ui.activities.main.SwipeActivity"
+        android:label="activity_swaip"
+        tools:layout="@layout/activity_swaip" />
 </navigation>
