@@ -2,4 +2,15 @@
     <string name="app_name">GroupZ</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_authe_email_password">El Email o el Password no son correctos</string>
+    <string name="error_empty_field">El campo esta vacio</string>
+    <string name="error_email_noValid">No es un Email valido</string>
+    <string name="email">correo</string>
+    <string name="password">contraseña</string>
+    <string name="login">login</string>
+    <string name="Forgot_password">Has olvidada la contraseña?</string>
+    <string name="or">o</string>
+    <string name="no_account">No tienes cuenta?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="text_sign_up">No tienes una cuenta?</string>
 </resources>
