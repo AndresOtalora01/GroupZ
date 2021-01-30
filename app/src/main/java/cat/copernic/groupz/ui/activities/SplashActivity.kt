@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main
+package cat.copernic.groupz.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupZ">
-        <activity android:name=".ui.activities.main.SwipeActivity"></activity>
+        <activity android:name=".ui.activities.main.MainActivity"></activity>
         <activity android:name=".ui.activities.home.HomeActivity"></activity>
-        <activity android:name=".ui.activities.main.SplashActivity">
+        <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
