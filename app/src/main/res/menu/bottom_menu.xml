@@ -5,17 +5,19 @@
     <item
         android:id="@+id/mainEventsFragment"
         android:icon="@drawable/ic_main_events_icon"
-        android:title=""
-        />
+        android:title="" />
+
     <item
         android:id="@+id/nearbyPeopleFragment"
         android:icon="@drawable/ic_nearby_people_icon"
-        android:iconTint="@color/white"
-        android:title="" />
+        android:title=""
+        app:labelVisibilityMode="unlabeled" />
+
     <item
         android:id="@+id/swipeFragment"
         android:icon="@drawable/ic_swipe_icon"
         android:title="" />
+
     <item
         android:id="@+id/chatsListFragment"
         android:icon="@drawable/ic_chats_icon"
