@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
-        <action
-            android:id="@+id/action_login_to_logOutFragment"
-            app:destination="@id/logOutFragment" />
     </fragment>
     <fragment
         android:id="@+id/register"

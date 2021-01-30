@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mainEventsFragment"
+        android:icon="@drawable/ic_main_events_icon"
+        android:title=""
+        />
+    <item
+        android:id="@+id/nearbyPeopleFragment"
+        android:icon="@drawable/ic_nearby_people_icon"
+        android:iconTint="@color/white"
+        android:title="" />
+    <item
+        android:id="@+id/swipeFragment"
+        android:icon="@drawable/ic_swipe_icon"
+        android:title="" />
+    <item
+        android:id="@+id/chatsListFragment"
+        android:icon="@drawable/ic_chats_icon"
+        android:title="" />
+    <item
+        android:id="@+id/groupsFragment"
+        android:icon="@drawable/ic_groups_icon"
+        android:title="" />
+</menu>

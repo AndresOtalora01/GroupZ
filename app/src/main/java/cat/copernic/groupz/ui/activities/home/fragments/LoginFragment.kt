@@ -1,5 +1,6 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentLoginBinding
+import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -37,7 +39,7 @@ class LoginFragment : Fragment() {
                     binding.etPassword.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        findNavController().navigate(R.id.action_login_to_logOutFragment)
+                        startActivity( Intent(context, MainActivity::class.java))
                     } else {
                         binding.etEmail.error = getString(R.string.error_authe_email_password)
                         binding.etPassword.error = getString(R.string.error_authe_email_password)
@@ -52,7 +54,9 @@ class LoginFragment : Fragment() {
     }
 
     fun checkLoginFields(): Boolean {
-        if (binding.etEmail.text.isEmpty() || binding.etPassword.text.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString()).matches()) {
+        if (binding.etEmail.text.isEmpty() || binding.etPassword.text.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(
+                binding.etEmail.text.toString()
+            ).matches()) {
             if (binding.etEmail.text.isEmpty()) {
                 binding.etEmail.error = getString(R.string.error_empty_field)
 
