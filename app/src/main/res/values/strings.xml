@@ -47,4 +47,7 @@
     <string name="passHint">Ha de contenir 8 Caracters</string>
     <string name="passConfirm">Confirmar la contrasenya</string>
     <string name="passConfirmHint">Torna a Introduir la contrasenya</string>
+    <string name="deleteAccountConfirmation">¿Estás seguro de que quieres eliminar la cuenta?</string>
+    <string name="tvDescription">Descripción</string>
+    <string name="tvInterestsHobbies">Intereses/Hobbies</string>
 </resources>
