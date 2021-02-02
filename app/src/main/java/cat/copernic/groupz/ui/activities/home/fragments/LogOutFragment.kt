@@ -49,7 +49,7 @@ class LogOutFragment : Fragment() {
             user?.delete()
                 ?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        builder.setMessage(R.string.DelAccount);
+                        builder.setMessage(R.string.accountDeleted);
                         val dialog = builder.create()
                         dialog.show()
                         Log.d(TAG, "User account deleted.")

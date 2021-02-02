@@ -72,7 +72,7 @@
             android:layout_marginBottom="15dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="end"
-            android:text="@string/Forgot_password"
+            android:text="@string/forgotPassword"
             android:textColor="@color/orange_focused"
             android:textSize="14sp" />
 
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:gravity="center"
-            android:text="@string/text_sign_up"
+            android:text="@string/noAccount"
             android:textColor="@color/blue_no_focused"
             android:textSize="20sp" />
 
@@ -152,7 +152,7 @@
             android:fontFamily="@font/poppins_bold"
             android:gravity="center"
             android:paddingStart="7dp"
-            android:text="@string/sign_up"
+            android:text="@string/signUp"
             android:textColor="@color/blue_primary"
             android:textSize="17sp" />
     </LinearLayout>

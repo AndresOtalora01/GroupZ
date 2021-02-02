@@ -30,7 +30,7 @@
                 android:background="@drawable/custom_button_login"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/white"
-                android:text="@string/btnLogOut" />
+                android:text="@string/logOut" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="40dp" />
@@ -45,7 +45,7 @@
                 android:background="@drawable/custom_button_login"
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/white"
-                android:text="@string/btnDelAccount" />
+                android:text="@string/delAccount" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

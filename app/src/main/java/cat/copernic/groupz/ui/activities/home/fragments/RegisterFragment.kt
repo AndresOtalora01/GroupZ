@@ -1,6 +1,7 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentRegisterBinding
+import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
@@ -49,7 +51,7 @@ class RegisterFragment : Fragment() {
                             addDatabaseUser()
                         } else {
                             Log.w(TAG, "Error adding user to Authentication")
-                            builder.setMessage(R.string.userNotCreated);
+                            builder.setMessage(R.string.errorUserNotCreated);
                             val dialog = builder.create()
                             dialog.show()
 
@@ -68,7 +70,7 @@ class RegisterFragment : Fragment() {
     fun isValidName(): Boolean {
         var nameInput = binding.etName.text.toString()
         if (nameInput.isEmpty()) {
-            binding.etName.error = getString(R.string.emptyField)
+            binding.etName.error = getString(R.string.errorEmptyField)
             return false
 
         } else {
@@ -83,10 +85,10 @@ class RegisterFragment : Fragment() {
         val date_pattern: Pattern =
             Pattern.compile("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))\$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$");
         if (binding.etBirth.text.isEmpty()) {
-            binding.etBirth.error = getString(R.string.emptyField)
+            binding.etBirth.error = getString(R.string.errorEmptyField)
             return false
         } else if (!date_pattern.matcher(birthInput).matches()) {
-            binding.etMail.error = getString(R.string.badDate)
+            binding.etMail.error = getString(R.string.errorBadDate)
             return false
         } else {
             binding.etMail.error = null
@@ -97,7 +99,7 @@ class RegisterFragment : Fragment() {
 
     private fun isValidHobbies(): Boolean {
         if (binding.etHobbies.text.isEmpty()) {
-            binding.etHobbies.error = getString(R.string.emptyField)
+            binding.etHobbies.error = getString(R.string.errorEmptyField)
             return false
         } else {
             binding.etHobbies.error = null
@@ -111,10 +113,10 @@ class RegisterFragment : Fragment() {
                 .matches()   // matched: true
         Log.d(TAG, "MailRegMatch: " + mailRegCheck)
         if (binding.etMail.text.isEmpty()) {
-            binding.etMail.error = getString(R.string.emptyField)
+            binding.etMail.error = getString(R.string.errorEmptyField)
             return false
         } else if (!mailRegCheck) {
-            binding.etMail.error = getString(R.string.notEmail)
+            binding.etMail.error = getString(R.string.errorNotValidMail)
             return false
         } else {
             binding.etMail.error = null
@@ -129,10 +131,10 @@ class RegisterFragment : Fragment() {
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}\$")
 
         if (passwordInput.isEmpty()) {
-            binding.etPass.error = getString(R.string.emptyField)
+            binding.etPass.error = getString(R.string.errorEmptyField)
             return false
         } else if (!password_pattern.matcher(passwordInput).matches()) {
-            binding.etPass.error = getString(R.string.weakPassword)
+            binding.etPass.error = getString(R.string.errorWeakPassword)
             return false
         } else {
             binding.etPass.error = null
@@ -143,10 +145,10 @@ class RegisterFragment : Fragment() {
     }
     private fun isMatchPassword(): Boolean{
         if (binding.etPassConfirm.text.isEmpty()) {
-            binding.etPassConfirm.error = getString(R.string.emptyField)
+            binding.etPassConfirm.error = getString(R.string.errorEmptyField)
             return false
         } else if (binding.etPass.text.toString() != binding.etPassConfirm.text.toString()) {
-            binding.etPassConfirm.error = getString(R.string.passwordDontMatch)
+            binding.etPassConfirm.error = getString(R.string.errorPasswordDontMatch)
             return false
         } else {
             binding.etPassConfirm.error = null
@@ -157,7 +159,7 @@ class RegisterFragment : Fragment() {
 
     private fun isValidTerms(): Boolean {
         if (!binding.cbTerms.isChecked) {
-            binding.cbTerms.error = getString(R.string.notCheck)
+            binding.cbTerms.error = getString(R.string.errorNotCheck)
             return false
         } else {
             binding.etMail.error = null
@@ -213,11 +215,13 @@ class RegisterFragment : Fragment() {
                 builder.setMessage(R.string.userCreated);
                 val dialog = builder.create()
                 dialog.show()
-                findNavController().navigate(R.id.action_register_to_login)
+                startActivity( Intent(context, MainActivity::class.java))
+
             }
             .addOnFailureListener { e -> //En caso de fallar, avisa al usuario de que ha habido un error.
                 Log.w(TAG, "Error adding document to Firestore", e)
-                builder.setMessage(R.string.userNotCreated);
+                builder.setMessage(R.string.errorUserNotCreated);
+                FirebaseAuth.getInstance().currentUser?.delete()
                 val dialog = builder.create()
                 dialog.show()
             }

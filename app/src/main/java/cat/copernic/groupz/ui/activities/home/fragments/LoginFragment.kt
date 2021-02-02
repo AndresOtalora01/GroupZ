@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
+    var user = FirebaseAuth.getInstance().currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +26,13 @@ class LoginFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (user != null){
+            startActivity( Intent(context, MainActivity::class.java))
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,8 +49,8 @@ class LoginFragment : Fragment() {
                     if (it.isSuccessful) {
                         startActivity( Intent(context, MainActivity::class.java))
                     } else {
-                        binding.etEmail.error = getString(R.string.error_authe_email_password)
-                        binding.etPassword.error = getString(R.string.error_authe_email_password)
+                        binding.etEmail.error = getString(R.string.errorAuthEmailPassword)
+                        binding.etPassword.error = getString(R.string.errorAuthEmailPassword)
                     }
                 }
 
@@ -58,13 +66,13 @@ class LoginFragment : Fragment() {
                 binding.etEmail.text.toString()
             ).matches()) {
             if (binding.etEmail.text.isEmpty()) {
-                binding.etEmail.error = getString(R.string.error_empty_field)
+                binding.etEmail.error = getString(R.string.errorEmptyField)
 
             }else{
-                binding.etEmail.error = getString(R.string.error_email_noValid)
+                binding.etEmail.error = getString(R.string.errorNotValidMail)
             }
             if (binding.etPassword.text.isEmpty()) {
-                binding.etPassword.error = getString(R.string.error_empty_field)
+                binding.etPassword.error = getString(R.string.errorEmptyField)
 
             }
             return false

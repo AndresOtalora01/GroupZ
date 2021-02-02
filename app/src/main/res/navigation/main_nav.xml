@@ -18,15 +18,41 @@
         android:id="@+id/nearbyPeopleFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.NearbyPeopleFragment"
         android:label="fragment_nearby_people"
-        tools:layout="@layout/fragment_nearby_people" />
+        tools:layout="@layout/fragment_nearby_people" >
+        <action
+            android:id="@+id/action_nearbyPeopleFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatsListFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.ChatsListFragment"
         android:label="fragment_chats_list"
-        tools:layout="@layout/fragment_chats_list" />
+        tools:layout="@layout/fragment_chats_list" >
+        <action
+            android:id="@+id/action_chatsListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/groupsFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.GroupsFragment"
         android:label="fragment_groups"
         tools:layout="@layout/fragment_groups" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.ChatFragment"
+        android:label="ChatFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>
