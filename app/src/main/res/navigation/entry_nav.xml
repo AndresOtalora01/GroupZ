@@ -31,5 +31,17 @@
         <action
             android:id="@+id/action_logOutFragment_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_logOutFragment_to_confirmar_Eliminar"
+            app:destination="@id/confirmar_Eliminar" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmar_Eliminar"
+        android:name="cat.copernic.groupz.Confirmar_Eliminar"
+        android:label="fragment_confirmar__eliminar"
+        tools:layout="@layout/fragment_confirmar__eliminar" >
+        <action
+            android:id="@+id/action_confirmar_Eliminar_to_login"
+            app:destination="@id/login" />
     </fragment>
 </navigation>

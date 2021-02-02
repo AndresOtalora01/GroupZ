@@ -24,6 +24,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
+        binding.tvNameProfile.setText("Manolo")
+        binding.tvDescriptionProfile.setText("Descripciones")
+        binding.tvHobbiesProfile.setText("Correr,Andar")
+
         binding.btToEditProfile.setOnClickListener{
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }

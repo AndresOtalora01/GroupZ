@@ -102,7 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/etDateEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
 
     <EditText
         android:id="@+id/etHobbieEdit"
@@ -157,7 +157,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/etDescriptionEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
