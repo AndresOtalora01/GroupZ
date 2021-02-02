@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange_focused">#FFAD2B</color>
+    <color name="orange_tag">#FFBB63</color>
     <color name="blue_no_focused">#9FB5C6</color>
     <color name="blue_primary">#6776FE</color>
+    <color name="green_tag">#0BBA9D</color>
+    <color name="purple_tag">#6C63FF</color>
 </resources>
