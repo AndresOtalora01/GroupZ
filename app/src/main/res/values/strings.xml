@@ -36,6 +36,7 @@
     <string name="save">Guardar</string>
     <string name="images">Imatges</string>
     <string name="description">Descripció</string>
+    <string name="segur">¿Estas segur que vols Elimina el conte?</string>
 
     <!--Alerts-->
 
@@ -47,4 +48,6 @@
     <string name="passHint">Ha de contenir 8 Caracters</string>
     <string name="passConfirm">Confirmar la contrasenya</string>
     <string name="passConfirmHint">Torna a Introduir la contrasenya</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
