@@ -33,8 +33,10 @@
     <string name="LogOut">Sessió tancada </string>
     <string name="messageChat">Escriu un missatge</string>
     <string name="editProfile">Editar Perfil</string>
+    <string name="createGroup">Crear Grupo</string>
     <string name="save">Guardar</string>
     <string name="images">Imatges</string>
+    <string name="newimages">Afegir Imatge</string>
     <string name="description">Descripció</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
@@ -54,7 +56,7 @@
     <string name="tvDescription">Descripción</string>
     <string name="tvInterestsHobbies">Intereses/Hobbies</string>
     <string name="tvReEmail"> Posa el correu per recuperar la Contrasenya</string>
-    <string name="etReEmail">Introdueix el teu Correu</string>
+    <string name="etReEmail"> Introdueix el teu Correu</string>
     <string name="Robot">No soc un Robot</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
