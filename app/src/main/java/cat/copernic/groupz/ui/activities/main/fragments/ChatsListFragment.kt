@@ -23,11 +23,15 @@ class ChatsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatsListBinding.bind(view)
 
+
         binding.btToChat.setOnClickListener{
             findNavController().navigate(R.id.action_chatsListFragment_to_chatFragment)
         }
 
     }
+
+    //Falta programar internamente la recogida de datos de los chats.
+
 
 
 }

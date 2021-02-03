@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
-import cat.copernic.groupz.model.user
 import com.google.firebase.auth.FirebaseAuth
 
 

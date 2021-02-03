@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/create_GroupFragment"
-        android:name="cat.copernic.groupz.Create_GroupFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.Create_GroupFragment"
         android:label="fragment_create__group"
         tools:layout="@layout/fragment_create__group" />
 </navigation>

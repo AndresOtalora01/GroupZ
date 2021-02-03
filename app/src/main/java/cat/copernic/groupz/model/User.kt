@@ -1,7 +1,8 @@
 package cat.copernic.groupz.model
 
-class user {
+class User {
     lateinit var name : String
+    lateinit var mail : String
     lateinit var birth : String
     lateinit var hobbies : String
     lateinit var description : String

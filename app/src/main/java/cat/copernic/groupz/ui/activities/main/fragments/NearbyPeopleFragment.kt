@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentNearbyPeopleBinding
+import cat.copernic.groupz.network.FirebaseClient
 
 
 class NearbyPeopleFragment : Fragment() {
@@ -26,7 +27,6 @@ class NearbyPeopleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNearbyPeopleBinding.bind(view)
         binding.btToProfile.setOnClickListener {
-
             findNavController().navigate(R.id.action_nearbyPeopleFragment_to_profileFragment)
         }
 

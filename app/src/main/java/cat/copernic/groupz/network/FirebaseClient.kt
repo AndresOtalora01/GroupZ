@@ -1,5 +1,7 @@
 package cat.copernic.groupz.network
 
+import cat.copernic.groupz.model.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseClient {
@@ -7,24 +9,23 @@ class FirebaseClient {
 
     companion object {
         var db = FirebaseFirestore.getInstance()
-        fun addDatabaseUser(
-            email: String,
-            dateOfBirth: String,
-            hobbies: String
-        ): Boolean {
+        var auth = FirebaseAuth.getInstance()
+
+        fun addDatabaseUser(userAdd: User): Boolean {
             val USERS = "Users"
-            var added = false
-            val user = hashMapOf( //Rellenamos los datos para la base de datos
-                "Mail" to email,
-                "birth" to dateOfBirth,
-                "hobbies" to hobbies,
-                "description" to "",
+            var added : Boolean = true
+            val userMap = hashMapOf( //Rellenamos los datos para la base de datos
+                "Mail" to userAdd.mail,
+                "Name" to userAdd.name,
+                "Birth" to userAdd.birth,
+                "Hobbies" to userAdd.hobbies,
+                "Description" to userAdd.description,
                 "isOnline" to "false"
             )
             db.collection(USERS)
-                .document(email) //Añadimos el hash a la base de datos, el id del fichero sera el mail.
-                .set(user)
-                .addOnSuccessListener { documentReference -> //Si es correcto, avisa al usuario de que la cuenta se ha creado correctamente, y manda al siguiente fragment
+                .document(userAdd.mail) //Añadimos el hash a la base de datos, el id del fichero sera el mail.
+                .set(userMap)
+                .addOnSuccessListener { e -> //Si es correcto, avisa al usuario de que la cuenta se ha creado correctamente, y manda al siguiente fragment
                     added = true
                 }
                 .addOnFailureListener { e -> //En caso de fallar, avisa al usuario de que ha habido un error.
@@ -32,10 +33,20 @@ class FirebaseClient {
                 }
             return added
         }
+
+        fun userLogIn():Boolean{
+            if (auth.currentUser != null){
+                return true
+            } else {
+                return false
+            }
+        }
+
+
     }
 }
 
-// email: String,
+//              email: String,
 //            dateOfBirth: String,
 //            hobbies: String,
 //            dbCollection: String

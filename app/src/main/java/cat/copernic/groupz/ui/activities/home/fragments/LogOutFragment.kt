@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentLogOutBinding
+import cat.copernic.groupz.network.FirebaseClient
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -36,7 +37,7 @@ class LogOutFragment : Fragment() {
         builder.setTitle("Log Out")
         builder.setPositiveButton("Aceptar", null)
         binding.btnLogOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+            FirebaseClient.auth.signOut()
             builder.setMessage(R.string.LogOut);
             val dialog = builder.create()
             dialog.show()

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentLoginBinding
+import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
@@ -17,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    var user = FirebaseAuth.getInstance().currentUser
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,21 +28,15 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (user != null){
-            startActivity( Intent(context, MainActivity::class.java))
-        }
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
 
-
         binding.btnLogin.setOnClickListener {
             if (checkLoginFields()) {
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                FirebaseClient.auth.signInWithEmailAndPassword(
                     binding.etEmail.text.toString(),
                     binding.etPassword.text.toString()
                 ).addOnCompleteListener {

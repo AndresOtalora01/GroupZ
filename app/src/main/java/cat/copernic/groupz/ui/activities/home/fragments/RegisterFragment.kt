@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentRegisterBinding
+import cat.copernic.groupz.model.User
+import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,14 +43,30 @@ class RegisterFragment : Fragment() {
         binding.btnRegister.setOnClickListener { //cuando se presiona el boton de register.
 
             if (comprovate()) {
-                FirebaseAuth.getInstance()
+                FirebaseClient.auth
                     .createUserWithEmailAndPassword( //Se hace el usuario con el mail y la contraseña
                         binding.etMail.text.toString(),
                         binding.etPass.text.toString()
                     ).addOnCompleteListener {
                         if (it.isSuccessful) { //Si es correcto
                             Log.d(TAG, "Auth Worked Succesful")
-                            addDatabaseUser()
+                            var userAdd:User = createUserObj()
+                            if (FirebaseClient.addDatabaseUser(userAdd)){
+                                Log.d(TAG, "Firestore Added Succesfully")
+                                builder.setMessage(R.string.userCreated);
+                                val dialog = builder.create()
+                                dialog.show()
+                                startActivity( Intent(context, MainActivity::class.java))
+
+                            } else {
+                                Log.w(TAG, "Error adding document to Firestore")
+                                builder.setMessage(R.string.errorUserNotCreated);
+                                //FirebaseAuth.getInstance().currentUser?.delete()
+                                val dialog = builder.create()
+                                dialog.show()
+
+                            }
+
                         } else {
                             Log.w(TAG, "Error adding user to Authentication")
                             builder.setMessage(R.string.errorUserNotCreated);
@@ -199,33 +217,18 @@ class RegisterFragment : Fragment() {
 
     }
 
-    fun addDatabaseUser() {
-        val user = hashMapOf( //Rellenamos los datos para la base de datos
-            "Mail" to binding.etMail.text.toString(),
-            "birth" to binding.etBirth.text.toString(),
-            "hobbies" to binding.etHobbies.text.toString(),
-            "description" to "",
-            "isOnline" to "false"
-        )
-        db.collection("Usuario")
-            .document(binding.etMail.text.toString()) //Añadimos el hash a la base de datos, el id del fichero sera el mail.
-            .set(user)
-            .addOnSuccessListener { documentReference -> //Si es correcto, avisa al usuario de que la cuenta se ha creado correctamente, y manda al siguiente fragment
-                Log.d(TAG, "Firestore Added Succesfully")
-                builder.setMessage(R.string.userCreated);
-                val dialog = builder.create()
-                dialog.show()
-                startActivity( Intent(context, MainActivity::class.java))
+    fun createUserObj() : User {
+        var userObj = User()
+            userObj.mail = binding.etMail.text.toString()
+            userObj.name = binding.etName.text.toString()
+            userObj.birth = binding.etBirth.text.toString()
+            userObj.hobbies = binding.etHobbies.text.toString()
+            userObj.description = ""
 
-            }
-            .addOnFailureListener { e -> //En caso de fallar, avisa al usuario de que ha habido un error.
-                Log.w(TAG, "Error adding document to Firestore", e)
-                builder.setMessage(R.string.errorUserNotCreated);
-                FirebaseAuth.getInstance().currentUser?.delete()
-                val dialog = builder.create()
-                dialog.show()
-            }
+        return userObj
 
     }
+
+
 
 }
