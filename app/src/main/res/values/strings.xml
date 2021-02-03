@@ -36,6 +36,8 @@
     <string name="save">Guardar</string>
     <string name="images">Imatges</string>
     <string name="description">Descripció</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
 
     <!--Alerts-->
 

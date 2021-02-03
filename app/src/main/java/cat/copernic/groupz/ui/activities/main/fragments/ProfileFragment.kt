@@ -31,6 +31,7 @@ class ProfileFragment : Fragment() {
         binding.btToEditProfile.setOnClickListener{
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
+        
 
     }
 

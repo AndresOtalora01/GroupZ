@@ -39,7 +39,7 @@
         android:id="@+id/confirmar_Eliminar"
         android:name="cat.copernic.groupz.Confirmar_Eliminar"
         android:label="fragment_confirmar__eliminar"
-        tools:layout="@layout/fragment_confirmar__eliminar" >
+        tools:layout="@layout/fragment_delete_confirmation" >
         <action
             android:id="@+id/action_confirmar_Eliminar_to_login"
             app:destination="@id/login" />

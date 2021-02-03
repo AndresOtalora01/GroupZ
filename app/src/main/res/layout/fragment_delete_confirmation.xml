@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.home.fragments.Confirmar_Eliminar">
+    tools:context=".ui.activities.home.fragments.DeleteConfirmationFragment">
 
 
     <TextView
@@ -20,12 +20,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSi"
+        android:id="@+id/btnYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginTop="152dp"
-        android:text="Si"
+        android:text="@string/yes"
         app:layout_constraintBottom_toBottomOf="@+id/btnNo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView" />
@@ -37,8 +37,8 @@
         android:layout_marginStart="179dp"
         android:layout_marginTop="152dp"
         android:layout_marginEnd="76dp"
-        android:text="No"
+        android:text="@string/no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btnSi"
+        app:layout_constraintStart_toStartOf="@+id/btnYes"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

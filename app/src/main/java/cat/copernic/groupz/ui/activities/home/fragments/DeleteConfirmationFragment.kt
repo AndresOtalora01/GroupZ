@@ -9,12 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
-import cat.copernic.groupz.databinding.FragmentConfirmarEliminarBinding
+import cat.copernic.groupz.databinding.FragmentDeleteConfirmationBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
-class Confirmar_Eliminar : Fragment() {
-    private lateinit var binding: FragmentConfirmarEliminarBinding
+class DeleteConfirmationFragment : Fragment() {
+    private lateinit var binding: FragmentDeleteConfirmationBinding
     private lateinit var builder: AlertDialog.Builder
     var TAG : String = "Log auth Fragment"
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +28,11 @@ class Confirmar_Eliminar : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_confirmar__eliminar, container, false)
+        return inflater.inflate(R.layout.fragment_delete_confirmation, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentConfirmarEliminarBinding.bind(view)
+        binding = FragmentDeleteConfirmationBinding.bind(view)
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Log Out")
         builder.setPositiveButton("Aceptar", null)
@@ -40,7 +40,7 @@ class Confirmar_Eliminar : Fragment() {
 
             findNavController().navigate(R.id.action_logOutFragment_to_login)
         }
-        binding.btnSi.setOnClickListener{
+        binding.btnYes.setOnClickListener{
             val user =  FirebaseAuth.getInstance().currentUser
 
             user?.delete()
