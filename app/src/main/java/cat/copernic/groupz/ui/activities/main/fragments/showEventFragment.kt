@@ -7,21 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import cat.copernic.groupz.R
 
-
-class Create_GroupFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
+class showEventFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create__group, container, false)
+        return inflater.inflate(R.layout.fragment_show_event, container, false)
     }
 
 }

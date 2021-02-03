@@ -13,7 +13,11 @@
         android:id="@+id/mainEventsFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.MainEventsFragment"
         android:label="fragment_main_events"
-        tools:layout="@layout/fragment_main_events" />
+        tools:layout="@layout/fragment_main_events" >
+        <action
+            android:id="@+id/action_mainEventsFragment_to_showEventFragment"
+            app:destination="@id/showEventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nearbyPeopleFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.NearbyPeopleFragment"
@@ -65,7 +69,12 @@
     </fragment>
     <fragment
         android:id="@+id/create_GroupFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.Create_GroupFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.CreateGroupFragment"
         android:label="fragment_create__group"
-        tools:layout="@layout/fragment_create__group" />
+        tools:layout="@layout/fragment_create_group" />
+    <fragment
+        android:id="@+id/showEventFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.showEventFragment"
+        android:label="fragment_show_event"
+        tools:layout="@layout/fragment_show_event" />
 </navigation>
