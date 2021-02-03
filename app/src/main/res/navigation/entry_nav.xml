@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotten_password"
-        android:name="cat.copernic.groupz.forgotten_password"
+        android:name="cat.copernic.groupz.ui.activities.home.fragments.ForgottenPasswordFragment"
         android:label="fragment_forgotten_password"
         tools:layout="@layout/fragment_forgotten_password" />
 </navigation>
