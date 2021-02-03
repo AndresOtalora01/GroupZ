@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_forgotten_password"
+            app:destination="@id/forgotten_password" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -44,4 +47,9 @@
             android:id="@+id/action_confirmar_Eliminar_to_login"
             app:destination="@id/login" />
     </fragment>
+    <fragment
+        android:id="@+id/forgotten_password"
+        android:name="cat.copernic.groupz.forgotten_password"
+        android:label="fragment_forgotten_password"
+        tools:layout="@layout/fragment_forgotten_password" />
 </navigation>

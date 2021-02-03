@@ -59,6 +59,10 @@ class LoginFragment : Fragment() {
         binding.tvSignUp.setOnClickListener{
             findNavController().navigate(R.id.action_login_to_register)
         }
+        binding.textView2.setOnClickListener{
+            findNavController().navigate(R.id.action_login_to_forgotten_password)
+        }
+
     }
 
     fun checkLoginFields(): Boolean {

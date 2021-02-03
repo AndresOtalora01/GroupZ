@@ -9,9 +9,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="403dp"
+        android:layout_height="71dp"
         android:layout_marginTop="160dp"
+        android:fontFamily="@font/poppins_bold"
         android:text="@string/deleteAccountConfirmation"
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginTop="152dp"
+        android:background="@drawable/custom_button_login"
         android:text="@string/yes"
         app:layout_constraintBottom_toBottomOf="@+id/btnNo"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +39,7 @@
         android:layout_marginStart="179dp"
         android:layout_marginTop="152dp"
         android:layout_marginEnd="76dp"
+        android:background="@drawable/custom_button_login"
         android:text="@string/no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/btnYes"
