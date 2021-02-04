@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_swipe" />
     <fragment
         android:id="@+id/mainEventsFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.MainEventsFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.MainEventsFragment"
         android:label="fragment_main_events"
         tools:layout="@layout/fragment_main_events" >
         <action
