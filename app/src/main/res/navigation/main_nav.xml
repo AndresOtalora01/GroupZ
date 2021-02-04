@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_mainEventsFragment_to_showEventFragment"
             app:destination="@id/showEventFragment" />
+        <action
+            android:id="@+id/action_mainEventsFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/nearbyPeopleFragment"
@@ -77,4 +80,9 @@
         android:name="cat.copernic.groupz.ui.activities.main.fragments.showEventFragment"
         android:label="fragment_show_event"
         tools:layout="@layout/fragment_show_event" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
 </navigation>

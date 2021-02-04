@@ -9,11 +9,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
+import cat.copernic.groupz.databinding.FragmentMainEventsBinding
 
 
 class MainEventsFragment : Fragment() {
     private var mainCategoryRecycler: RecyclerView? = null
     private var mainRecyclerAdapter: MainRecyclerAdapter? = null
+    private lateinit var binding: FragmentMainEventsBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,6 +28,14 @@ class MainEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentMainEventsBinding.bind(view)
+        binding.btnShowEnevt.setOnClickListener {
+            findNavController().navigate(R.id.action_mainEventsFragment_to_showEventFragment)
+        }
+        binding.fabCreateEvent.setOnClickListener {
+            findNavController().navigate(R.id.action_mainEventsFragment_to_createEventFragment)
+        }
+
         mainCategoryRecycler = view?.findViewById(R.id.mainRecyclerEvents)
 
         //primera categoria de prueba

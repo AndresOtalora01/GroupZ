@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/editProfile"
-        android:background="@drawable/custom_button_login"
+        android:background="@drawable/custom_button"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
