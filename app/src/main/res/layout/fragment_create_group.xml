@@ -16,13 +16,13 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/createGroup"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnSave"
+        app:layout_constraintEnd_toStartOf="@+id/btnSaveGrupo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnSaveGrupo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
