@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_mainEventsFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_mainEventsFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
     </fragment>
     <fragment
         android:id="@+id/nearbyPeopleFragment"
@@ -85,4 +88,9 @@
         android:name="cat.copernic.groupz.ui.activities.main.fragments.events.CreateEventFragment"
         android:label="fragment_create_event"
         tools:layout="@layout/fragment_create_event" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.notifications.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

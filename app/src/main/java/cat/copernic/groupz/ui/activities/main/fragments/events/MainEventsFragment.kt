@@ -36,7 +36,11 @@ class MainEventsFragment : Fragment() {
             findNavController().navigate(R.id.action_mainEventsFragment_to_createEventFragment)
         }
 
-        mainCategoryRecycler = view?.findViewById(R.id.mainRecyclerEvents)
+        binding.btnNotifications.setOnClickListener {
+            findNavController().navigate(R.id.action_mainEventsFragment_to_notificationsFragment)
+        }
+
+        mainCategoryRecycler = view.findViewById(R.id.mainRecyclerEvents)
 
         //primera categoria de prueba
         val categoryItemList : MutableList<CategoryItem> = ArrayList()
