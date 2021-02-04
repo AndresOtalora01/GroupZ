@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main.fragments
+package cat.copernic.groupz.ui.activities.main.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
+import cat.copernic.groupz.model.User
+import cat.copernic.groupz.network.FirebaseClient
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -27,31 +29,21 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
-        loadData()
 
-        binding.btnSave.setOnClickListener{
-            if (saveData()){
+
+        binding.btnSaveProfile.setOnClickListener {
+            if (saveData()) {
                 findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
-
             }
 
         }
     }
 
-    fun loadData(){
-        userAuth?.email
 
-        binding.etNameEdit.setText("Manolo")
-        binding.etDateEdit.setText("20/01/1965")
-        binding.etHobbieEdit.setText("Futbol, Futbol")
-        binding.etDescriptionEdit.setText("Me gusta el futbol jaja")
+    fun saveData() : Boolean {
+        val saved = true
 
+        return saved
     }
-
-    fun saveData() : Boolean{
-
-        return true
-    }
-
-
 }
+

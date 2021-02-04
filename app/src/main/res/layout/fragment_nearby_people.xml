@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.main.fragments.NearbyPeopleFragment">
+    tools:context=".ui.activities.main.fragments.profile.NearbyPeopleFragment">
 
     <android.widget.Button
         android:id="@+id/btToProfile"
@@ -18,4 +18,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="107dp"
+        tools:listitem="@layout/row_profile_nearby"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/nearbyPeopleFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.NearbyPeopleFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.profile.NearbyPeopleFragment"
         android:label="fragment_nearby_people"
         tools:layout="@layout/fragment_nearby_people" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/chatsListFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.ChatsListFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.chat.ChatsListFragment"
         android:label="fragment_chats_list"
         tools:layout="@layout/fragment_chats_list" >
         <action
@@ -53,11 +53,11 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.ChatFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.chat.ChatFragment"
         android:label="ChatFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.ProfileFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.EditProfileFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.profile.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" >
         <action

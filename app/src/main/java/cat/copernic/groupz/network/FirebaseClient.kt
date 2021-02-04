@@ -5,11 +5,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FirebaseClient {
-    var db = FirebaseFirestore.getInstance()
-
     companion object {
         var db = FirebaseFirestore.getInstance()
         var auth = FirebaseAuth.getInstance()
+
 
         fun addDatabaseUser(userAdd: User): Boolean {
             val USERS = "Users"
@@ -32,6 +31,29 @@ class FirebaseClient {
                     added = false
                 }
             return added
+        }
+
+        fun getDatabaseUser(userGet: User): Boolean{
+            var loaded = false
+            val USERS = "Users"
+            val data = db.collection(USERS).document(userGet.mail)
+            data.get()
+                .addOnSuccessListener {
+                    if (it != null) {
+                        userGet.name = it.get("Name") as String
+                        userGet.birth = it.get("Birth") as String
+                        userGet.hobbies = it.get("Hobbies") as String
+                        userGet.description = it.get("Description") as String
+                        loaded = true
+                    } else {
+                        loaded = false
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    loaded = false
+                }
+            return loaded
+
         }
 
         fun userLogIn():Boolean{

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.main.fragments.EditProfileFragment" >
+    tools:context=".ui.activities.main.fragments.profile.EditProfileFragment" >
 
     <TextView
         android:id="@+id/tvEditProfile"
@@ -17,13 +17,13 @@
         android:fontFamily="@font/poppins_bold"
         android:text="@string/editProfile"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnSaveProfle"
+        app:layout_constraintEnd_toStartOf="@+id/btnSaveProfile"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
-        android:id="@+id/btnSaveProfle"
+        android:id="@+id/btnSaveProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"

@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main.fragments
+package cat.copernic.groupz.ui.activities.main.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentProfileBinding
+import cat.copernic.groupz.model.User
 
 class ProfileFragment : Fragment() {
 
@@ -23,16 +24,16 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-
-        binding.tvNameProfile.setText("Manolo")
-        binding.tvDescriptionProfile.setText("Descripciones")
-        binding.tvHobbiesProfile.setText("Correr,Andar")
-
         binding.btToEditProfile.setOnClickListener{
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
         
 
+    }
+    fun userToFragment(userObj : User){
+        binding.tvNameProfile.setText(userObj.name)
+        binding.tvDescriptionProfile.setText(userObj.description)
+        binding.tvHobbiesProfile.setText(userObj.description)
     }
 
 }

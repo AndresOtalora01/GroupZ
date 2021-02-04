@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main.fragments
+package cat.copernic.groupz.ui.activities.main.fragments.chat
 
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +18,8 @@ class ChatListAdapter(private val list: List<ChatListRow>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ChatListViewHolder, position: Int) {
         val currentItem = list[position]
         holder.profileImage.setImageResource(currentItem.profileImage)
-        holder.chatName.setText(currentItem.chatName)
-        holder.lastMessage.setText(currentItem.lastMessage)
+        holder.chatName.text = currentItem.chatName
+        holder.lastMessage.text = currentItem.lastMessage
 
 
     }
