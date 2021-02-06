@@ -211,6 +211,7 @@
             android:background="@drawable/ic_group_request" />
 
         <ImageButton
+            android:id="@+id/btnLike"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
