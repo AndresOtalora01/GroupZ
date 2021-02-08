@@ -62,19 +62,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvImages"
         tools:src="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvNameEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/etNameEdit"
@@ -83,26 +70,19 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:drawableStart="@drawable/custom_icon_password"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_bold"
         android:ems="10"
+        android:hint="@string/name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/tvDateEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/birth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
+
 
     <EditText
         android:id="@+id/etDateEdit"
@@ -111,25 +91,17 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:drawableStart="@drawable/custom_icon_password"
+        android:drawablePadding="16dp"
+        android:hint="@string/birth"
+        android:fontFamily="@font/poppins_bold"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
 
-    <TextView
-        android:id="@+id/tvHobbiesEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/hobbies"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
 
     <EditText
         android:id="@+id/etHobbieEdit"
@@ -138,26 +110,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:drawableStart="@drawable/custom_icon_password"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_bold"
         android:ems="10"
         android:inputType="textPersonName"
+        android:hint="@string/hobbies"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
 
-    <TextView
-        android:id="@+id/tvDescriptionEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
 
     <EditText
         android:id="@+id/etDescriptionEdit"
@@ -166,11 +130,16 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:drawableStart="@drawable/custom_icon_password"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="@string/description"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

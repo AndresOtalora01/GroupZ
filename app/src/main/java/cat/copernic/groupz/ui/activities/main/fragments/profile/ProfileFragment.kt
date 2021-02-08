@@ -27,8 +27,10 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-        var userA = createUserObject()
-        userToFragment(userA)
+        //var userA = createUserObject()
+        //userToFragment(userA)
+        binding.btToEditProfile.visibility = View.VISIBLE
+
         binding.btToEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }

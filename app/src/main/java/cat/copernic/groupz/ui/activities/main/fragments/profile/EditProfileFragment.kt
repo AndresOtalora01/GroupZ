@@ -30,7 +30,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
-        setDataOnFragment(getData())
+        //setDataOnFragment(getData())
 
         binding.btnSaveProfile.setOnClickListener {
             if (saveData()) {
