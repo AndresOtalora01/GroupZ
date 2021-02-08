@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main.fragments
+package cat.copernic.groupz.ui.activities.main.fragments.groups
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package cat.copernic.groupz.ui.activities.main.fragments
+package cat.copernic.groupz.ui.activities.main.fragments.groups
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -23,7 +23,7 @@ class GroupsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGroupsBinding.bind(view)
-    binding.btnCrearGroup.setOnClickListener{
+    binding.fabCreatGroup.setOnClickListener{
         findNavController().navigate(R.id.action_groupsFragment_to_create_GroupFragment)
     }
 

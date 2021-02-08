@@ -1,76 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.main.fragments.GroupsFragment"
+    tools:context=".ui.activities.main.fragments.groups.GroupsFragment"
     android:orientation="vertical">
 
-    <android.widget.Button
-        android:id="@+id/btnCrearGroup"
+    <TextView
+        android:id="@+id/categoryItemGroup"
         android:layout_width="wrap_content"
-        android:layout_marginLeft="250dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/white"
-        android:text="Crear Group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryItemRecyclerGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoryItemGroup" />
 
-    <LinearLayout
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCreatGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        >
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_myplaces" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/Name"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="el pepe"
-            android:textStyle="bold"/>
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/Name2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Los paco"
-            android:textStyle="bold"/>
-    </LinearLayout>
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="@color/blue_primary"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
