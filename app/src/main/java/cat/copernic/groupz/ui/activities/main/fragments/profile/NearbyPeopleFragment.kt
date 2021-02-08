@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
@@ -15,7 +16,7 @@ import cat.copernic.groupz.ui.activities.main.fragments.chat.ChatListAdapter
 import cat.copernic.groupz.ui.activities.main.fragments.chat.ChatListRow
 
 
-class NearbyPeopleFragment : Fragment() {
+class NearbyPeopleFragment : Fragment(), ProfileNearbyAdapter.OnItemClickListener{
 
     private var nearbyPeopleRecycler: RecyclerView? = null
     private var nearbyPeopleAdapter: ProfileNearbyAdapter? = null
@@ -32,21 +33,33 @@ class NearbyPeopleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNearbyPeopleBinding.bind(view)
-        binding.btToProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_nearbyPeopleFragment_to_profileFragment)
-        }
 
         nearbyPeopleRecycler = view.findViewById(R.id.nearbyPeopleList)
         val categoryItemList : MutableList<ProfileNearbyRow> = ArrayList()
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Paseo", "Montaña del destino"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Joan Padilla", "29","Manresa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
+        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
 
         setNearbyListRecycler(categoryItemList)
 
     }
     private fun setNearbyListRecycler(profileNearbyList: List<ProfileNearbyRow>) {
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,2)
         nearbyPeopleRecycler!!.layoutManager = layoutManager
-        nearbyPeopleAdapter = ProfileNearbyAdapter(profileNearbyList)
+        nearbyPeopleAdapter = ProfileNearbyAdapter(profileNearbyList,this)
         nearbyPeopleRecycler!!.adapter = nearbyPeopleAdapter
+    }
+
+    override fun onItemClick(position: Int) {
+        findNavController().navigate(R.id.action_nearbyPeopleFragment_to_profileFragment)
     }
 }

@@ -232,15 +232,14 @@ class RegisterFragment : Fragment() {
     }
 
     fun createUserObj() : User {
-        var userObj = User()
-            userObj.mail = binding.etMail.text.toString()
-            userObj.name = binding.etName.text.toString()
-            userObj.birth = binding.etBirth.text.toString()
-            userObj.location = binding.etLocation.text.toString()
-            userObj.hobbies = binding.etHobbies.text.toString()
-            userObj.description = ""
-
-
+        var userObj = User(
+            binding.etName.text.toString(),
+            binding.etMail.text.toString(),
+            binding.etBirth.text.toString(),
+            binding.etHobbies.text.toString(),
+            "",
+            binding.etLocation.text.toString()
+        )
         return userObj
 
     }

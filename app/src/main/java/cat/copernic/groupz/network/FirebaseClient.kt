@@ -12,9 +12,10 @@ class FirebaseClient {
         var auth = FirebaseAuth.getInstance()
         var storage = FirebaseStorage.getInstance()
 
+        var TAG = "FirebaseClient"
         fun addDatabaseUser(userAdd: User): Boolean {
             val USERS = "Users"
-            var added : Boolean = true
+            var added: Boolean = true
             val userMap = hashMapOf( //Rellenamos los datos para la base de datos
                 "Mail" to userAdd.mail,
                 "Name" to userAdd.name,
@@ -36,49 +37,54 @@ class FirebaseClient {
             return added
         }
 
-        fun getDatabaseUser(userMail : String): User{
+        fun getDatabaseUser(userMail: String): User? {
             var loaded = false
             val USERS = "Users"
-            val userGet = User()
+            var userGet: User? = null
             val data = db.collection(USERS).document(userMail)
             data.get()
                 .addOnSuccessListener {
                     if (it != null) {
-                        userGet.mail = auth.currentUser?.email.toString()
-                        userGet.name = it.get("Name") as String
-                        userGet.birth = it.get("Birth") as String
-                        userGet.hobbies = it.get("Hobbies") as String
-                        userGet.description = it.get("Description") as String
-                        userGet.location = it.get("Location") as String
+                        userGet = User(
+                            it.get("Name") as String,
+                            userMail,
+                            it.get("Birth") as String,
+                            it.get("Hobbies") as String,
+                            it.get("Description") as String,
+                            it.get("Location") as String
+                        )
+                        Log.d(TAG, "Success")
                         loaded = true
                     } else {
                         loaded = false
                     }
+
                 }
                 .addOnFailureListener { exception ->
+                    Log.d(TAG, "Failure")
                     loaded = false
                 }
             return userGet
         }
 
-        fun userLogIn():Boolean{
-            if (auth.currentUser != null){
+        fun userLogIn(): Boolean {
+            if (auth.currentUser != null) {
                 return true
             } else {
                 return false
             }
         }
 
-        fun getDatabaseChatsFromUser(userMail : String){
+        fun getDatabaseChatsFromUser(userMail: String) {
             val messages = "Messages"
             val chats = "Chats"
-            var queryMessages = db.collection(messages).whereEqualTo("from",userMail)
+            var queryMessages = db.collection(messages).whereEqualTo("from", userMail)
 
             queryMessages.get()
                 .addOnSuccessListener {
-                   db.collection(chats).get()
+                    db.collection(chats).get()
                 }
-                .addOnFailureListener{
+                .addOnFailureListener {
 
                 }
         }

@@ -37,6 +37,7 @@
     <string name="messageChat">Escriu un missatge</string>
     <string name="editProfile">Editar Perfil</string>
     <string name="createGroup">Crear Grup</string>
+    <string name="from">Prop a tu</string>
     <string name="save">Guardar</string>
     <string name="images">Imatges</string>
     <string name="newimages">Afegir Imatge</string>

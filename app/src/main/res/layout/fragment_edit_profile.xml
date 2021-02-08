@@ -50,18 +50,27 @@
         app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivProfileEdit"
         android:layout_width="63dp"
         android:layout_height="62dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvImages"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@drawable/pedra" />
 
+
+    <ImageView
+        android:id="@+id/ivAddEdit"
+        android:layout_width="63dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileEdit"
+        app:layout_constraintTop_toBottomOf="@+id/tvImages"
+        tools:src="@drawable/ic_add_pictures" />
 
     <EditText
         android:id="@+id/etNameEdit"
@@ -80,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/ivProfileEdit" />
 
 
 
@@ -142,4 +151,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
+
+    <EditText
+        android:id="@+id/etLocationEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/custom_edit_text"
+        android:drawableStart="@drawable/custom_icon_password"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="@string/location"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescriptionEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

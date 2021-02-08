@@ -1,11 +1,14 @@
 package cat.copernic.groupz.ui.activities.main.fragments.profile
 
+
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.set
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
@@ -30,8 +33,12 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
-        //setDataOnFragment(getData())
+        getData(FirebaseClient.auth.currentUser?.email as String)
 
+        binding.ivAddEdit.setOnClickListener{
+            pickImageFromGallery()
+
+        }
         binding.btnSaveProfile.setOnClickListener {
             if (saveData()) {
                 findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
@@ -40,21 +47,75 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-
     fun saveData() : Boolean{
-        return true
+        var userData = User(
+            binding.etNameEdit.text.toString(),
+            FirebaseClient.auth.currentUser?.email.toString(),
+            binding.etDateEdit.text.toString(),
+            binding.etHobbieEdit.text.toString(),
+            binding.etDescriptionEdit.text.toString(),
+            binding.etLocationEdit.text.toString()
+        )
+
+        if (FirebaseClient.addDatabaseUser(userData)){
+            return true
+        } else {
+            return false
+        }
     }
-    fun getData(): User{
-    var userGet = User()
-    FirebaseClient.getDatabaseUser(userAuth?.email.toString())
-        return userGet
+    fun getData(userMail : String){
+        val USERS = "Users"
+        val data = FirebaseClient.db.collection(USERS).document(userMail)
+        data.get()
+            .addOnSuccessListener {
+                if (it != null) {
+                    binding.etNameEdit.setText(it.get("Name") as String)
+                    binding.etDateEdit.setText(it.get("Birth") as String)
+                    binding.etHobbieEdit.setText(it.get("Hobbies") as String)
+                    binding.etDescriptionEdit.setText(it.get("Description") as String)
+                    binding.etLocationEdit.setText(it.get("Location") as String)
+                } else {
+                }
+            }
+            .addOnFailureListener { exception ->
+            }
     }
 
-    fun setDataOnFragment(userData : User){
-        binding.etNameEdit.setText(userData.name)
-        binding.etDateEdit.setText(userData.birth)
-        binding.etDescriptionEdit.setText(userData.description)
-        binding.etHobbieEdit.setText(userData.hobbies)
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    companion object {
+        //image pick code
+        private val IMAGE_PICK_CODE = 1000;
+        //Permission code
+        private val PERMISSION_CODE = 1001;
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.size >0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
+                    pickImageFromGallery()
+
+                }
+                else{
+                    //permission from popup denied
+                }
+            }
+        }
+    }
+
+    //handle result of picked image
+    fun onFragmentResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            binding.ivProfileEdit.setImageURI(data?.data)
+        }
     }
 }
 

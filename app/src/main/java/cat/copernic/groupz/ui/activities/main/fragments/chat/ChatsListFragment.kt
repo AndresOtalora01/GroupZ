@@ -15,7 +15,7 @@ import cat.copernic.groupz.ui.activities.main.fragments.events.CategoryItem
 import cat.copernic.groupz.ui.activities.main.fragments.events.MainRecyclerAdapter
 
 
-class ChatsListFragment : Fragment() {
+class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
     private var chatListRecycler: RecyclerView? = null
     private var chatListAdapter: ChatListAdapter? = null
     private lateinit var binding: FragmentChatsListBinding
@@ -30,9 +30,6 @@ class ChatsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatsListBinding.bind(view)
 
-        binding.btToChat.setOnClickListener{
-            findNavController().navigate(R.id.action_chatsListFragment_to_chatFragment)
-        }
 
         chatListRecycler = view.findViewById(R.id.chatViewList)
         val categoryItemList : MutableList<ChatListRow> = ArrayList()
@@ -40,11 +37,16 @@ class ChatsListFragment : Fragment() {
         setChatListRecycler(categoryItemList)
     }
 
+
     private fun setChatListRecycler(chatList: List<ChatListRow>) {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         chatListRecycler!!.layoutManager = layoutManager
-        chatListAdapter = ChatListAdapter(chatList)
+        chatListAdapter = ChatListAdapter(chatList, this)
         chatListRecycler!!.adapter = chatListAdapter
+    }
+
+    override fun onItemClick(position: Int) {
+        findNavController().navigate(R.id.action_chatsListFragment_to_chatFragment)
     }
 
     private fun addChats(){

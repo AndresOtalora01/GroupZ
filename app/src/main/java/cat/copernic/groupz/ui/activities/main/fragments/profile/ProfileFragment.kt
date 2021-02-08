@@ -27,8 +27,8 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-        //var userA = createUserObject()
-        //userToFragment(userA)
+
+        userToFragment(createUserObject())
         binding.btToEditProfile.visibility = View.VISIBLE
 
         binding.btToEditProfile.setOnClickListener {
@@ -36,19 +36,17 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    fun createUserObject(): User {
-        var userObject = User()
-        userObject = FirebaseClient.getDatabaseUser(FirebaseClient.auth.currentUser?.email.toString())
-        return userObject
+    fun createUserObject(): User? {
+        return FirebaseClient.getDatabaseUser(FirebaseClient.auth.currentUser?.email.toString())
     }
 
-    fun userToFragment(userObj: User) {
-        if (FirebaseClient.auth.currentUser?.email == userObj.mail) {
+    fun userToFragment(userObj: User?) {
+        if (FirebaseClient.auth.currentUser?.email == userObj?.mail) {
             binding.btToEditProfile.visibility = View.VISIBLE
         }
-        binding.tvNameProfile.text = userObj.name
-        binding.tvDescriptionProfile.text = userObj.description
-        binding.tvHobbiesProfile.text = userObj.hobbies
+        binding.tvNameProfile.text = userObj?.name
+        binding.tvDescriptionProfile.text = userObj?.description
+        binding.tvHobbiesProfile.text = userObj?.hobbies
     }
 
 }

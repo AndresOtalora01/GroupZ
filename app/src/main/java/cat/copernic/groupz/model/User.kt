@@ -1,11 +1,10 @@
 package cat.copernic.groupz.model
 
-class User {
-    lateinit var name : String
-    lateinit var mail : String
-    lateinit var birth : String
-    lateinit var hobbies : String
-    lateinit var description : String
-    lateinit var location : String
-
-}
+class User (
+    var name : String,
+    var mail : String,
+    var birth : String,
+    var hobbies : String,
+    var description : String,
+    var location : String
+)
