@@ -125,6 +125,15 @@ class RegisterFragment : Fragment() {
         }
     }
 
+    private fun isValidLocation(): Boolean {
+        if (binding.etLocation.text.isEmpty()) {
+            binding.etLocation.error = getString(R.string.errorEmptyField)
+            return false
+        } else {
+            binding.etLocation.error = null
+            return true
+        }
+    }
     private fun isValidEmail(): Boolean {
         val mailRegCheck =
             android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etMail.text.toString())
@@ -185,6 +194,8 @@ class RegisterFragment : Fragment() {
         }
     }
 
+
+
     private fun comprovate(): Boolean{
         var boolean: Boolean = true
         if (!isValidName()){
@@ -195,6 +206,9 @@ class RegisterFragment : Fragment() {
         }
 
         if (!isValidHobbies()){
+            boolean = false
+        }
+        if (!isValidLocation()){
             boolean = false
         }
 
@@ -222,8 +236,10 @@ class RegisterFragment : Fragment() {
             userObj.mail = binding.etMail.text.toString()
             userObj.name = binding.etName.text.toString()
             userObj.birth = binding.etBirth.text.toString()
+            userObj.location = binding.etLocation.text.toString()
             userObj.hobbies = binding.etHobbies.text.toString()
             userObj.description = ""
+
 
         return userObj
 

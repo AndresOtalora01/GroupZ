@@ -10,6 +10,7 @@
     <string name="errorNotCheck">Has de marcar la casella</string>
     <string name="errorBadDate">La data es incorrecte</string>
     <string name="errorUserNotCreated">Ha ocurrit un error, prova mes tard</string>
+    <string name="errorNotChat">No tens cap chat</string>
 
     <!--Generic-->
     <string name="email">Correu</string>
@@ -19,13 +20,15 @@
     <string name="or">o</string>
     <string name="noAccount">No tienes cuenta?</string>
     <string name="signUp">Sign Up</string>
+    <string name="signIn">Iniciar Sesió</string>
     <string name="titleRegister">Registre</string>
     <string name="name">Nom</string>
+    <string name="location">Ubicacio</string>
     <string name="birth">Data de Naixement</string>
     <string name="hobbies">Hobbies</string>
     <string name="cbTerms">Accepto els termes i condicions de l\'aplicació</string>
     <string name="btnRegister">Continuar</string>
-    <string name="tvAccountLog">Ja tens compte? Inciar Sesió</string>
+    <string name="tvAccountLog">Ja tens compte?</string>
     <string name="userCreated">Compte Creat correctament</string>
     <string name="logOut">Tancar Sessió</string>
     <string name="delAccount">Eliminar Compte</string>
@@ -33,15 +36,16 @@
     <string name="LogOut">Sessió tancada </string>
     <string name="messageChat">Escriu un missatge</string>
     <string name="editProfile">Editar Perfil</string>
-    <string name="createGroup">Crear Grupo</string>
+    <string name="createGroup">Crear Grup</string>
     <string name="save">Guardar</string>
     <string name="images">Imatges</string>
     <string name="newimages">Afegir Imatge</string>
     <string name="description">Descripció</string>
-    <string name="members">Miembros</string>
+    <string name="members">Membres</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    <string name="recommendedEvents">Recomendados</string>
+    <string name="search">Cercar</string>
+    <string name="recommendedEvents">Recomenats</string>
 
     <!--Alerts-->
 
@@ -53,10 +57,10 @@
     <string name="passHint">Ha de contenir 8 Caracters</string>
     <string name="passConfirm">Confirmar la contrasenya</string>
     <string name="passConfirmHint">Torna a Introduir la contrasenya</string>
-    <string name="deleteAccountConfirmation">¿Estás seguro de que quieres eliminar la cuenta?</string>
+    <string name="deleteAccountConfirmation">¿Estás segur de que vols eliminar el Compte?</string>
     <string name="tvDescription">Descripción</string>
     <string name="tvInterestsHobbies">Intereses/Hobbies</string>
-    <string name="tvReEmail"> Posa el correu per recuperar la Contrasenya</string>
+    <string name="tvReEmail"> Introdueix el correu per recuperar la Contrasenya</string>
     <string name="etReEmail"> Introdueix el teu Correu</string>
     <string name="Robot">No soc un Robot</string>
     <!-- TODO: Remove or change this placeholder text -->

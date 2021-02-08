@@ -7,7 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Window
 import cat.copernic.groupz.R
+import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.home.HomeActivity
+import cat.copernic.groupz.ui.activities.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -19,7 +21,11 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar!!.hide()
         setContentView(R.layout.activity_splash)
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, HomeActivity::class.java))
+            if (FirebaseClient.userLogIn()){
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, HomeActivity::class.java))
+            }
             finish()
         }, SPLASH_TIME)
 

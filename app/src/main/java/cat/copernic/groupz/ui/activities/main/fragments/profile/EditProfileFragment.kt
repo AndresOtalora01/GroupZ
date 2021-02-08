@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.set
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
@@ -29,7 +30,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
-
+        setDataOnFragment(getData())
 
         binding.btnSaveProfile.setOnClickListener {
             if (saveData()) {
@@ -40,10 +41,20 @@ class EditProfileFragment : Fragment() {
     }
 
 
-    fun saveData() : Boolean {
-        val saved = true
+    fun saveData() : Boolean{
+        return true
+    }
+    fun getData(): User{
+    var userGet = User()
+    FirebaseClient.getDatabaseUser(userAuth?.email.toString())
+        return userGet
+    }
 
-        return saved
+    fun setDataOnFragment(userData : User){
+        binding.etNameEdit.setText(userData.name)
+        binding.etDateEdit.setText(userData.birth)
+        binding.etDescriptionEdit.setText(userData.description)
+        binding.etHobbieEdit.setText(userData.hobbies)
     }
 }
 

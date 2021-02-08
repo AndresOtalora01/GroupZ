@@ -28,6 +28,5 @@ class ProfileNearbyAdapter(private val ProfileNearbyList: List<ProfileNearbyRow>
         val profileImageNearby : ImageView = itemView.findViewById(R.id.profileImageNearby)
         val profileNameNearby : TextView = itemView.findViewById(R.id.nameProfileNearby)
         val birthProfileNearby : TextView = itemView.findViewById(R.id.birthProfileNearby)
-
     }
 }

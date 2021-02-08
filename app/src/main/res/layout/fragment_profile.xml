@@ -29,7 +29,7 @@
         android:layout_marginTop="38dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Manolo Lama"
+        android:text="Name Text"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,14 +58,14 @@
         android:layout_marginEnd="200dp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
-        android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
+        android:text="Description Text"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescriptionTitle" />
 
     <TextView
-        android:id="@+id/tvHobbiesProfile"
+        android:id="@+id/tvHobbiesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -78,6 +78,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDescriptionProfile" />
 
+    <TextView
+        android:id="@+id/tvHobbiesProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/hobbies"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesTitle" />
+
     <android.widget.Button
         android:id="@+id/btToEditProfile"
         android:layout_width="wrap_content"
@@ -86,9 +100,10 @@
         android:background="@drawable/custom_button"
         android:fontFamily="@font/poppins_bold"
         android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

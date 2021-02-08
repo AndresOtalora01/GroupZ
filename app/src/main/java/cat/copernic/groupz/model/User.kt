@@ -6,5 +6,6 @@ class User {
     lateinit var birth : String
     lateinit var hobbies : String
     lateinit var description : String
+    lateinit var location : String
 
 }

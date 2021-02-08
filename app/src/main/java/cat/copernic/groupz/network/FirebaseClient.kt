@@ -1,14 +1,16 @@
 package cat.copernic.groupz.network
 
+import android.util.Log
 import cat.copernic.groupz.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class FirebaseClient {
     companion object {
         var db = FirebaseFirestore.getInstance()
         var auth = FirebaseAuth.getInstance()
-
+        var storage = FirebaseStorage.getInstance()
 
         fun addDatabaseUser(userAdd: User): Boolean {
             val USERS = "Users"
@@ -19,6 +21,7 @@ class FirebaseClient {
                 "Birth" to userAdd.birth,
                 "Hobbies" to userAdd.hobbies,
                 "Description" to userAdd.description,
+                "Location" to userAdd.location,
                 "isOnline" to "false"
             )
             db.collection(USERS)
@@ -33,17 +36,20 @@ class FirebaseClient {
             return added
         }
 
-        fun getDatabaseUser(userGet: User): Boolean{
+        fun getDatabaseUser(userMail : String): User{
             var loaded = false
             val USERS = "Users"
-            val data = db.collection(USERS).document(userGet.mail)
+            val userGet = User()
+            val data = db.collection(USERS).document(userMail)
             data.get()
                 .addOnSuccessListener {
                     if (it != null) {
+                        userGet.mail = auth.currentUser?.email.toString()
                         userGet.name = it.get("Name") as String
                         userGet.birth = it.get("Birth") as String
                         userGet.hobbies = it.get("Hobbies") as String
                         userGet.description = it.get("Description") as String
+                        userGet.location = it.get("Location") as String
                         loaded = true
                     } else {
                         loaded = false
@@ -52,8 +58,7 @@ class FirebaseClient {
                 .addOnFailureListener { exception ->
                     loaded = false
                 }
-            return loaded
-
+            return userGet
         }
 
         fun userLogIn():Boolean{
@@ -62,6 +67,20 @@ class FirebaseClient {
             } else {
                 return false
             }
+        }
+
+        fun getDatabaseChatsFromUser(userMail : String){
+            val messages = "Messages"
+            val chats = "Chats"
+            var queryMessages = db.collection(messages).whereEqualTo("from",userMail)
+
+            queryMessages.get()
+                .addOnSuccessListener {
+                   db.collection(chats).get()
+                }
+                .addOnFailureListener{
+
+                }
         }
 
 
