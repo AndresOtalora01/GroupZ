@@ -5,19 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentChatsListBinding
-import cat.copernic.groupz.ui.activities.main.fragments.events.AllCategories
-import cat.copernic.groupz.ui.activities.main.fragments.events.CategoryItem
-import cat.copernic.groupz.ui.activities.main.fragments.events.MainRecyclerAdapter
+import cat.copernic.groupz.model.ChatListRow
 
 
-class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
+class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener, SearchView.OnQueryTextListener{
     private var chatListRecycler: RecyclerView? = null
     private var chatListAdapter: ChatListAdapter? = null
+
     private lateinit var binding: FragmentChatsListBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,15 +29,20 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatsListBinding.bind(view)
-
-
+        //FirebaseClient.getDatabaseChatsFromUser(FirebaseClient.auth.currentUser?.email as String)
         chatListRecycler = view.findViewById(R.id.chatViewList)
         val categoryItemList : MutableList<ChatListRow> = ArrayList()
-        categoryItemList.add(ChatListRow(R.drawable.pedra, "Paseo", "Montaña del destino"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Manolo", "Tu: Hola Manolo"))
         setChatListRecycler(categoryItemList)
     }
 
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        TODO("Not yet implemented")
+    }
 
+    override fun onQueryTextChange(newText: String?): Boolean {
+        TODO("Not yet implemented")
+    }
     private fun setChatListRecycler(chatList: List<ChatListRow>) {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         chatListRecycler!!.layoutManager = layoutManager

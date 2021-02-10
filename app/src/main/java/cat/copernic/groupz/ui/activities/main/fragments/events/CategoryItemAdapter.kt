@@ -24,7 +24,7 @@ class CategoryItemAdapter(
             itemImage =  itemView.findViewById(R.id.categoryItemImage)
             itemTitle = itemView.findViewById(R.id.tvCategoryItemTitle)
             itemDestination = itemView.findViewById(R.id.tvCategoryItemDestination)
-            itemLocation = itemView.findViewById(R.id.tvCategoryItemLocation)
+            itemLocation = itemView.findViewById(R.id.tvProfileLocation)
         }
     }
 

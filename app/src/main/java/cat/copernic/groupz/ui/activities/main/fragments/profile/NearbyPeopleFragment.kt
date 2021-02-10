@@ -7,13 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentNearbyPeopleBinding
-import cat.copernic.groupz.network.FirebaseClient
-import cat.copernic.groupz.ui.activities.main.fragments.chat.ChatListAdapter
-import cat.copernic.groupz.ui.activities.main.fragments.chat.ChatListRow
 
 
 class NearbyPeopleFragment : Fragment(), ProfileNearbyAdapter.OnItemClickListener{
@@ -38,16 +34,6 @@ class NearbyPeopleFragment : Fragment(), ProfileNearbyAdapter.OnItemClickListene
         val categoryItemList : MutableList<ProfileNearbyRow> = ArrayList()
         categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Joan Padilla", "29","Manresa"))
         categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
 
         setNearbyListRecycler(categoryItemList)
 
@@ -62,4 +48,5 @@ class NearbyPeopleFragment : Fragment(), ProfileNearbyAdapter.OnItemClickListene
     override fun onItemClick(position: Int) {
         findNavController().navigate(R.id.action_nearbyPeopleFragment_to_profileFragment)
     }
+
 }

@@ -27,26 +27,29 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
-
-        userToFragment(createUserObject())
-        binding.btToEditProfile.visibility = View.VISIBLE
-
+        userToFragment(FirebaseClient.auth.currentUser?.email as String)
         binding.btToEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
     }
 
-    fun createUserObject(): User? {
-        return FirebaseClient.getDatabaseUser(FirebaseClient.auth.currentUser?.email.toString())
-    }
+    fun userToFragment(userMail: String) {
+        val data = FirebaseClient.db.collection("Users").document(userMail)
+        data.get()
+            .addOnSuccessListener {
+                if (it != null) {
+                    binding.tvNameProfile.text = it.get("Name") as String
+                    binding.tvHobbiesProfile.text = it.get("Hobbies") as String
+                    binding.tvDescriptionProfile.text = it.get("Description") as String
+                    if (FirebaseClient.auth.currentUser?.email == it.get("Mail") as String){
+                        binding.btToEditProfile.visibility = View.VISIBLE
+                    }
+                }
 
-    fun userToFragment(userObj: User?) {
-        if (FirebaseClient.auth.currentUser?.email == userObj?.mail) {
-            binding.btToEditProfile.visibility = View.VISIBLE
-        }
-        binding.tvNameProfile.text = userObj?.name
-        binding.tvDescriptionProfile.text = userObj?.description
-        binding.tvHobbiesProfile.text = userObj?.hobbies
+            }
+            .addOnFailureListener { exception ->
+                Log.d(FirebaseClient.TAG, "Failure")
+            }
     }
 
 }

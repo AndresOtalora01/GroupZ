@@ -3,6 +3,7 @@ package cat.copernic.groupz.network
 import android.util.Log
 import cat.copernic.groupz.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
@@ -38,7 +39,6 @@ class FirebaseClient {
         }
 
         fun getDatabaseUser(userMail: String): User? {
-            var loaded = false
             val USERS = "Users"
             var userGet: User? = null
             val data = db.collection(USERS).document(userMail)
@@ -51,21 +51,18 @@ class FirebaseClient {
                             it.get("Birth") as String,
                             it.get("Hobbies") as String,
                             it.get("Description") as String,
-                            it.get("Location") as String
-                        )
+                            it.get("Location") as String)
                         Log.d(TAG, "Success")
-                        loaded = true
-                    } else {
-                        loaded = false
                     }
 
                 }
                 .addOnFailureListener { exception ->
                     Log.d(TAG, "Failure")
-                    loaded = false
                 }
+
             return userGet
         }
+
 
         fun userLogIn(): Boolean {
             if (auth.currentUser != null) {
@@ -75,14 +72,26 @@ class FirebaseClient {
             }
         }
 
+        fun insertMessageChatFromUser(){
+
+
+        }
+
         fun getDatabaseChatsFromUser(userMail: String) {
-            val messages = "Messages"
+            val messages = "Mensaje"
             val chats = "Chats"
             var queryMessages = db.collection(messages).whereEqualTo("from", userMail)
 
             queryMessages.get()
-                .addOnSuccessListener {
-                    db.collection(chats).get()
+                .addOnSuccessListener { documents ->
+
+                    for (document in documents) {
+                       /*var data = db.collection("Chat").document(document.get("idChat").toString())
+                       data.get().addOnSuccessListener {
+                           Log.d(TAG,it.get("name")as String)
+                       }*/
+
+                    }
                 }
                 .addOnFailureListener {
 
@@ -93,7 +102,7 @@ class FirebaseClient {
     }
 }
 
-//              email: String,
+//            email: String,
 //            dateOfBirth: String,
 //            hobbies: String,
 //            dbCollection: String

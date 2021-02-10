@@ -15,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="143dp"
         android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
         android:text="@string/editProfile"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/btnSaveProfile"
@@ -43,6 +44,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/black"
         android:text="@string/images"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -72,6 +74,22 @@
         app:layout_constraintTop_toBottomOf="@+id/tvImages"
         tools:src="@drawable/ic_add_pictures" />
 
+
+    <TextView
+        android:id="@+id/tvNameEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/name"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivProfileEdit" />
+
     <EditText
         android:id="@+id/etNameEdit"
         android:layout_width="0dp"
@@ -79,19 +97,33 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/custom_icon_password"
-        android:drawablePadding="16dp"
-        android:fontFamily="@font/poppins_bold"
+        android:background="@drawable/custom_edit_text_rounded"
         android:ems="10"
+        android:fontFamily="@font/poppins_bold"
         android:hint="@string/name"
         android:inputType="textPersonName"
+        android:paddingStart="20dp"
+        android:textColor="@color/blue_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNameEdit" />
 
 
+    <TextView
+        android:id="@+id/tvDateEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/birth"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
 
     <EditText
         android:id="@+id/etDateEdit"
@@ -100,17 +132,33 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/custom_icon_password"
-        android:drawablePadding="16dp"
-        android:hint="@string/birth"
-        android:fontFamily="@font/poppins_bold"
+        android:background="@drawable/custom_edit_text_rounded"
         android:ems="10"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="@string/birth"
         android:inputType="date"
+        android:paddingStart="20dp"
+        android:textColor="@color/blue_primary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDateEdit" />
 
+
+    <TextView
+        android:id="@+id/tvHobbiesEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/hobbies"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
 
     <EditText
         android:id="@+id/etHobbieEdit"
@@ -119,18 +167,32 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/custom_icon_password"
-        android:drawablePadding="16dp"
-        android:fontFamily="@font/poppins_bold"
+        android:background="@drawable/custom_edit_text_rounded"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/poppins_bold"
         android:hint="@string/hobbies"
+        android:inputType="textPersonName"
+        android:paddingStart="20dp"
+        android:textColor="@color/blue_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesEdit" />
 
+    <TextView
+        android:id="@+id/tvDescriptionEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/description"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
 
     <EditText
         android:id="@+id/etDescriptionEdit"
@@ -139,18 +201,33 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/custom_icon_password"
-        android:drawablePadding="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:hint="@string/description"
+        android:background="@drawable/custom_edit_text_rounded"
         android:ems="10"
+        android:fontFamily="@font/poppins_bold"
         android:gravity="start|top"
+        android:hint="@string/description"
         android:inputType="textMultiLine"
+        android:paddingStart="20dp"
+        android:textColor="@color/blue_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionEdit" />
+
+    <TextView
+        android:id="@+id/tvLocationEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/location"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescriptionEdit" />
 
     <EditText
         android:id="@+id/etLocationEdit"
@@ -159,16 +236,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text"
-        android:drawableStart="@drawable/custom_icon_password"
+        android:background="@drawable/custom_edit_text_rounded"
         android:drawablePadding="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:hint="@string/location"
         android:ems="10"
+        android:fontFamily="@font/poppins_bold"
         android:gravity="start|top"
+        android:hint="@string/location"
         android:inputType="textMultiLine"
+        android:paddingStart="20dp"
+        android:textColor="@color/blue_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescriptionEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLocationEdit" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

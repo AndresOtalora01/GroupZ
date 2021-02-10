@@ -1,3 +1,3 @@
-package cat.copernic.groupz.ui.activities.main.fragments.chat
+package cat.copernic.groupz.model
 
 data class ChatListRow(val profileImage: Int, val chatName : String, val lastMessage : String)

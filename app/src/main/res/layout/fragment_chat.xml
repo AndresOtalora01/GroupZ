@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    android:orientation="vertical">
-    <ScrollView
+    android:background="#ffffff">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesView"
         android:layout_width="match_parent"
-        android:layout_weight="20"
-        android:layout_height="wrap_content"
-        android:id="@+id/messageArea">
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/userChat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/userName">
-            </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
     <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginBottom="55dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <EditText
+            android:id="@+id/messageText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColorHint="#CFD8DC"
+            android:background="@drawable/custom_edit_text_rounded"
             android:gravity="center"
-            android:background="@android:color/transparent"
             android:hint="@string/messageChat"
-            android:id="@+id/messageText"
             android:maxHeight="80dp"
-            />
+            android:textColorHint="#CFD8DC" />
+
         <ImageView
+            android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:padding="4dp"
             android:background="@color/blue_primary"
-            android:src="@android:drawable/ic_menu_send"
-            android:id="@+id/sendButton"/>
+            android:padding="4dp"
+            android:src="@android:drawable/ic_menu_send" />
     </LinearLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
