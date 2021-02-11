@@ -8,8 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
+
 
 
 class SwipeFragment : Fragment() {
@@ -25,11 +28,12 @@ class SwipeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         var buttonDialog = view.findViewById<ImageButton>(R.id.btnLike)
-
         dialog = context?.let { Dialog(it) }!!
         buttonDialog.setOnClickListener {
             openMatchDialog()
         }
+
+
     }
 
     private fun openMatchDialog() {

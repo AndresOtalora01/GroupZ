@@ -1,5 +1,6 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentLogOutBinding
 import cat.copernic.groupz.network.FirebaseClient
+import cat.copernic.groupz.ui.activities.home.HomeActivity
+import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -41,10 +44,12 @@ class LogOutFragment : Fragment() {
             builder.setMessage(R.string.LogOut);
             val dialog = builder.create()
             dialog.show()
-            findNavController().navigate(R.id.action_logOutFragment_to_login)
+
+            startActivity( Intent(context, HomeActivity::class.java))
         }
         binding.btnDelAccount.setOnClickListener{
-            findNavController().navigate(R.id.action_logOutFragment_to_confirmar_Eliminar)
+            findNavController().navigate(R.id.action_logOutFragment_to_deleteConfirmationFragment)
+
         }
 
     }

@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_mainEventsFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_mainEventsFragment_to_mayEventsFragment"
+            app:destination="@id/mayEventsFragment" />
     </fragment>
     <fragment
         android:id="@+id/nearbyPeopleFragment"
@@ -93,4 +96,27 @@
         android:name="cat.copernic.groupz.ui.activities.main.fragments.notifications.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/logOutFragment"
+        android:name="cat.copernic.groupz.ui.activities.home.fragments.LogOutFragment"
+        android:label="fragment_log_out"
+        tools:layout="@layout/fragment_log_out" >
+        <action
+            android:id="@+id/action_logOutFragment_to_deleteConfirmationFragment"
+            app:destination="@id/deleteConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteConfirmationFragment"
+        android:name="cat.copernic.groupz.ui.activities.home.fragments.DeleteConfirmationFragment"
+        android:label="fragment_delete_confirmation"
+        tools:layout="@layout/fragment_delete_confirmation" >
+        <action
+            android:id="@+id/action_deleteConfirmationFragment_to_logOutFragment"
+            app:destination="@id/logOutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mayEventsFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.MayEventsFragment"
+        android:label="fragment_may_events"
+        tools:layout="@layout/fragment_may_events" />
 </navigation>

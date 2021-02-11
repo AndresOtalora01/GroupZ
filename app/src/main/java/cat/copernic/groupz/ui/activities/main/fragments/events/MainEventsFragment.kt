@@ -39,6 +39,9 @@ class MainEventsFragment : Fragment() {
         binding.btnNotifications.setOnClickListener {
             findNavController().navigate(R.id.action_mainEventsFragment_to_notificationsFragment)
         }
+        binding.btnMiseventos.setOnClickListener {
+            findNavController().navigate(R.id.action_mainEventsFragment_to_mayEventsFragment)
+        }
 
         mainCategoryRecycler = view.findViewById(R.id.mainRecyclerEvents)
 
