@@ -2,8 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/profileFragment"
-        android:title="perfil"/>
+        android:title="@string/my_profile"
+        android:icon="@drawable/ic_my_profile"
+        />
     <item
         android:id="@+id/logOutFragment"
-        android:title="acount"/>
+        android:title="@string/account"
+        android:icon="@drawable/ic_account"
+        />
     </menu>

@@ -47,6 +47,8 @@
     <string name="no">No</string>
     <string name="search">Cercar</string>
     <string name="recommendedEvents">Recomenats</string>
+    <string name="my_profile">Mi perfi</string>
+    <string name="account">Cuenta</string>
 
     <!--Alerts-->
 

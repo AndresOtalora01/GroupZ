@@ -3,12 +3,15 @@ package cat.copernic.groupz.ui.activities.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.ActivityMainBinding
+import cat.copernic.groupz.network.FirebaseClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -37,10 +40,22 @@ class MainActivity : AppCompatActivity() {
                 R.id.groupsFragment,
             )
         )
+        val  navheadrview = navigationView.getHeaderView(0)
+        navheadrview.findViewById<TextView>(R.id.tvUserEmail).text = FirebaseClient.auth.currentUser?.email
+        navheadrview.findViewById<ImageButton>(R.id.btnClouseNav).setOnClickListener {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         NavigationUI.setupWithNavController(navigationView,navController)
         
+    }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
 }
