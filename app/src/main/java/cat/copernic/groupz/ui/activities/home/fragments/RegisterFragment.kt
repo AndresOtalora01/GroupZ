@@ -40,6 +40,10 @@ class RegisterFragment : Fragment() {
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Registre")
         builder.setPositiveButton("Aceptar", null)
+
+        binding.tvAccountLog.setOnClickListener {
+            findNavController().navigate(R.id.action_register_to_login)
+        }
         binding.btnRegister.setOnClickListener { //cuando se presiona el boton de register.
 
             if (comprovate()) {
@@ -79,9 +83,7 @@ class RegisterFragment : Fragment() {
             }
 
         }
-        binding.tvAccountLog.setOnClickListener { //Si presionamos el texto de ¿Ya tienes cuenta?, nos envia al fragment de Login para iniciar sesion.
-            findNavController().navigate(R.id.action_register_to_login)
-        }
+
     }
 
 

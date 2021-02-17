@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.home.fragments.RegisterFragment">
+
+    <LinearLayout
+        android:id="@+id/accountTexts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center"
+            android:text="@string/tvAccountLog"
+            android:textColor="@color/blue_no_focused"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:paddingStart="7dp"
+            android:text="@string/signIn"
+            android:textColor="@color/blue_primary"
+            android:textSize="17sp" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -14,187 +47,171 @@
         tools:layout_editor_absoluteY="7dp">
 
         <LinearLayout
+            android:id="@+id/tvAccountLog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvTittleRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="30dp"
                 android:fontFamily="@font/poppins_bold"
                 android:text="@string/titleRegister"
-                android:textSize="30sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/etName"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/custom_icon_password"
+                android:drawableStart="@drawable/custom_icon_profile"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
 
             <EditText
                 android:id="@+id/etBirth"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/custom_icon_password"
+                android:drawableStart="@drawable/custom_icon_calendar"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/birth"
-                android:inputType="date" />
+                android:inputType="date"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
 
             <EditText
                 android:id="@+id/etHobbies"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/custom_icon_password"
+                android:drawableStart="@drawable/custom_icon_heart"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:gravity="start|top"
                 android:hint="@string/hobbies"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
             <EditText
                 android:id="@+id/etLocation"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
-                android:drawableStart="@drawable/custom_icon_password"
+                android:drawableStart="@drawable/custom_icon_location"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/location"
-                android:inputType="text" />
+                android:inputType="text"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
 
             <EditText
                 android:id="@+id/etMail"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
                 android:drawableStart="@drawable/custom_icon_email"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
 
             <EditText
                 android:id="@+id/etPass"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
                 android:drawableStart="@drawable/custom_icon_password"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
 
             <EditText
                 android:id="@+id/etPassConfirm"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_edit_text"
                 android:drawableStart="@drawable/custom_icon_password"
                 android:drawablePadding="16dp"
-                android:fontFamily="@font/poppins_bold"
                 android:ems="10"
+                android:fontFamily="@font/poppins_bold"
                 android:hint="@string/passConfirm"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
 
             <CheckBox
                 android:id="@+id/cbTerms"
+
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
                 android:text="@string/cbTerms"
-                android:gravity="center"/>
+                android:textColor="@color/blue_no_focused" />
 
             <android.widget.Button
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/custom_button"
                 android:fontFamily="@font/poppins_bold"
+                android:text="@string/btnRegister"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/btnRegister" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30px" />
-
-            <LinearLayout
-                android:id="@+id/accountTexts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:gravity="center"
-                    android:text="@string/tvAccountLog"
-                    android:textColor="@color/blue_no_focused"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/tvAccountLog"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:gravity="center"
-                    android:paddingStart="7dp"
-                    android:text="@string/signIn"
-                    android:textColor="@color/blue_primary"
-                    android:textSize="17sp" />
-            </LinearLayout>
+                android:textSize="18sp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
