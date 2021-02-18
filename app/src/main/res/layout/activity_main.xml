@@ -46,8 +46,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/ic_menu"
-                />
+                android:background="@drawable/ic_menu" />
 
             <TextView
                 android:id="@+id/tvTittleToolBar"
