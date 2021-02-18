@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
 
@@ -37,7 +35,7 @@ class SwipeFragment : Fragment() {
     }
 
     private fun openMatchDialog() {
-        dialog.setContentView(R.layout.friendzone_dialog_layout)
+        dialog.setContentView(R.layout.dialog_friendzone_layout)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }

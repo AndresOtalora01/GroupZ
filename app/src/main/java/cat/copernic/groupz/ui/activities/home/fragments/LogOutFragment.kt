@@ -49,7 +49,6 @@ class LogOutFragment : Fragment() {
         }
         binding.btnDelAccount.setOnClickListener{
             findNavController().navigate(R.id.action_logOutFragment_to_deleteConfirmationFragment)
-
         }
 
     }

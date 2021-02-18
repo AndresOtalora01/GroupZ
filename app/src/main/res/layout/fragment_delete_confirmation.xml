@@ -9,39 +9,46 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="403dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="160dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:fontFamily="@font/poppins_bold"
+        android:gravity="center_horizontal"
         android:text="@string/deleteAccountConfirmation"
-        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.338" />
 
     <Button
         android:id="@+id/btnYes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/yes"
-        app:layout_constraintBottom_toBottomOf="@+id/btnNo"
+        app:layout_constraintEnd_toStartOf="@+id/btnNo"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btnNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="179dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="70dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/btnYes"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
