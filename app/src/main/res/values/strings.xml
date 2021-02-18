@@ -63,7 +63,7 @@
     <string name="deleteAccountConfirmation">¿Estás segur de que vols eliminar el compte?</string>
     <string name="tvDescription">Descripción</string>
     <string name="tvInterestsHobbies">Intereses/Hobbies</string>
-    <string name="tvReEmail"> Introdueix el correu per recuperar la Contrasenya</string>
+    <string name="tvReEmail"> Introdueix el correu per recuperar la contrasenya</string>
     <string name="etReEmail"> Introdueix el teu Correu</string>
     <string name="Robot">No soc un Robot</string>
     <!-- TODO: Remove or change this placeholder text -->

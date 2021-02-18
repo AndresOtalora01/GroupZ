@@ -1,17 +1,19 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
+import cat.copernic.groupz.databinding.FragmentForgottenPasswordBinding
+import cat.copernic.groupz.databinding.FragmentGroupsBinding
+import com.google.firebase.auth.FirebaseAuth
+
 
 class ForgottenPasswordFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+   private lateinit var binding: FragmentForgottenPasswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -25,6 +27,21 @@ class ForgottenPasswordFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_forgotten_password, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding =  FragmentForgottenPasswordBinding.bind(view)
+        binding.btnRegister.setOnClickListener {
+            val email = binding.etRecuEmail.text.toString()
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(context, "Confirmado", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
     }
 
 }

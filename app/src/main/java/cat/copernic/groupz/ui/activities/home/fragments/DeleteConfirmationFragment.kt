@@ -41,9 +41,6 @@ class DeleteConfirmationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDeleteConfirmationBinding.bind(view)
         dialog = context?.let { Dialog(it) }!!
-//        builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
-//        builder.setTitle("Log Out")
-//        builder.setPositiveButton("Aceptar", null)
         binding.btnNo.setOnClickListener{
             findNavController().navigate(R.id.action_deleteConfirmationFragment_to_logOutFragment)
         }
@@ -53,10 +50,6 @@ class DeleteConfirmationFragment : Fragment() {
             user?.delete()
                 ?.addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-//                        builder.setMessage(R.string.accountDeleted);
-//                        val dialog = builder.create()
-//                        dialog.show()
-//                        Log.d(TAG, "User account deleted.").minus(1)
                         openDeletedAccountDialog()
                     }
                 }
@@ -67,11 +60,6 @@ class DeleteConfirmationFragment : Fragment() {
             }, 2000)
 
         }
-
-
-//        binding.btnNo.setOnClickListener {
-//            openDeletedAccountDialog()
-//        }
     }
 
     private fun openDeletedAccountDialog() {

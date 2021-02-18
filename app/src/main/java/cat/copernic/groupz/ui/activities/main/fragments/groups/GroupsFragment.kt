@@ -32,9 +32,6 @@ class GroupsFragment : Fragment() {
         findNavController().navigate(R.id.action_groupsFragment_to_create_GroupFragment)
     }
         setRecyclerView()
-
-
-
     }
 
     fun setRecyclerView(){
