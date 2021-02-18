@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentForgottenPasswordBinding
-import cat.copernic.groupz.databinding.FragmentGroupsBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -41,7 +40,6 @@ class ForgottenPasswordFragment : Fragment() {
                     }
                 }
         }
-
     }
 
 }
