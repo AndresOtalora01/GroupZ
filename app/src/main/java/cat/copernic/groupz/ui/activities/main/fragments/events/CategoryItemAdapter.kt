@@ -21,8 +21,8 @@ class CategoryItemAdapter(
         var itemLocation: TextView
 
         init {
-            itemImage =  itemView.findViewById(R.id.categoryItemImage)
-            itemTitle = itemView.findViewById(R.id.tvCategoryItemTitle)
+            itemImage =  itemView.findViewById(R.id.ivGroupImage)
+            itemTitle = itemView.findViewById(R.id.tvGroupName)
             itemDestination = itemView.findViewById(R.id.tvCategoryItemDestination)
             itemLocation = itemView.findViewById(R.id.tvCategoryItemLocation)
         }

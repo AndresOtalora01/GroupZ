@@ -20,14 +20,14 @@
         app:layout_constraintVertical_bias="0.003">
 
         <ImageView
-            android:id="@+id/categoryItemImage"
+            android:id="@+id/ivGroupImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/tvCategoryItemTitle"
+        android:id="@+id/tvGroupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -45,7 +45,7 @@
         android:text="Monte del destino"
         android:textColor="@color/orange_focused"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategoryItemTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupName" />
 
     <ImageView
         android:id="@+id/iconLocation"
