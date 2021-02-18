@@ -111,11 +111,5 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    //handle result of picked image
-    fun onFragmentResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            binding.ivProfileEdit.setImageURI(data?.data)
-        }
-    }
 }
 

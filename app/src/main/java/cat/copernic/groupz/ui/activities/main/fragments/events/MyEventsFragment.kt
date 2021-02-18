@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 
-class MayEventsFragment : Fragment() {
+class MyEventsFragment : Fragment() {
     private var mainCategoryRecycler: RecyclerView? = null
     private var mainRecyclerAdapter: CategoryItemAdapter? = null
     override fun onCreateView(

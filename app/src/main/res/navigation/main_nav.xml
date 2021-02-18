@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/mayEventsFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.MayEventsFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.MyEventsFragment"
         android:label="fragment_may_events"
         tools:layout="@layout/fragment_my_events" />
 </navigation>

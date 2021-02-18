@@ -5,249 +5,182 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.main.fragments.profile.EditProfileFragment" >
+    tools:context=".ui.activities.main.fragments.profile.EditProfileFragment">
 
-    <TextView
-        android:id="@+id/tvEditProfile"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="143dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/black"
-        android:text="@string/editProfile"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnSaveProfile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.widget.Button
-        android:id="@+id/btnSaveProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/white"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/save"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvImages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:textColor="@color/black"
-        android:text="@string/images"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/ivProfileEdit"
-        android:layout_width="63dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvImages"
-        tools:src="@drawable/pedra" />
+        <TextView
+            android:id="@+id/tvImages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/images"
+            android:textColor="@color/black" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="@color/grey_no_focused"
+            app:cardCornerRadius="6dp">
 
-    <ImageView
-        android:id="@+id/ivAddEdit"
-        android:layout_width="63dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ivProfileEdit"
-        app:layout_constraintTop_toBottomOf="@+id/tvImages"
-        tools:src="@drawable/ic_add_pictures" />
+            <ImageView
+                android:id="@+id/ivAddEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_pictures" />
+        </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:id="@+id/tvNameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/name"
+            android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/tvNameEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/name"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfileEdit" />
+        <EditText
+            android:id="@+id/etNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_edit_text_grey"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
+            android:paddingStart="20dp"
+            android:textColor="@color/grey_primary"
+            android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/etNameEdit"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/birth"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etDateEdit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_edit_text_grey"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/birth"
+            android:inputType="date"
+            android:paddingStart="20dp"
+            android:textColor="@color/grey_primary"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvHobbiesEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/hobbies"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etHobbieEdit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_edit_text_grey"
+            android:ems="10"
+            android:paddingTop="4dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/hobbies"
+            android:inputType="textPersonName"
+            android:paddingStart="20dp"
+            android:textColor="@color/grey_primary"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvDescriptionEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/description"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etDescriptionEdit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_edit_text_grey"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/description"
+            android:inputType="textMultiLine"
+            android:paddingStart="20dp"
+            android:textColor="@color/grey_primary"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvLocationEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/location"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etLocationEdit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_edit_text_grey"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="start|top"
+            android:hint="@string/location"
+            android:inputType="textMultiLine"
+            android:paddingStart="20dp"
+            android:paddingTop="4dp"
+            android:textColor="@color/grey_primary"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text_rounded"
-        android:ems="10"
-        android:fontFamily="@font/poppins_bold"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
-        android:paddingStart="20dp"
-        android:textColor="@color/blue_primary"
+        android:layout_marginBottom="62dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNameEdit" />
+        app:layout_constraintStart_toStartOf="parent">
 
-
-    <TextView
-        android:id="@+id/tvDateEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/birth"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameEdit" />
-
-    <EditText
-        android:id="@+id/etDateEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text_rounded"
-        android:ems="10"
-        android:fontFamily="@font/poppins_bold"
-        android:hint="@string/birth"
-        android:inputType="date"
-        android:paddingStart="20dp"
-        android:textColor="@color/blue_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateEdit" />
-
-
-    <TextView
-        android:id="@+id/tvHobbiesEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/hobbies"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateEdit" />
-
-    <EditText
-        android:id="@+id/etHobbieEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text_rounded"
-        android:ems="10"
-        android:fontFamily="@font/poppins_bold"
-        android:hint="@string/hobbies"
-        android:inputType="textPersonName"
-        android:paddingStart="20dp"
-        android:textColor="@color/blue_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHobbiesEdit" />
-
-    <TextView
-        android:id="@+id/tvDescriptionEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/description"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHobbieEdit" />
-
-    <EditText
-        android:id="@+id/etDescriptionEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text_rounded"
-        android:ems="10"
-        android:fontFamily="@font/poppins_bold"
-        android:gravity="start|top"
-        android:hint="@string/description"
-        android:inputType="textMultiLine"
-        android:paddingStart="20dp"
-        android:textColor="@color/blue_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionEdit" />
-
-    <TextView
-        android:id="@+id/tvLocationEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/location"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescriptionEdit" />
-
-    <EditText
-        android:id="@+id/etLocationEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_edit_text_rounded"
-        android:drawablePadding="16dp"
-        android:ems="10"
-        android:fontFamily="@font/poppins_bold"
-        android:gravity="start|top"
-        android:hint="@string/location"
-        android:inputType="textMultiLine"
-        android:paddingStart="20dp"
-        android:textColor="@color/blue_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocationEdit" />
+        <android.widget.Button
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/save"
+            android:textColor="@color/white" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

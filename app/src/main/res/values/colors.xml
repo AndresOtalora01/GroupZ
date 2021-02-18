@@ -13,4 +13,6 @@
     <color name="blue_primary">#6776FE</color>
     <color name="green_tag">#0BBA9D</color>
     <color name="purple_tag">#6C63FF</color>
+    <color name="grey_primary">#C0D0E3</color>
+    <color name="grey_no_focused">#EFF6FE</color>
 </resources>
