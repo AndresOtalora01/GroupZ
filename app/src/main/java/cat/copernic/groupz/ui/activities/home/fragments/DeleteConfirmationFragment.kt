@@ -23,7 +23,6 @@ class DeleteConfirmationFragment : Fragment() {
     private lateinit var binding: FragmentDeleteConfirmationBinding
     private lateinit var builder: AlertDialog.Builder
     lateinit var dialog : Dialog
-    var TAG : String = "Log auth Fragment"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,7 +57,6 @@ class DeleteConfirmationFragment : Fragment() {
             handler.postDelayed({
                 startActivity( Intent(context, HomeActivity::class.java))
             }, 2000)
-
         }
     }
 

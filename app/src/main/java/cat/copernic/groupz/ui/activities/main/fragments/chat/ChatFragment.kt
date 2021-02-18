@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
@@ -20,7 +24,8 @@ import kotlin.collections.ArrayList
 class ChatFragment : Fragment() {
     private var chatRecycler: RecyclerView? = null
     private var chatAdapter: ChatAdapter? = null
-
+    private lateinit var btndrawerLayout: ImageButton
+    private lateinit var drawerLayout: DrawerLayout
 
     private lateinit var binding: FragmentChatBinding
     override fun onCreateView(
@@ -35,7 +40,12 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatBinding.bind(view)
-
+        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
+        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
+        drawerLayout?.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        btndrawerLayout?.visibility = View.GONE
+        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
+        activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
         chatRecycler = view.findViewById(R.id.messagesView)
         val categoryItemList : MutableList<Message> = ArrayList()
         categoryItemList.add(Message("Hola", "Manolo"))
@@ -55,8 +65,6 @@ class ChatFragment : Fragment() {
         chatRecycler!!.adapter = chatAdapter
     }
 
-    fun sendMessage(){
 
-    }
 
 }

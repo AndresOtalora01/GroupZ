@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +21,8 @@ class MainEventsFragment : Fragment() {
     private var mainCategoryRecycler: RecyclerView? = null
     private var mainRecyclerAdapter: MainRecyclerAdapter? = null
     private lateinit var binding: FragmentMainEventsBinding
+    private lateinit var btndrawerLayout: ImageButton
+    private lateinit var drawerLayout: DrawerLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,20 +36,18 @@ class MainEventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMainEventsBinding.bind(view)
-        val btnMenu = activity?.findViewById<ImageButton>(R.id.btnMenu)
-        btnMenu?.visibility = View.VISIBLE
+        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
+        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
+        drawerLayout?.setDrawerLockMode(LOCK_MODE_UNLOCKED)
+        btndrawerLayout?.visibility = View.VISIBLE
+        activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.events)
+        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
+        activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
 
         binding.btnShowEnevt.setOnClickListener {
             findNavController().navigate(R.id.action_mainEventsFragment_to_showEventFragment)
         }
-        binding.fabCreateEvent.setOnClickListener {
-            findNavController().navigate(R.id.action_mainEventsFragment_to_createEventFragment)
-        }
-
-        binding.btnNotifications.setOnClickListener {
-            findNavController().navigate(R.id.action_mainEventsFragment_to_notificationsFragment)
-        }
-        binding.btnMiseventos.setOnClickListener {
+        binding.fabMyEvent.setOnClickListener {
             findNavController().navigate(R.id.action_mainEventsFragment_to_mayEventsFragment)
         }
 
@@ -109,11 +113,9 @@ class MainEventsFragment : Fragment() {
         mainCategoryRecycler!!.adapter = mainRecyclerAdapter
     }
 
-    override fun onStop() {
-        super.onStop()
-        val btnMenu = activity?.findViewById<ImageButton>(R.id.btnMenu)
-        btnMenu?.visibility = View.GONE
-    }
+
+
+
 
 
 

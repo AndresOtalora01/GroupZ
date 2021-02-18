@@ -49,6 +49,14 @@
     <string name="recommendedEvents">Recomenats</string>
     <string name="my_profile">Mi perfi</string>
     <string name="account">Cuenta</string>
+    <string name="swipe">Swipe</string>
+    <string name="near_people">Gente Cerca</string>
+    <string name="events">Eventos</string>
+    <string name="chats">Chats</string>
+    <string name="my_groups">Mis Grupos</string>
+    <string name="my_events">Mis Eventos</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="create_event">Nuevo Evento</string>
 
     <!--Alerts-->
 

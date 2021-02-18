@@ -7,32 +7,6 @@
     android:background="@color/grey_no_focused"
     tools:context=".ui.activities.main.fragments.events.MainEventsFragment">
 
-
-    <android.widget.Button
-        android:id="@+id/btnNotifications"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:padding="10dp"
-        android:text="notification"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <android.widget.Button
-        android:id="@+id/btnMiseventos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/custom_button"
-        android:padding="10dp"
-        android:text="Mis eventos"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.widget.Button
         android:id="@+id/btnShowEnevt"
         android:layout_width="wrap_content"
@@ -60,7 +34,7 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCreateEvent"
+        android:id="@+id/fabMyEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"

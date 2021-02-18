@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="@color/blue_primary"
-            android:gravity="center_vertical"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +48,14 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/ic_menu" />
 
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ic_back"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/tvTittleToolBar"
                 android:layout_width="wrap_content"
@@ -57,6 +65,18 @@
                 android:fontFamily="@font/poppins_bold"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/btnNotifications"
+                android:layout_width="20dp"
+                android:layout_height="26dp"
+                android:background="@drawable/ic_notification" />
+
         </LinearLayout>
 
 

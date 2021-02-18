@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
@@ -19,6 +23,8 @@ class NotificationsFragment : Fragment() {
     private var descriptionsList = mutableListOf<String>()
     private var imagesList = mutableListOf<Int>()
     private var timeAgoList =  mutableListOf<String>()
+    private lateinit var btndrawerLayout: ImageButton
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +36,13 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
+        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
+        drawerLayout?.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        btndrawerLayout?.visibility = View.GONE
+        activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.notifications)
+        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
+        activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
         postToList()
         notificationsRecyclerView = view.findViewById(R.id.rvNotifications)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)

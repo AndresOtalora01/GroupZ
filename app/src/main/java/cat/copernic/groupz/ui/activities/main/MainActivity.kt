@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
         val bottomNavigationView = binding.bottomNavigationView
         val navController = findNavController(R.id.main_nav_host_fragment)
         val navigationView = binding.mainNavigationView
@@ -48,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
         NavigationUI.setupWithNavController(navigationView,navController)
+        binding.btnNotifications.setOnClickListener {
+            findNavController(R.id.main_nav_host_fragment).navigate(R.id.notificationsFragment)
+        }
         
     }
     override fun onBackPressed() {
@@ -57,5 +63,7 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+
 
 }

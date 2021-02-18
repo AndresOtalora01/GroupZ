@@ -18,12 +18,6 @@
             android:id="@+id/action_mainEventsFragment_to_showEventFragment"
             app:destination="@id/showEventFragment" />
         <action
-            android:id="@+id/action_mainEventsFragment_to_createEventFragment"
-            app:destination="@id/createEventFragment" />
-        <action
-            android:id="@+id/action_mainEventsFragment_to_notificationsFragment"
-            app:destination="@id/notificationsFragment" />
-        <action
             android:id="@+id/action_mainEventsFragment_to_mayEventsFragment"
             app:destination="@id/mayEventsFragment" />
     </fragment>
@@ -83,7 +77,7 @@
         tools:layout="@layout/fragment_create_group" />
     <fragment
         android:id="@+id/showEventFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.showEventFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.showEventFragment"
         android:label="fragment_show_event"
         tools:layout="@layout/fragment_show_event" />
     <fragment
@@ -118,5 +112,9 @@
         android:id="@+id/mayEventsFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.events.MyEventsFragment"
         android:label="fragment_may_events"
-        tools:layout="@layout/fragment_my_events" />
+        tools:layout="@layout/fragment_my_events" >
+        <action
+            android:id="@+id/action_mayEventsFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+    </fragment>
 </navigation>

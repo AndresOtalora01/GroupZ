@@ -14,16 +14,18 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
             android:orientation="vertical">
 
             <TextView
@@ -154,6 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/custom_edit_text_grey"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="start"
@@ -166,7 +169,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"

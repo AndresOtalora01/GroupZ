@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +23,8 @@ class GroupsFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var titles : MutableList<String>
     private lateinit var images : MutableList<Int>
+    private lateinit var btndrawerLayout: ImageButton
+    private lateinit var drawerLayout: DrawerLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +35,15 @@ class GroupsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGroupsBinding.bind(view)
-    binding.fabCreatGroup.setOnClickListener{
+        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
+        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
+        drawerLayout?.setDrawerLockMode(LOCK_MODE_UNLOCKED)
+        btndrawerLayout?.visibility = View.VISIBLE
+        activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.my_groups)
+        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
+        activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
+
+        binding.fabCreatGroup.setOnClickListener{
         findNavController().navigate(R.id.action_groupsFragment_to_create_GroupFragment)
     }
         setRecyclerView()
