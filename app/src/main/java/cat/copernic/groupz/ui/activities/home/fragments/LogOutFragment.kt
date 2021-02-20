@@ -24,8 +24,6 @@ import com.google.firebase.auth.FirebaseAuth
 class LogOutFragment : Fragment() {
     private lateinit var binding: FragmentLogOutBinding
     private lateinit var builder: AlertDialog.Builder
-    private lateinit var btndrawerLayout: ImageButton
-    private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -40,13 +38,12 @@ class LogOutFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
-        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
-        drawerLayout?.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
-        btndrawerLayout?.visibility = View.GONE
+
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.account)
-        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
+        activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
+        activity?.findViewById<ImageButton>(R.id.btnMenu)?.visibility = View.GONE
+        activity?.findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         binding = FragmentLogOutBinding.bind(view)
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Log Out")

@@ -7,106 +7,199 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.main.fragments.events.CreateEventFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
+            android:id="@+id/LinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            >
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
 
             <TextView
-
-                android:id="@+id/textView12"
+                android:id="@+id/tvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="80dp"
-                android:layout_weight="1"
-                android:text="Crear evento"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/images"
+                android:textColor="@color/black" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/grey_no_focused"
+                app:cardCornerRadius="6dp">
+
+                <ImageView
+                    android:id="@+id/ivAddEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_add_pictures" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvNameEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/name"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_edit_text_grey"
+                android:ems="10"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textPersonName"
+                android:paddingStart="20dp"
+                android:textColor="@color/grey_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/event_date"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_edit_text_grey"
+                android:ems="10"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="date"
+                android:paddingStart="20dp"
+                android:textColor="@color/grey_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_bold"
-                android:textSize="20sp"/>
+                android:text="@string/location"
+                android:textColor="@color/black" />
 
-            <android.widget.Button
-                android:id="@+id/btnSaveEvent"
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_edit_text_grey"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:paddingStart="20dp"
+                android:paddingTop="4dp"
+                android:textColor="@color/grey_primary"
+                android:textSize="15sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Guardar"
-                android:background="@drawable/custom_button"/>
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/description"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+
+                android:background="@drawable/custom_edit_text_grey"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:paddingStart="20dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/grey_primary"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/privacy"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/toggleButtonPublic"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/select_toggle"
+                    android:layout_marginBottom="5dp"
+                    android:text="hola"
+
+                    />
+
+                <androidx.appcompat.widget.AppCompatToggleButton
+                    android:id="@+id/toggleButtonPrivate"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/select_toggle"
+                    android:layout_marginBottom="5dp"
+
+                    />
+            </LinearLayout>
+
 
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/textView16"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="62dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.widget.Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Foto"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginBottom="10dp"/>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            app:cardCornerRadius="30sp"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_pictures" />
-        </androidx.cardview.widget.CardView>
-
-        <EditText
-
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/description"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="10dp"/>
-
-        <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nombre del evento"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="10dp"/>
-
-        <EditText
-            android:id="@+id/editTextDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Fecha"
-            android:inputType="date"
-            android:layout_marginBottom="10dp"/>
-
-        <EditText
-            android:id="@+id/editTextTextPersonName4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="ubicación"
-            android:inputType="textPersonName" />
-
+            android:background="@drawable/custom_button"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/save"
+            android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

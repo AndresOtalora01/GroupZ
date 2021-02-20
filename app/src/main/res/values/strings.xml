@@ -57,7 +57,10 @@
     <string name="my_events">Mis Eventos</string>
     <string name="notifications">Notificaciones</string>
     <string name="create_event">Nuevo Evento</string>
-
+    <string name="event_date">Fecha evento</string>
+    <string name="privacy">Privacidad</string>
+    <string name="public_">Publico</string>
+    <string name="private_">privado</string>
     <!--Alerts-->
 
     <!--hints-->

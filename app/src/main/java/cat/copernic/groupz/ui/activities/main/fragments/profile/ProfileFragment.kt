@@ -19,8 +19,6 @@ import cat.copernic.groupz.network.FirebaseClient
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
-    private lateinit var btndrawerLayout: ImageButton
-    private lateinit var drawerLayout: DrawerLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,14 +29,11 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
-        drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
-        drawerLayout?.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
-        btndrawerLayout?.visibility = View.GONE
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.my_profile)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
-
+        activity?.findViewById<ImageButton>(R.id.btnMenu)?.visibility = View.GONE
+        activity?.findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         binding = FragmentProfileBinding.bind(view)
         userToFragment(FirebaseClient.auth.currentUser?.email as String)
         binding.btToEditProfile.setOnClickListener {
@@ -47,6 +42,7 @@ class ProfileFragment : Fragment() {
     }
 
     fun userToFragment(userMail: String) {
+        binding.btToEditProfile.visibility = View.VISIBLE
         val data = FirebaseClient.db.collection("Users").document(userMail)
         data.get()
             .addOnSuccessListener {
@@ -54,9 +50,6 @@ class ProfileFragment : Fragment() {
                     binding.tvNameProfile.text = it.get("Name") as String
                     binding.tvHobbiesProfile.text = it.get("Hobbies") as String
                     binding.tvDescriptionProfile.text = it.get("Description") as String
-                    if (FirebaseClient.auth.currentUser?.email == it.get("Mail") as String){
-                        binding.btToEditProfile.visibility = View.VISIBLE
-                    }
                 }
 
             }

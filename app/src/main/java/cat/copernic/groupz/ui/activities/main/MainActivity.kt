@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnNotifications.setOnClickListener {
             findNavController(R.id.main_nav_host_fragment).navigate(R.id.notificationsFragment)
         }
-        
     }
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
