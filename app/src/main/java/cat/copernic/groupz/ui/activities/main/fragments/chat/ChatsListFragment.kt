@@ -18,12 +18,13 @@ import cat.copernic.groupz.databinding.FragmentChatsListBinding
 import cat.copernic.groupz.model.ChatListRow
 
 
-class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener, SearchView.OnQueryTextListener{
+class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
     private var chatListRecycler: RecyclerView? = null
     private var chatListAdapter: ChatListAdapter? = null
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var binding: FragmentChatsListBinding
+    private lateinit var searchView: androidx.appcompat.widget.SearchView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +32,7 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener, Searc
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chats_list, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentChatsListBinding.bind(view)
@@ -44,30 +46,50 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener, Searc
 
         //FirebaseClient.getDatabaseChatsFromUser(FirebaseClient.auth.currentUser?.email as String)
         chatListRecycler = view.findViewById(R.id.chatViewList)
-        val categoryItemList : MutableList<ChatListRow> = ArrayList()
+        val categoryItemList: MutableList<ChatListRow> = ArrayList()
         categoryItemList.add(ChatListRow(R.drawable.pedra, "Manolo", "Tu: Hola Manolo"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Andrea", "Tu: Hola Manolo"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Carla", "Tu: Hola Manolo"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Emilio", "Tu: Hola Manolo"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Marta", "Tu: Hola Manolo"))
+        categoryItemList.add(ChatListRow(R.drawable.pedra, "Pedro", "Tu: Hola Manolo"))
+
+        setSearchView()
+
         setChatListRecycler(categoryItemList)
     }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+    private fun setSearchView() {
+        searchView = binding.etSearchChat
+        searchView.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                chatListAdapter!!.filter.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                chatListAdapter!!.filter.filter(newText)
+                return true
+            }
+
+        })
     }
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
-    }
+
     private fun setChatListRecycler(chatList: List<ChatListRow>) {
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
         chatListRecycler!!.layoutManager = layoutManager
-        chatListAdapter = ChatListAdapter(chatList, this)
+        chatListAdapter = ChatListAdapter()
         chatListRecycler!!.adapter = chatListAdapter
+        chatListAdapter!!.setData(chatList, this)
     }
 
     override fun onItemClick(position: Int) {
         findNavController().navigate(R.id.action_chatsListFragment_to_chatFragment)
     }
 
-    private fun addChats(){
+    private fun addChats() {
 
 
     }
