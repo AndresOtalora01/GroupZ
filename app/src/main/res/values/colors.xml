@@ -15,4 +15,5 @@
     <color name="purple_tag">#6C63FF</color>
     <color name="grey_primary">#C0D0E3</color>
     <color name="grey_no_focused">#EFF6FE</color>
+    <color name="blue_grey">#94A5BB</color>
 </resources>

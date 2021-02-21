@@ -17,6 +17,8 @@ import cat.copernic.groupz.databinding.FragmentChatBinding
 import cat.copernic.groupz.model.ChatListRow
 import cat.copernic.groupz.model.Message
 import cat.copernic.groupz.network.FirebaseClient
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,20 +44,22 @@ class ChatFragment : Fragment() {
         binding = FragmentChatBinding.bind(view)
         btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
         drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
-        drawerLayout?.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
-        btndrawerLayout?.visibility = View.GONE
+        drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
+        btndrawerLayout.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
+
         chatRecycler = view.findViewById(R.id.messagesView)
         val categoryItemList : MutableList<Message> = ArrayList()
-        categoryItemList.add(Message("Hola", "Manolo"))
-        categoryItemList.add(Message("Hola", FirebaseClient.auth.currentUser?.email as String))
-        categoryItemList.add(Message("Como Estas?", "Manolo"))
+      //  categoryItemList.add(Message("Hola", "Manolo"))
+       // categoryItemList.add(Message("Hola", FirebaseClient.auth.currentUser?.email as String))
+      //  categoryItemList.add(Message("Como Estas?", "Manolo"))
         setChatRecycler(categoryItemList)
 
-        binding.sendButton.setOnClickListener{
-            binding.messageText.setText("")
-        }
+//        binding.sendButton.setOnClickListener{
+//            binding.messageText.setText("")
+//        }
     }
 
     private fun setChatRecycler(Messages: List<Message>) {

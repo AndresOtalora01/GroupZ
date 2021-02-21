@@ -49,9 +49,7 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder>
 
         init {
             itemView.setOnClickListener(this)
-            //chatFilterList = list
         }
-
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
@@ -59,12 +57,9 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder>
             }
         }
     }
-
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-
     }
-
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -95,7 +90,6 @@ class ChatListAdapter : RecyclerView.Adapter<ChatListAdapter.ChatListViewHolder>
                 chatList = results?.values as List<ChatListRow>
                 notifyDataSetChanged()
             }
-
         }
     }
 }

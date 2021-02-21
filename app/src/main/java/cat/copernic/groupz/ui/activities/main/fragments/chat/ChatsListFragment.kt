@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentChatsListBinding
 import cat.copernic.groupz.model.ChatListRow
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
@@ -43,7 +44,7 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.chats)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
-
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
         //FirebaseClient.getDatabaseChatsFromUser(FirebaseClient.auth.currentUser?.email as String)
         chatListRecycler = view.findViewById(R.id.chatViewList)
         val categoryItemList: MutableList<ChatListRow> = ArrayList()

@@ -5,48 +5,63 @@
     android:id="@+id/linearLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/grey_no_focused">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/messagesView"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayoutSendMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutSendMessage"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="55dp"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/messageText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/custom_edit_text_grey"
-            android:gravity="center"
-            android:hint="@string/messageChat"
-            android:maxHeight="80dp"
-            android:textColorHint="#CFD8DC" />
-
-        <ImageView
-            android:id="@+id/sendButton"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:background="@color/blue_primary"
-            android:padding="4dp"
-            android:src="@android:drawable/ic_menu_send" />
-    </LinearLayout>
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/rounded_send_message"
+            android:elevation="5dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/write_message"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            android:paddingStart="50dp"
+            android:textColorHint="@color/white" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:elevation="5dp"
+            android:paddingBottom="3dp"
+            android:src="@drawable/ic_camera_alt"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:elevation="5dp"
+            android:paddingBottom="2dp"
+            app:srcCompat="@drawable/ic_send"/>
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
