@@ -10,8 +10,8 @@
         android:id="@+id/cardView"
         android:layout_width="180dp"
         android:layout_height="100dp"
-        app:cardElevation="5dp"
         app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -22,7 +22,7 @@
         <ImageView
             android:id="@+id/ivGroupImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </androidx.cardview.widget.CardView>
 
@@ -37,16 +37,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <TextView
-        android:id="@+id/tvCategoryItemDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Monte del destino"
-        android:textColor="@color/orange_focused"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGroupName" />
-
     <ImageView
         android:id="@+id/iconLocation"
         android:layout_width="wrap_content"
@@ -54,7 +44,8 @@
         android:layout_marginTop="2dp"
         android:src="@drawable/ic_location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategoryItemDestination" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupName"
+        app:tint="@color/orange_focused" />
 
     <TextView
         android:id="@+id/tvCategoryItemLocation"
@@ -62,7 +53,18 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:text="Terrassa"
+        android:textColor="@color/orange_focused"
         app:layout_constraintStart_toEndOf="@+id/iconLocation"
-        app:layout_constraintTop_toBottomOf="@+id/tvCategoryItemDestination" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupName" />
+
+    <TextView
+        android:id="@+id/tvEventDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="11/03/2001"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategoryItemLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

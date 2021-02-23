@@ -60,6 +60,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/etNameEvent"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
@@ -80,6 +81,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/etDateEvent"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
@@ -100,6 +102,7 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/etLocationEvent"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
@@ -123,10 +126,10 @@
                 android:textColor="@color/black" />
 
             <EditText
+                android:id="@+id/etDesciptionEvent"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="8dp"
-
                 android:background="@drawable/custom_edit_text_grey"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="start"
@@ -145,21 +148,21 @@
                 android:textColor="@color/black" />
 
             <LinearLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatToggleButton
                     android:id="@+id/toggleButtonPublic"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="15dp"
-                    android:background="@drawable/select_toggle"
                     android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_toggle"
                     android:text="hola"
 
                     />
@@ -168,11 +171,11 @@
                     android:id="@+id/toggleButtonPrivate"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
-                    android:layout_weight="1"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="30dp"
-                    android:background="@drawable/select_toggle"
                     android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_toggle"
 
                     />
             </LinearLayout>
@@ -195,6 +198,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.widget.Button
+            android:id="@+id/btnSaveEvent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"

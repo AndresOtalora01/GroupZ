@@ -23,7 +23,7 @@ class CategoryItemAdapter(
         init {
             itemImage =  itemView.findViewById(R.id.ivGroupImage)
             itemTitle = itemView.findViewById(R.id.tvGroupName)
-            itemDestination = itemView.findViewById(R.id.tvCategoryItemDestination)
+            itemDestination = itemView.findViewById(R.id.tvEventDate)
             itemLocation = itemView.findViewById(R.id.tvCategoryItemLocation)
         }
     }
@@ -37,7 +37,7 @@ class CategoryItemAdapter(
     override fun onBindViewHolder(holder: CategoryItemViewHolder, position: Int) {
         holder.itemImage.setImageResource(categoryItems[position].imageUrl)
         holder.itemTitle.text = categoryItems[position].eventTitle
-        holder.itemDestination.text = categoryItems[position].eventType
+        holder.itemDestination.text = categoryItems[position].eventDate
         holder.itemLocation.text = categoryItems[position].location
     }
 

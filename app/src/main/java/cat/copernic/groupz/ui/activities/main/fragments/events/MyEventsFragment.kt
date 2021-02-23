@@ -1,6 +1,7 @@
 package cat.copernic.groupz.ui.activities.main.fragments.events
 
 import android.os.Bundle
+import android.util.EventLog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentMainEventsBinding
 import cat.copernic.groupz.databinding.FragmentMyEventsBinding
+import cat.copernic.groupz.model.Event
+import cat.copernic.groupz.network.FirebaseClient
 
 class MyEventsFragment : Fragment() {
     private var mainCategoryRecycler: RecyclerView? = null
@@ -47,11 +50,10 @@ class MyEventsFragment : Fragment() {
 
         mainCategoryRecycler = view.findViewById(R.id.mayEventsList)
         val categoryItemList : MutableList<CategoryItem> = ArrayList()
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Paseo", "Montaña del destino", "Valencia"))
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Baile", "Salón recreacional", "Madrid"))
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Torneo", "Estadio", "Barcelona"))
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Paseo", "Centro comercial", "Zurich"))
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Spiderman 3", "Cines", "Andorra"))
+        val myCommunityEvents : List<Event> = FirebaseClient.getDatabaseMyCommunityEvents()
+        for (event in myCommunityEvents){
+            categoryItemList.add(CategoryItem(R.drawable.pedra,event.name,event.date,event.location))
+        }
 
         setMainCategoryRecycler(categoryItemList)
     }

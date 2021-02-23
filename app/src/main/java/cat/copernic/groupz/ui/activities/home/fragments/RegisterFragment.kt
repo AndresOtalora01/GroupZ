@@ -14,7 +14,6 @@ import cat.copernic.groupz.databinding.FragmentRegisterBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.regex.Pattern
 
@@ -108,7 +107,7 @@ class RegisterFragment : Fragment() {
             binding.etBirth.error = getString(R.string.errorEmptyField)
             return false
         } else if (!date_pattern.matcher(birthInput).matches()) {
-            binding.etMail.error = getString(R.string.errorBadDate)
+            binding.etMail.error = getString(R.string.errorDate)
             return false
         } else {
             binding.etMail.error = null

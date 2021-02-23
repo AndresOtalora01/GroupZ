@@ -55,7 +55,7 @@ class MainEventsFragment : Fragment() {
 
         //primera categoria de prueba
         val categoryItemList : MutableList<CategoryItem> = ArrayList()
-        categoryItemList.add(CategoryItem(R.drawable.pedra, "Paseo", "Montaña del destino", "Valencia"))
+        categoryItemList.add(CategoryItem(R.drawable.pedra, "Paseo", "11/09/2020","Valencia"))
         categoryItemList.add(CategoryItem(R.drawable.pedra, "Baile", "Salón recreacional", "Madrid"))
         categoryItemList.add(CategoryItem(R.drawable.pedra, "Torneo", "Estadio", "Barcelona"))
         categoryItemList.add(CategoryItem(R.drawable.pedra, "Paseo", "Centro comercial", "Zurich"))

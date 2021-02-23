@@ -8,7 +8,7 @@
     <string name="errorWeakPassword">La contrasenya es molt fluixa</string>
     <string name="errorPasswordDontMatch">Les contrasenyes no coincideixen</string>
     <string name="errorNotCheck">Has de marcar la casella</string>
-    <string name="errorBadDate">La data es incorrecte</string>
+    <string name="errorDate">La data es incorrecte</string>
     <string name="errorUserNotCreated">Ha ocurrit un error, prova mes tard</string>
     <string name="errorNotChat">No tens cap chat</string>
 
