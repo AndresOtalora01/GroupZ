@@ -15,6 +15,7 @@ import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentProfileBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileFragment : Fragment() {
 
@@ -34,6 +35,7 @@ class ProfileFragment : Fragment() {
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnMenu)?.visibility = View.GONE
         activity?.findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
         binding = FragmentProfileBinding.bind(view)
         userToFragment(FirebaseClient.auth.currentUser?.email as String)
         binding.btToEditProfile.setOnClickListener {

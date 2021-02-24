@@ -77,7 +77,7 @@
         tools:layout="@layout/fragment_create_group" />
     <fragment
         android:id="@+id/showEventFragment"
-        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.showEventFragment"
+        android:name="cat.copernic.groupz.ui.activities.main.fragments.events.ShowEventFragment"
         android:label="fragment_show_event"
         tools:layout="@layout/fragment_show_event" />
     <fragment

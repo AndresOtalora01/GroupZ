@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.main.fragments.events.showEventFragment"
+    tools:context=".ui.activities.main.fragments.events.ShowEventFragment"
     android:background="#ECF0F6">
 
 
@@ -12,16 +12,14 @@
         android:id="@+id/imageButton"
         android:layout_width="80dp"
         android:layout_height="82dp"
-        android:layout_marginBottom="24dp"
-        android:background="#ECF0F6"
 
+        android:layout_marginBottom="52dp"
+        android:background="#ECF0F6"
         android:src="@drawable/ic_event_request"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-        app:layout_constraintVertical_bias="0.242" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
 
@@ -34,8 +32,9 @@
         android:background="@drawable/rounded_swipe_card"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
 
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

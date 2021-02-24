@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentDeleteConfirmationBinding
 import cat.copernic.groupz.databinding.FragmentGroupsBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class GroupsFragment : Fragment() {
@@ -42,6 +43,7 @@ class GroupsFragment : Fragment() {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.my_groups)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
 
         binding.fabCreatGroup.setOnClickListener{
         findNavController().navigate(R.id.action_groupsFragment_to_create_GroupFragment)

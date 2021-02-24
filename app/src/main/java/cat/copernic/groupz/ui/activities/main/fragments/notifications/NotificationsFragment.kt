@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.ui.activities.main.fragments.events.AllCategories
 import cat.copernic.groupz.ui.activities.main.fragments.events.MainRecyclerAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class NotificationsFragment : Fragment() {
@@ -43,6 +44,7 @@ class NotificationsFragment : Fragment() {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.notifications)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
         postToList()
         notificationsRecyclerView = view.findViewById(R.id.rvNotifications)
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)

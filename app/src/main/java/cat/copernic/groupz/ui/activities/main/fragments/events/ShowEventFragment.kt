@@ -9,8 +9,9 @@ import android.widget.ImageButton
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import cat.copernic.groupz.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class showEventFragment : Fragment() {
+class ShowEventFragment : Fragment() {
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreateView(
@@ -28,6 +29,7 @@ class showEventFragment : Fragment() {
         btndrawerLayout?.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
     }
 
 }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentMainEventsBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainEventsFragment : Fragment() {
@@ -43,6 +44,7 @@ class MainEventsFragment : Fragment() {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.events)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
 
         binding.btnShowEnevt.setOnClickListener {
             findNavController().navigate(R.id.action_mainEventsFragment_to_showEventFragment)

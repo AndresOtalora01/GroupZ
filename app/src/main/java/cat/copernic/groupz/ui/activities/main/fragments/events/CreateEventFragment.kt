@@ -14,6 +14,7 @@ import cat.copernic.groupz.databinding.FragmentCreateEventBinding
 import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.network.FirebaseClient.Companion.TAG
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.regex.Pattern
 
 
@@ -32,6 +33,7 @@ class CreateEventFragment : Fragment() {
         binding = FragmentCreateEventBinding.bind(view)
         val toggleButtonPublic = binding.toggleButtonPublic
         val toggleButtonPrivate = binding.toggleButtonPrivate
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
         toggleButtonPublic.isChecked = true;
         toggleButtonPublic.text = getString(R.string.public_)
         toggleButtonPublic.textOff = getString(R.string.public_)

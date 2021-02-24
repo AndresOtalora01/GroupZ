@@ -77,7 +77,7 @@ class FirebaseClient {
                 "Location" to EventAdd.location,
                 "Description" to EventAdd.description,
                 "Members" to EventAdd.members,
-                "Privasity" to EventAdd.privacity
+                "Privacity" to EventAdd.privacity
             )
             db.collection("CommunityEvents")
                 .add(eventMap)
@@ -88,24 +88,6 @@ class FirebaseClient {
                     added = false
                 }
             return added
-        }
-
-        fun getDatabaseMyCommunityEvents(): List<Event> {
-            var resultEvent = arrayListOf<Event>()
-            var event: Event
-            val data = db.collection("CommunityEvents")
-            data.get().addOnSuccessListener(object : OnSuccessListener<QuerySnapshot> {
-                override fun onSuccess(queryDocumentSnapshot: QuerySnapshot) {
-                    for (documentSnapshot in queryDocumentSnapshot) {
-                        event = documentSnapshot.toObject(Event::class.java)
-                        if (event.members.contains(auth.currentUser?.email.toString())) {
-                            resultEvent.add(event)
-                        }
-                    }
-                }
-            })
-
-            return resultEvent
         }
 
         fun userLogIn(): Boolean {

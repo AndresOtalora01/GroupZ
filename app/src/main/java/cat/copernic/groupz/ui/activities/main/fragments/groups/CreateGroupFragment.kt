@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import cat.copernic.groupz.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class CreateGroupFragment : Fragment() {
@@ -32,6 +33,7 @@ class CreateGroupFragment : Fragment() {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.createGroup)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
     }
 
 }

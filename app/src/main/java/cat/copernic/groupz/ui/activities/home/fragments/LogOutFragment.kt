@@ -17,6 +17,7 @@ import cat.copernic.groupz.databinding.FragmentLogOutBinding
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.home.HomeActivity
 import cat.copernic.groupz.ui.activities.main.MainActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -44,6 +45,7 @@ class LogOutFragment : Fragment() {
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnMenu)?.visibility = View.GONE
         activity?.findViewById<DrawerLayout>(R.id.drawerLayout)?.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
         binding = FragmentLogOutBinding.bind(view)
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Log Out")

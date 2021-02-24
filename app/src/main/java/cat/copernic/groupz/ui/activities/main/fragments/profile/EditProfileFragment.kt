@@ -16,6 +16,7 @@ import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -35,6 +36,8 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
+
         getData(FirebaseClient.auth.currentUser?.email as String)
 
         binding.ivAddEdit.setOnClickListener{

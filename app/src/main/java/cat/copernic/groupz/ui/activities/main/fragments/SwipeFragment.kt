@@ -14,7 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
 import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class SwipeFragment : Fragment() {
@@ -38,6 +38,7 @@ class SwipeFragment : Fragment() {
         activity?.findViewById<TextView>(R.id.tvTittleToolBar)?.text = getString(R.string.swipe)
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
 
         var buttonDialog = view.findViewById<ImageButton>(R.id.btnLike)
         dialog = context?.let { Dialog(it) }!!
