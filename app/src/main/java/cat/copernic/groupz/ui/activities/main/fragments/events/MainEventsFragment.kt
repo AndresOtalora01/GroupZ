@@ -1,6 +1,7 @@
 package cat.copernic.groupz.ui.activities.main.fragments.events
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentMainEventsBinding
+import cat.copernic.groupz.model.Event
+import cat.copernic.groupz.network.FirebaseClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -24,6 +27,7 @@ class MainEventsFragment : Fragment() {
     private lateinit var binding: FragmentMainEventsBinding
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
+    private var allCategories: MutableList<AllCategories> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -89,23 +93,14 @@ class MainEventsFragment : Fragment() {
         categoryItemList4.add(CategoryItem(R.drawable.pedra, "Spiderman 3", "Cines", "Andorra"))
 
 
-        //quinta categoría de prueba
-        val categoryItemList5 : MutableList<CategoryItem> = ArrayList()
-        categoryItemList5.add(CategoryItem(R.drawable.pedra, "Paseo", "Montaña del destino", "Valencia"))
-        categoryItemList5.add(CategoryItem(R.drawable.pedra, "Baile", "Salón recreacional", "Madrid"))
-        categoryItemList5.add(CategoryItem(R.drawable.pedra, "Torneo", "Estadio", "Barcelona"))
-        categoryItemList5.add(CategoryItem(R.drawable.pedra, "Paseo", "Centro comercial", "Zurich"))
-        categoryItemList5.add(CategoryItem(R.drawable.pedra, "Spiderman 3", "Cines", "Andorra"))
 
-
-
-        val allCategories: MutableList<AllCategories> = ArrayList()
         allCategories.add(AllCategories("Destacados", categoryItemList))
         allCategories.add(AllCategories("Por tiempo limitado", categoryItemList2))
         allCategories.add(AllCategories("Para toda la familia",categoryItemList3))
         allCategories.add(AllCategories("Musicales", categoryItemList4))
-        allCategories.add(AllCategories("En pareja", categoryItemList5))
+        getDatabaseCommunityEvents()
         setMainCategoryRecycler(allCategories)
+
     }
 
     private fun setMainCategoryRecycler(allCategories: List<AllCategories>) {
@@ -113,6 +108,35 @@ class MainEventsFragment : Fragment() {
         mainCategoryRecycler!!.layoutManager = layoutManager
         mainRecyclerAdapter = MainRecyclerAdapter(context, allCategories)
         mainCategoryRecycler!!.adapter = mainRecyclerAdapter
+    }
+    fun getDatabaseCommunityEvents() {
+        val categoryItemList : MutableList<CategoryItem> = ArrayList()
+        var resultEvent = arrayListOf<Event>()
+        var data = FirebaseClient.db.collection("CommunityEvents")
+        data.get().addOnCompleteListener { events ->
+            for (event in events.result!!) {
+                if (event.data["Privacity"] as Boolean) {
+                    resultEvent.add(
+                        Event(
+                            event.data["Admin"].toString(),
+                            event.data["Date"].toString(),
+                            event.data["Description"].toString(),
+                            event.data["Location"].toString(),
+                            event.data["Members"] as List<String>,
+                            event.data["Name"].toString(),
+                            event.data["Privacity"] as Boolean
+                        )
+                    )
+                }
+            }
+            for (event in resultEvent){
+                categoryItemList.add(CategoryItem(R.drawable.pedra,event.name,event.date,event.location))
+            }
+            allCategories.add(AllCategories("Eventos de la comunidad", categoryItemList))
+
+
+        }
+
     }
 
 

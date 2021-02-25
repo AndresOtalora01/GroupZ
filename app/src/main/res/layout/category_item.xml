@@ -49,21 +49,23 @@
 
     <TextView
         android:id="@+id/tvCategoryItemLocation"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:text="Terrassa"
         android:textColor="@color/orange_focused"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iconLocation"
         app:layout_constraintTop_toBottomOf="@+id/tvGroupName" />
 
     <TextView
         android:id="@+id/tvEventDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
         android:text="11/03/2001"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCategoryItemLocation" />
 
