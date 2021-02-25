@@ -58,7 +58,7 @@ class CreateEventFragment : Fragment() {
                     binding.etLocationEvent.text.toString(),
                     members,
                     binding.etNameEvent.text.toString(),
-                    binding.toggleButtonPublic.isChecked
+                    binding.toggleButtonPrivate.isChecked
                 )
                 if (FirebaseClient.addDatabaseCommunityEvent(eventAdd)){
                     Log.d(TAG, "Firestore Added Succesfully")
