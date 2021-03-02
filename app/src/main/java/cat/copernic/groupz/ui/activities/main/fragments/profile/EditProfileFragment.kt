@@ -44,7 +44,7 @@ class EditProfileFragment : Fragment() {
             pickImageFromGallery()
 
         }
-        binding.btnSaveProfile.setOnClickListener {
+        binding.btnSaveGroup.setOnClickListener {
             if (saveData()) {
                 findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
             }

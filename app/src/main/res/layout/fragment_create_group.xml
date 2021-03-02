@@ -43,8 +43,9 @@
 
                 <ImageView
                     android:id="@+id/ivAddEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_add_pictures" />
             </androidx.cardview.widget.CardView>
@@ -134,8 +135,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.widget.Button
-            android:id="@+id/btnSaveProfile"
-
+            android:id="@+id/btnSaveGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_button"

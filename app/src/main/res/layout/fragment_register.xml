@@ -55,10 +55,11 @@
             android:drawableStart="@drawable/custom_icon_calendar"
             android:drawablePadding="16dp"
             android:ems="10"
+            android:focusable="false"
             android:gravity="start|top"
             android:fontFamily="@font/poppins_bold"
             android:hint="@string/birth"
-            android:inputType="date"
+            android:inputType="number"
             android:paddingTop="5dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp" />

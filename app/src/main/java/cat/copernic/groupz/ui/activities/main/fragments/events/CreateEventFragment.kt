@@ -62,7 +62,7 @@ class CreateEventFragment : Fragment() {
                 )
                 if (FirebaseClient.addDatabaseCommunityEvent(eventAdd)){
                     Log.d(TAG, "Firestore Added Succesfully")
-                    Toast.makeText(context, "tu evento se ha creado correctamente", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Tu evento se ha creado correctamente", Toast.LENGTH_SHORT).show()
                     activity?.onBackPressed()
                 }
             }

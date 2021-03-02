@@ -1,12 +1,14 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
@@ -15,15 +17,25 @@ import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.*
 import java.util.regex.Pattern
 
 
-class RegisterFragment : Fragment() {
+class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     private lateinit var binding: FragmentRegisterBinding //Instanciamos binding para recoger los elementos del fragmento
     var db = FirebaseFirestore.getInstance() //Instanciamos la base de datos
     var TAG = "registerFragment" //Tag para el log
     private lateinit var builder: AlertDialog.Builder
+
+    var day = 0
+    var month = 0
+    var year = 0
+
+    var savedDay = 0
+    var savedMonth = 0
+    var savedYear= 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +51,7 @@ class RegisterFragment : Fragment() {
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Registre")
         builder.setPositiveButton("Aceptar", null)
-
+        picKDate()
         binding.tvAccountLog.setOnClickListener {
             findNavController().navigate(R.id.action_register_to_login)
         }
@@ -245,6 +257,27 @@ class RegisterFragment : Fragment() {
 
     }
 
+    private fun getDateCalendar(){
+
+        val cal : Calendar = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
+
+    private fun picKDate() {
+        getDateCalendar()
+        binding.etBirth.setOnClickListener {
+        DatePickerDialog(requireContext(), this, year, month, day).show()
+        }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month
+        savedYear = year
+        binding.etBirth.setText("$savedDay/$savedMonth/$savedYear")
+    }
 
 
 }

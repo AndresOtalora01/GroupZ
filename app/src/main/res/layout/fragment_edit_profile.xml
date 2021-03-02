@@ -184,7 +184,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <android.widget.Button
-            android:id="@+id/btnSaveProfile"
+            android:id="@+id/btnSaveGroup"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
