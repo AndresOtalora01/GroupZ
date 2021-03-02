@@ -104,6 +104,10 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         if (!isValidName()) {
             boolean = false
         }
+        if  (uri!=null){
+            boolean = false
+            Toast.makeText(context,"debes poner una foto", Toast.LENGTH_LONG).show()
+        }
             return boolean
 
     }
@@ -165,8 +169,7 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         var filePath: StorageReference =
             FirebaseStorage.getInstance().getReference().child("communityEvents")
                 .child(uri!!.lastPathSegment.toString())
-        filePath.putFile(uri!!).addOnSuccessListener {
-            Log.d("hola", it.storage.path )
+            filePath.putFile(uri!!).addOnSuccessListener {
             var ref=  FirebaseStorage.getInstance().getReference(it.storage.path)
             ref.downloadUrl.addOnSuccessListener {
 
