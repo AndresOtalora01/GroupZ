@@ -76,17 +76,19 @@ class MyEventsFragment : Fragment() {
                             event.data["Admin"].toString(),
                             event.data["Date"].toString(),
                             event.data["Description"].toString(),
+                            event.data["Image"].toString(),
                             event.data["Location"].toString(),
                             members,
                             event.data["Name"].toString(),
                             event.data["Privacity"] as Boolean
+
                         )
                     )
                 }
             }
             for (event in resultEvent){
                 Log.d("hola", "onViewCreated: ${event.name} ")
-                categoryItemList.add(CategoryItem(R.drawable.pedra,event.name,event.date,event.location))
+                categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
             setMainCategoryRecycler(categoryItemList)
 

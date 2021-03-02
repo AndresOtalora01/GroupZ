@@ -3,12 +3,8 @@ package cat.copernic.groupz.network
 import android.util.Log
 import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.model.User
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 
 class FirebaseClient {
@@ -68,16 +64,17 @@ class FirebaseClient {
             return userGet
         }
 
-        fun addDatabaseCommunityEvent(EventAdd: Event): Boolean {
+        fun addDatabaseCommunityEvent(eventAdd: Event): Boolean {
             var added: Boolean = true
             val eventMap = hashMapOf( //Rellenamos los datos para la base de datos
-                "Admin" to EventAdd.admin,
-                "Name" to EventAdd.name,
-                "Date" to EventAdd.date,
-                "Location" to EventAdd.location,
-                "Description" to EventAdd.description,
-                "Members" to EventAdd.members,
-                "Privacity" to EventAdd.privacity
+                "Admin" to eventAdd.admin,
+                "Name" to eventAdd.name,
+                "Date" to eventAdd.date,
+                "Location" to eventAdd.location,
+                "Description" to eventAdd.description,
+                "Members" to eventAdd.members,
+                "Privacity" to eventAdd.privacity,
+                "Image" to eventAdd.image
             )
             db.collection("CommunityEvents")
                 .add(eventMap)

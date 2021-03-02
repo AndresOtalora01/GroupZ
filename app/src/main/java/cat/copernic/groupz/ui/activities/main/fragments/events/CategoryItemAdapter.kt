@@ -1,6 +1,8 @@
 package cat.copernic.groupz.ui.activities.main.fragments.events
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 class CategoryItemAdapter(
     private val context: Context,
@@ -35,7 +42,11 @@ class CategoryItemAdapter(
     }
 
     override fun onBindViewHolder(holder: CategoryItemViewHolder, position: Int) {
-        holder.itemImage.setImageResource(categoryItems[position].imageUrl)
+        Glide.with(context)
+            .load(categoryItems[position].imageUrl)
+            .placeholder(R.drawable.animated_progress)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .into(holder.itemImage)
         holder.itemTitle.text = categoryItems[position].eventTitle
         holder.itemDestination.text = categoryItems[position].eventDate
         holder.itemLocation.text = categoryItems[position].location

@@ -274,7 +274,7 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         savedDay = dayOfMonth
-        savedMonth = month
+        savedMonth = month+1
         savedYear = year
         binding.etBirth.setText("$savedDay/$savedMonth/$savedYear")
     }

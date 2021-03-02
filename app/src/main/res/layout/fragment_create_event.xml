@@ -44,10 +44,11 @@
                 app:cardCornerRadius="6dp">
 
                 <ImageView
-                    android:id="@+id/ivAddEdit"
+                    android:id="@+id/ivEventAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/ic_add_pictures" />
             </androidx.cardview.widget.CardView>
 

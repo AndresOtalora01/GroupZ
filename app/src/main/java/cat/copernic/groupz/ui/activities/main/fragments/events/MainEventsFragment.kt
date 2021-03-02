@@ -67,6 +67,8 @@ class MainEventsFragment : Fragment() {
 //        categoryItemList4.add(CategoryItem(R.drawable.pedra, "Torneo", "Estadio", "Barcelona"))
 //        categoryItemList4.add(CategoryItem(R.drawable.pedra, "Paseo", "Centro comercial", "Zurich"))
 //        categoryItemList4.add(CategoryItem(R.drawable.pedra, "Spiderman 3", "Cines", "Andorra"))
+
+
         allCategories = ArrayList()
         getDatabaseCommunityEvents()
     }
@@ -89,6 +91,7 @@ class MainEventsFragment : Fragment() {
                             event.data["Admin"].toString(),
                             event.data["Date"].toString(),
                             event.data["Description"].toString(),
+                            event.data["Image"].toString(),
                             event.data["Location"].toString(),
                             event.data["Members"] as List<String>,
                             event.data["Name"].toString(),
@@ -98,7 +101,7 @@ class MainEventsFragment : Fragment() {
                 }
             }
             for (event in resultEvent){
-                categoryItemList.add(CategoryItem(R.drawable.pedra,event.name,event.date,event.location))
+                categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
             allCategories.add(AllCategories("Comunidad", categoryItemList))
             getDatabaseSocialEvents()
@@ -120,23 +123,19 @@ class MainEventsFragment : Fragment() {
                         event.data["Admin"].toString(),
                         event.data["Date"].toString(),
                         event.data["Description"].toString(),
+                        event.data["Image"].toString(),
                         event.data["Location"].toString(),
                         members,
                         event.data["Name"].toString(),
                         event.data["Privacity"] as Boolean
+
                     )
                 )
             }
             counter = 1
             for (event in resultEvent){
                 Log.d("hola", "onViewCreated: ${event.name} ")
-                when(counter) {
-                    1 ->  categoryItemList.add(CategoryItem(R.drawable.bici,event.name,event.date,event.location))
-                    2 ->  categoryItemList.add(CategoryItem(R.drawable.esqui,event.name,event.date,event.location))
-                    3 ->  categoryItemList.add(CategoryItem(R.drawable.baloncesto,event.name,event.date,event.location))
-                    4 ->  categoryItemList.add(CategoryItem(R.drawable.snowboard,event.name,event.date,event.location))
-                }
-                counter++
+                    categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
             allCategories.add(AllCategories("Deportes", categoryItemList))
             getDatabaseMusicEvents()
@@ -160,6 +159,7 @@ class MainEventsFragment : Fragment() {
                         event.data["Admin"].toString(),
                         event.data["Date"].toString(),
                         event.data["Description"].toString(),
+                        event.data["Image"].toString(),
                         event.data["Location"].toString(),
                         members,
                         event.data["Name"].toString(),
@@ -172,13 +172,7 @@ class MainEventsFragment : Fragment() {
             counter = 1
             for (event in resultEvent){
                 Log.d("hola", "onViewCreated: ${event.name} ")
-                when(counter) {
-                    1 ->  categoryItemList.add(CategoryItem(R.drawable.piano,event.name,event.date,event.location))
-                    2 ->  categoryItemList.add(CategoryItem(R.drawable.gym,event.name,event.date,event.location))
-                    3 ->  categoryItemList.add(CategoryItem(R.drawable.programacion,event.name,event.date,event.location))
-                    4 ->  categoryItemList.add(CategoryItem(R.drawable.picnic,event.name,event.date,event.location))
-                }
-                counter++
+                categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
             allCategories.add(AllCategories("Social", categoryItemList))
             getDatabaseSportsEvents()
@@ -201,6 +195,7 @@ class MainEventsFragment : Fragment() {
                         event.data["Admin"].toString(),
                         event.data["Date"].toString(),
                         event.data["Description"].toString(),
+                        event.data["Image"].toString(),
                         event.data["Location"].toString(),
                         members,
                         event.data["Name"].toString(),
@@ -213,15 +208,9 @@ class MainEventsFragment : Fragment() {
             counter = 1
             for (event in resultEvent){
                 Log.d("hola", "onViewCreated: ${event.name} ")
-                when(counter) {
-                    1 ->  categoryItemList.add(CategoryItem(R.drawable.jazz,event.name,event.date,event.location))
-                    2 ->  categoryItemList.add(CategoryItem(R.drawable.tomorrowland,event.name,event.date,event.location))
-                    3 ->  categoryItemList.add(CategoryItem(R.drawable.ultra,event.name,event.date,event.location))
-                    4 ->  categoryItemList.add(CategoryItem(R.drawable.rock,event.name,event.date,event.location))
-                }
-                counter++
+                categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
-            allCategories.add(AllCategories("Music", categoryItemList))
+          allCategories.add(AllCategories("Music", categoryItemList))
             setMainCategoryRecycler(allCategories)
 //            setMainCategoryRecycler(categoryItemList5)
         }
