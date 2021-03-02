@@ -87,6 +87,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_edit_text_grey"
                 android:ems="10"
+                android:focusable="false"
                 android:fontFamily="@font/poppins_regular"
                 android:inputType="date"
                 android:paddingStart="20dp"

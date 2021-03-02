@@ -1,12 +1,14 @@
 
 package cat.copernic.groupz.ui.activities.main.fragments.events
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import cat.copernic.groupz.R
@@ -15,11 +17,19 @@ import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.network.FirebaseClient.Companion.TAG
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 import java.util.regex.Pattern
 
 
-class CreateEventFragment : Fragment() {
+class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var binding: FragmentCreateEventBinding
+    var day = 0
+    var month = 0
+    var year = 0
+
+    var savedDay = 0
+    var savedMonth = 0
+    var savedYear= 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +41,7 @@ class CreateEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCreateEventBinding.bind(view)
+        picKDate()
         val toggleButtonPublic = binding.toggleButtonPublic
         val toggleButtonPrivate = binding.toggleButtonPrivate
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
@@ -67,7 +78,6 @@ class CreateEventFragment : Fragment() {
                 }
             }
         }
-
     }
     private fun comprovate(): Boolean{
         var boolean: Boolean = true
@@ -134,6 +144,28 @@ class CreateEventFragment : Fragment() {
             binding.etDesciptionEvent.error = null
             return true
         }
+    }
+
+    private fun getDateCalendar(){
+
+        val cal : Calendar = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
+
+    private fun picKDate() {
+        getDateCalendar()
+        binding.etDateEvent.setOnClickListener {
+            DatePickerDialog(requireContext(), this, year, month, day).show()
+        }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month
+        savedYear = year
+        binding.etDateEvent.setText("$savedDay/$savedMonth/$savedYear")
     }
 
 }
