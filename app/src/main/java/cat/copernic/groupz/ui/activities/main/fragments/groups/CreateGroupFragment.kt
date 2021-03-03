@@ -101,6 +101,7 @@ class CreateGroupFragment : Fragment() {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             mImageUri = data.data!!
             Glide.with(requireActivity()).load(mImageUri).into(binding.ivAddEdit)
+            binding.ivIconPlus.visibility = View.GONE
         }
     }
 }

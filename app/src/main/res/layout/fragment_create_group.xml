@@ -45,7 +45,12 @@
                     android:id="@+id/ivAddEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/ivIconPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_add_pictures" />
             </androidx.cardview.widget.CardView>

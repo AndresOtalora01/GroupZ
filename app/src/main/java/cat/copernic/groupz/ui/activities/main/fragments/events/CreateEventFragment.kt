@@ -212,8 +212,7 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 .placeholder(R.drawable.animated_progress)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(binding.ivEventAdd)
-
-
+            binding.ivIcon.visibility = View.GONE
         }
     }
 
