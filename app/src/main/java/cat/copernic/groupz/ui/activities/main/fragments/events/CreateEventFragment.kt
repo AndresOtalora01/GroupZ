@@ -104,7 +104,7 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         if (!isValidName()) {
             boolean = false
         }
-        if  (uri!=null){
+        if  (uri==Uri.EMPTY){
             boolean = false
             Toast.makeText(context,"debes poner una foto", Toast.LENGTH_LONG).show()
         }
