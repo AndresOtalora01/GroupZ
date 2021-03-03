@@ -4,26 +4,38 @@ package cat.copernic.groupz.ui.activities.main.fragments.profile
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentEditProfileBinding
+import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 
 class EditProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentEditProfileBinding
     var userAuth = FirebaseAuth.getInstance().currentUser
+    private var GALERI_INTENT = 1000
+    private var uri: Uri? = Uri.EMPTY
+    private lateinit var userData: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,39 +48,21 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility =
+            View.GONE
 
         getData(FirebaseClient.auth.currentUser?.email as String)
 
-        binding.ivAddEdit.setOnClickListener{
+        binding.ivAddEdit.setOnClickListener {
             pickImageFromGallery()
 
         }
         binding.btnSaveGroup.setOnClickListener {
-            if (saveData()) {
-                findNavController().navigate(R.id.action_editProfileFragment_to_profileFragment)
-            }
-
+            upload()
         }
     }
 
-    fun saveData() : Boolean{
-        var userData = User(
-            binding.etNameEdit.text.toString(),
-            FirebaseClient.auth.currentUser?.email.toString(),
-            binding.etDateEdit.text.toString(),
-            binding.etHobbieEdit.text.toString(),
-            binding.etDescriptionEdit.text.toString(),
-            binding.etLocationEdit.text.toString()
-        )
-
-        if (FirebaseClient.addDatabaseUser(userData)){
-            return true
-        } else {
-            return false
-        }
-    }
-    fun getData(userMail : String){
+    fun getData(userMail: String) {
         val USERS = "Users"
         val data = FirebaseClient.db.collection(USERS).document(userMail)
         data.get()
@@ -77,6 +71,15 @@ class EditProfileFragment : Fragment() {
                     binding.etNameEdit.setText(it.get("Name") as String)
                     binding.etDateEdit.setText(it.get("Birth") as String)
                     binding.etHobbieEdit.setText(it.get("Hobbies") as String)
+                    if (it.get("Image")
+                            .toString() != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5"
+                    ) {
+                        Glide.with(this)
+                            .load(it.get("Image").toString())
+                            .placeholder(R.drawable.animated_progress)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .into(binding.ivAddEdit)
+                    }
                     binding.etDescriptionEdit.setText(it.get("Description") as String)
                     binding.etLocationEdit.setText(it.get("Location") as String)
                 } else {
@@ -86,33 +89,65 @@ class EditProfileFragment : Fragment() {
             }
     }
 
+    private fun upload() {
+        var filePath: StorageReference =
+            FirebaseStorage.getInstance().getReference().child("imageProfile")
+                .child(uri!!.lastPathSegment.toString())
+        filePath.putFile(uri!!).addOnSuccessListener {
+            var ref = FirebaseStorage.getInstance().getReference(it.storage.path)
+            ref.downloadUrl.addOnSuccessListener {
+                var image: ImageView = activity?.findViewById<DrawerLayout>(R.id.drawerLayout)
+                    ?.findViewById(R.id.ivProfile)!!
+                Glide.with(requireActivity())
+                    .load(it.toString())
+                    .placeholder(R.drawable.animated_progress)
+                    .into(image)
+                activity?.onBackPressed()
+
+                var members = arrayListOf<String>()
+                members.add(FirebaseClient.auth.currentUser?.email.toString())
+                userData = User(
+                    binding.etNameEdit.text.toString(),
+                    FirebaseClient.auth.currentUser?.email.toString(),
+                    binding.etDateEdit.text.toString(),
+                    binding.etHobbieEdit.text.toString(),
+                    it.toString(),
+                    binding.etDescriptionEdit.text.toString(),
+                    binding.etLocationEdit.text.toString()
+                )
+
+                if (FirebaseClient.addDatabaseUser(userData)) {
+                    Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
+                    Toast.makeText(
+                        context,
+                        "tu perfil a sido editado correctamente",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+
+            }
+        }
+    }
+
     private fun pickImageFromGallery() {
         //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent, GALERI_INTENT)
     }
 
-    companion object {
-        //image pick code
-        private val IMAGE_PICK_CODE = 1000;
-        //Permission code
-        private val PERMISSION_CODE = 1001;
-    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALERI_INTENT && resultCode == Activity.RESULT_OK) {
+            uri = data?.data
+            Glide.with(this)
+                .load(uri)
+                .placeholder(R.drawable.animated_progress)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(binding.ivAddEdit)
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
-            PERMISSION_CODE -> {
-                if (grantResults.size >0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
-                    pickImageFromGallery()
 
-                }
-                else{
-                    //permission from popup denied
-                }
-            }
         }
     }
 

@@ -1,4 +1,3 @@
-
 package cat.copernic.groupz.ui.activities.main.fragments.events
 
 import android.app.Activity.RESULT_OK
@@ -39,10 +38,9 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     var savedDay = 0
     var savedMonth = 0
-    var savedYear= 0
+    var savedYear = 0
     private var GALERI_INTENT = 1000
     private var uri: Uri? = Uri.EMPTY
-    private var imgUriFirebase: String = ""
     private lateinit var eventAdd: Event
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -104,11 +102,11 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         if (!isValidName()) {
             boolean = false
         }
-        if  (uri==Uri.EMPTY){
+        if (uri == Uri.EMPTY) {
             boolean = false
-            Toast.makeText(context,"debes poner una foto", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "debes poner una foto", Toast.LENGTH_LONG).show()
         }
-            return boolean
+        return boolean
 
     }
 
@@ -169,8 +167,8 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         var filePath: StorageReference =
             FirebaseStorage.getInstance().getReference().child("communityEvents")
                 .child(uri!!.lastPathSegment.toString())
-            filePath.putFile(uri!!).addOnSuccessListener {
-            var ref=  FirebaseStorage.getInstance().getReference(it.storage.path)
+        filePath.putFile(uri!!).addOnSuccessListener {
+            var ref = FirebaseStorage.getInstance().getReference(it.storage.path)
             ref.downloadUrl.addOnSuccessListener {
 
 
@@ -216,9 +214,9 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }
     }
 
-    private fun getDateCalendar(){
+    private fun getDateCalendar() {
 
-        val cal : Calendar = Calendar.getInstance()
+        val cal: Calendar = Calendar.getInstance()
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
         year = cal.get(Calendar.YEAR)
@@ -233,7 +231,7 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         savedDay = dayOfMonth
-        savedMonth = month+1
+        savedMonth = month + 1
         savedYear = year
         binding.etDateEvent.setText("$savedDay/$savedMonth/$savedYear")
     }

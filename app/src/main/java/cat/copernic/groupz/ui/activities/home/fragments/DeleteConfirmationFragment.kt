@@ -65,5 +65,4 @@ class DeleteConfirmationFragment : Fragment() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
-
 }

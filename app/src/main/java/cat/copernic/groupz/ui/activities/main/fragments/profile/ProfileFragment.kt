@@ -15,6 +15,8 @@ import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentProfileBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProfileFragment : Fragment() {
@@ -52,11 +54,13 @@ class ProfileFragment : Fragment() {
                     binding.tvNameProfile.text = it.get("Name") as String
                     binding.tvHobbiesProfile.text = it.get("Hobbies") as String
                     binding.tvDescriptionProfile.text = it.get("Description") as String
+                    Glide.with(this)
+                        .load(it.get("Image").toString())
+                        .placeholder(R.drawable.animated_progress)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(binding.ivImage)
                 }
 
-            }
-            .addOnFailureListener { exception ->
-                Log.d(FirebaseClient.TAG, "Failure")
             }
     }
 

@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
@@ -42,6 +43,7 @@ class LoginFragment : Fragment() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         startActivity( Intent(context, MainActivity::class.java))
+                        activity?.finish()
                     } else {
                         binding.etEmail.error = getString(R.string.errorAuthEmailPassword)
                         binding.etPassword.error = getString(R.string.errorAuthEmailPassword)
@@ -78,7 +80,5 @@ class LoginFragment : Fragment() {
 
         return true
     }
-
-
 
 }

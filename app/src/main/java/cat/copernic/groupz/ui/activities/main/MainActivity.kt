@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,6 +13,8 @@ import androidx.navigation.ui.*
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.ActivityMainBinding
 import cat.copernic.groupz.network.FirebaseClient
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -44,7 +47,20 @@ class MainActivity : AppCompatActivity() {
             )
         )
         val  navheadrview = navigationView.getHeaderView(0)
-        navheadrview.findViewById<TextView>(R.id.tvUserEmail).text = FirebaseClient.auth.currentUser?.email
+        val user = FirebaseClient.auth.currentUser?.email
+        navheadrview.findViewById<TextView>(R.id.tvUserEmail).text = user
+        val data = FirebaseClient.db.collection("Users").document(user!!)
+        data.get()
+            .addOnSuccessListener {
+                if (it != null) {
+                    Glide.with(this)
+                        .load(it.get("Image").toString())
+                        .placeholder(R.drawable.animated_progress)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(navheadrview.findViewById(R.id.ivProfile))
+                }
+
+            }
         navheadrview.findViewById<ImageButton>(R.id.btnClouseNav).setOnClickListener {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }

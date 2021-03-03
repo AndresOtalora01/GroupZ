@@ -250,6 +250,7 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
             binding.etMail.text.toString(),
             binding.etBirth.text.toString(),
             binding.etHobbies.text.toString(),
+            "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5",
             "",
             binding.etLocation.text.toString()
         )

@@ -5,6 +5,7 @@ class User (
     var mail : String,
     var birth : String,
     var hobbies : String,
+    var image: String,
     var description : String,
     var location : String
 )

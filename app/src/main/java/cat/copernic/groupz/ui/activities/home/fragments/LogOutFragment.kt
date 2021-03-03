@@ -52,11 +52,8 @@ class LogOutFragment : Fragment() {
         builder.setPositiveButton("Aceptar", null)
         binding.btnLogOut.setOnClickListener {
             FirebaseClient.auth.signOut()
-            builder.setMessage(R.string.LogOut);
-            val dialog = builder.create()
-            dialog.show()
-
             startActivity( Intent(context, HomeActivity::class.java))
+            activity?.finish()
         }
         binding.btnDelAccount.setOnClickListener{
             findNavController().navigate(R.id.action_logOutFragment_to_deleteConfirmationFragment)

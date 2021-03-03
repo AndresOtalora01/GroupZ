@@ -23,8 +23,9 @@ class FirebaseClient {
                 "Name" to userAdd.name,
                 "Birth" to userAdd.birth,
                 "Hobbies" to userAdd.hobbies,
+                "Image" to userAdd.image,
                 "Description" to userAdd.description,
-                "Location" to userAdd.location,
+                "Location" to userAdd.location
             )
             db.collection(USERS)
                 .document(userAdd.mail) //Añadimos el hash a la base de datos, el id del fichero sera el mail.
@@ -50,6 +51,7 @@ class FirebaseClient {
                             userMail,
                             it.get("Birth") as String,
                             it.get("Hobbies") as String,
+                            it.get("Images") as String,
                             it.get("Description") as String,
                             it.get("Location") as String
                         )
