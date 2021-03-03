@@ -27,6 +27,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlin.math.log
 
 
 class EditProfileFragment : Fragment() {
@@ -94,7 +95,9 @@ class EditProfileFragment : Fragment() {
             FirebaseStorage.getInstance().getReference().child("imageProfile")
                 .child(uri!!.lastPathSegment.toString())
         filePath.putFile(uri!!).addOnSuccessListener {
-            var ref = FirebaseStorage.getInstance().getReference(it.storage.path)
+
+            var storagepath = it.storage.path;
+            var ref = FirebaseStorage.getInstance().getReference(storagepath)
             ref.downloadUrl.addOnSuccessListener {
                 var image: ImageView = activity?.findViewById<DrawerLayout>(R.id.drawerLayout)
                     ?.findViewById(R.id.ivProfile)!!
@@ -102,10 +105,7 @@ class EditProfileFragment : Fragment() {
                     .load(it.toString())
                     .placeholder(R.drawable.animated_progress)
                     .into(image)
-                activity?.onBackPressed()
 
-                var members = arrayListOf<String>()
-                members.add(FirebaseClient.auth.currentUser?.email.toString())
                 userData = User(
                     binding.etNameEdit.text.toString(),
                     FirebaseClient.auth.currentUser?.email.toString(),
@@ -115,17 +115,27 @@ class EditProfileFragment : Fragment() {
                     binding.etDescriptionEdit.text.toString(),
                     binding.etLocationEdit.text.toString()
                 )
+                val data = FirebaseClient.db.collection("Users")
+                    .document(FirebaseClient.auth.currentUser?.email!!)
+                data.get()
+                    .addOnSuccessListener {
+                        var imgurl = it.get("Image").toString()
+                        if (imgurl != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5") {
+                            var storage_ref = FirebaseStorage.getInstance()
+                                .getReferenceFromUrl(it.get("Image").toString())
+                            storage_ref.delete()
+                        }
 
-                if (FirebaseClient.addDatabaseUser(userData)) {
-                    Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
-                    Toast.makeText(
-                        context,
-                        "tu perfil a sido editado correctamente",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                }
-
+                        if (FirebaseClient.addDatabaseUser(userData)) {
+                            Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
+                            Toast.makeText(
+                                context,
+                                "tu perfil a sido editado correctamente",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        activity?.onBackPressed()
+                    }
             }
         }
     }

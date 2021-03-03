@@ -7,16 +7,17 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentDeleteConfirmationBinding
+import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.home.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 
 
 class DeleteConfirmationFragment : Fragment() {
@@ -45,9 +46,15 @@ class DeleteConfirmationFragment : Fragment() {
         }
         binding.btnYes.setOnClickListener{
             val user =  FirebaseAuth.getInstance().currentUser
-
-            user?.delete()
-                ?.addOnCompleteListener { task ->
+            val data = FirebaseClient.db.collection("Users").document(user?.email!!)
+            data.get()
+                .addOnSuccessListener {
+                    var storage_ref = FirebaseStorage.getInstance().getReferenceFromUrl(it.get("Image").toString())
+                    storage_ref.delete()
+                    data.delete()
+                }
+            user.delete()
+                .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         openDeletedAccountDialog()
                     }
@@ -55,7 +62,7 @@ class DeleteConfirmationFragment : Fragment() {
 
             val handler = Handler()
             handler.postDelayed({
-                startActivity( Intent(context, HomeActivity::class.java))
+                startActivity(Intent(context, HomeActivity::class.java))
             }, 2000)
         }
     }

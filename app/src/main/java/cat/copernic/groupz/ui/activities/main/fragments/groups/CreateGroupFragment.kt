@@ -92,7 +92,7 @@ class CreateGroupFragment : Fragment() {
     private fun localPictureChooser() {
         var intent: Intent = Intent ()
         intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
+        intent.action = Intent.ACTION_PICK
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
 
