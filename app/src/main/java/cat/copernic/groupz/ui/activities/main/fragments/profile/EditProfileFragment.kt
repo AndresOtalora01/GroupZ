@@ -58,7 +58,10 @@ class EditProfileFragment : Fragment() {
             pickImageFromGallery()
 
         }
-        binding.btnSaveGroup.setOnClickListener {
+        binding.btnSave.setOnClickListener {
+            binding.btnSave.visibility = View.GONE
+            binding.btnSaveGone.visibility = View.VISIBLE
+            binding.shimmerViewContainer.startShimmer()
             upload()
         }
     }
@@ -94,50 +97,79 @@ class EditProfileFragment : Fragment() {
         var filePath: StorageReference =
             FirebaseStorage.getInstance().getReference().child("imageProfile")
                 .child(uri!!.lastPathSegment.toString())
-        filePath.putFile(uri!!).addOnSuccessListener {
+        if (uri != Uri.EMPTY){
+            filePath.putFile(uri!!).addOnSuccessListener {
 
-            var storagepath = it.storage.path;
-            var ref = FirebaseStorage.getInstance().getReference(storagepath)
-            ref.downloadUrl.addOnSuccessListener {
-                var image: ImageView = activity?.findViewById<DrawerLayout>(R.id.drawerLayout)
-                    ?.findViewById(R.id.ivProfile)!!
-                Glide.with(requireActivity())
-                    .load(it.toString())
-                    .placeholder(R.drawable.animated_progress)
-                    .into(image)
+                var storagepath = it.storage.path;
+                var ref = FirebaseStorage.getInstance().getReference(storagepath)
+                ref.downloadUrl.addOnSuccessListener {
+                    var image: ImageView = activity?.findViewById<DrawerLayout>(R.id.drawerLayout)
+                        ?.findViewById(R.id.ivProfile)!!
+                    Glide.with(requireActivity())
+                        .load(it.toString())
+                        .placeholder(R.drawable.animated_progress)
+                        .into(image)
 
-                userData = User(
-                    binding.etNameEdit.text.toString(),
-                    FirebaseClient.auth.currentUser?.email.toString(),
-                    binding.etDateEdit.text.toString(),
-                    binding.etHobbieEdit.text.toString(),
-                    it.toString(),
-                    binding.etDescriptionEdit.text.toString(),
-                    binding.etLocationEdit.text.toString()
-                )
-                val data = FirebaseClient.db.collection("Users")
-                    .document(FirebaseClient.auth.currentUser?.email!!)
-                data.get()
-                    .addOnSuccessListener {
-                        var imgurl = it.get("Image").toString()
-                        if (imgurl != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5") {
-                            var storage_ref = FirebaseStorage.getInstance()
-                                .getReferenceFromUrl(it.get("Image").toString())
-                            storage_ref.delete()
+                    userData = User(
+                        binding.etNameEdit.text.toString(),
+                        FirebaseClient.auth.currentUser?.email.toString(),
+                        binding.etDateEdit.text.toString(),
+                        binding.etHobbieEdit.text.toString(),
+                        it.toString(),
+                        binding.etDescriptionEdit.text.toString(),
+                        binding.etLocationEdit.text.toString()
+                    )
+                    val data = FirebaseClient.db.collection("Users")
+                        .document(FirebaseClient.auth.currentUser?.email!!)
+                    data.get()
+                        .addOnSuccessListener {
+                            var imgurl = it.get("Image").toString()
+                            if (imgurl != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5") {
+                                var storage_ref = FirebaseStorage.getInstance()
+                                    .getReferenceFromUrl(it.get("Image").toString())
+                                storage_ref.delete()
+                            }
+
+                            if (FirebaseClient.addDatabaseUser(userData)) {
+                                Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
+                                Toast.makeText(
+                                    context,
+                                    "tu perfil a sido editado correctamente",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                            activity?.onBackPressed()
                         }
-
-                        if (FirebaseClient.addDatabaseUser(userData)) {
-                            Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
-                            Toast.makeText(
-                                context,
-                                "tu perfil a sido editado correctamente",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                        activity?.onBackPressed()
-                    }
+                }
             }
+
+        }else{
+            val data = FirebaseClient.db.collection("Users")
+                .document(FirebaseClient.auth.currentUser?.email!!)
+            data.get()
+                .addOnSuccessListener {
+                    userData = User(
+                        binding.etNameEdit.text.toString(),
+                        FirebaseClient.auth.currentUser?.email.toString(),
+                        binding.etDateEdit.text.toString(),
+                        binding.etHobbieEdit.text.toString(),
+                        it.get("Image").toString(),
+                        binding.etDescriptionEdit.text.toString(),
+                        binding.etLocationEdit.text.toString()
+                    )
+                    if (FirebaseClient.addDatabaseUser(userData)) {
+                        Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
+                        Toast.makeText(
+                            context,
+                            "tu perfil a sido editado correctamente",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    activity?.onBackPressed()
+                }
         }
+
+
     }
 
     private fun pickImageFromGallery() {

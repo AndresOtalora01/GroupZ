@@ -18,7 +18,9 @@ import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentMainEventsBinding
 import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.network.FirebaseClient
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import okio.Okio.source
 
 
 class MainEventsFragment : Fragment() {
@@ -27,7 +29,8 @@ class MainEventsFragment : Fragment() {
     private lateinit var binding: FragmentMainEventsBinding
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
-  lateinit var  allCategories: MutableList<AllCategories>
+    private  lateinit var shimmerContainer: ShimmerFrameLayout
+    lateinit var  allCategories: MutableList<AllCategories>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,8 +38,6 @@ class MainEventsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_events, container, false)
     }
-
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +50,7 @@ class MainEventsFragment : Fragment() {
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
+        binding.shimmerViewContainer.startShimmer()
 
         binding.btnShowEnevt.setOnClickListener {
             findNavController().navigate(R.id.action_mainEventsFragment_to_showEventFragment)
@@ -58,7 +60,6 @@ class MainEventsFragment : Fragment() {
         }
 
         mainCategoryRecycler = view.findViewById(R.id.mainRecyclerEvents)
-
 
         //cuarta categoria de prueba
 //        val categoryItemList4 : MutableList<CategoryItem> = ArrayList()
@@ -139,7 +140,6 @@ class MainEventsFragment : Fragment() {
             }
             allCategories.add(AllCategories("Deportes", categoryItemList))
             getDatabaseMusicEvents()
-//            setMainCategoryRecycler(categoryItemList5)
         }
     }
 
@@ -176,7 +176,6 @@ class MainEventsFragment : Fragment() {
             }
             allCategories.add(AllCategories("Social", categoryItemList))
             getDatabaseSportsEvents()
-//            setMainCategoryRecycler(categoryItemList5)
         }
     }
 
@@ -212,7 +211,8 @@ class MainEventsFragment : Fragment() {
             }
           allCategories.add(AllCategories("Music", categoryItemList))
             setMainCategoryRecycler(allCategories)
-//            setMainCategoryRecycler(categoryItemList5)
+            binding.shimmerViewContainer.visibility = View.GONE
+            mainCategoryRecycler!!.visibility = View.VISIBLE
         }
     }
 
