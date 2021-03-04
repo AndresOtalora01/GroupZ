@@ -49,8 +49,11 @@ class DeleteConfirmationFragment : Fragment() {
             val data = FirebaseClient.db.collection("Users").document(user?.email!!)
             data.get()
                 .addOnSuccessListener {
-                    var storage_ref = FirebaseStorage.getInstance().getReferenceFromUrl(it.get("Image").toString())
-                    storage_ref.delete()
+                    if (it.get("Image").toString()!="https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FDefault_profile.png?alt=media&token=108bdb29-c173-48ad-807d-31c3d2a5ce0e"){
+                        var storage_ref = FirebaseStorage.getInstance().getReferenceFromUrl(it.get("Image").toString())
+                        storage_ref.delete()
+                    }
+
                     data.delete()
                 }
             user.delete()

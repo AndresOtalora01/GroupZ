@@ -76,7 +76,7 @@ class EditProfileFragment : Fragment() {
                     binding.etDateEdit.setText(it.get("Birth") as String)
                     binding.etHobbieEdit.setText(it.get("Hobbies") as String)
                     if (it.get("Image")
-                            .toString() != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5"
+                            .toString() != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FDefault_profile.png?alt=media&token=108bdb29-c173-48ad-807d-31c3d2a5ce0e"
                     ) {
                         Glide.with(this)
                             .load(it.get("Image").toString())
@@ -124,7 +124,7 @@ class EditProfileFragment : Fragment() {
                     data.get()
                         .addOnSuccessListener {
                             var imgurl = it.get("Image").toString()
-                            if (imgurl != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FdefaulProfile.png?alt=media&token=6117b908-3800-4fa4-8910-18f68bd8a1f5") {
+                            if (imgurl != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FDefault_profile.png?alt=media&token=108bdb29-c173-48ad-807d-31c3d2a5ce0e") {
                                 var storage_ref = FirebaseStorage.getInstance()
                                     .getReferenceFromUrl(it.get("Image").toString())
                                 storage_ref.delete()
