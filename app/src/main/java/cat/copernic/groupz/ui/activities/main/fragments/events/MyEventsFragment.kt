@@ -20,7 +20,7 @@ import cat.copernic.groupz.network.FirebaseClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MyEventsFragment : Fragment() {
-    private var mainCategoryRecycler: RecyclerView? = null
+    private lateinit var mainCategoryRecycler: RecyclerView
     private var mainRecyclerAdapter: CategoryItemAdapter? = null
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
@@ -50,6 +50,7 @@ class MyEventsFragment : Fragment() {
         }
 
         mainCategoryRecycler = view.findViewById(R.id.mayEventsList)
+        binding.shimmerViewContainer.startShimmer()
         getDatabaseMyCommunityEvents()
     }
 
@@ -91,6 +92,8 @@ class MyEventsFragment : Fragment() {
                 categoryItemList.add(CategoryItem(event.image,event.name,event.date,event.location))
             }
             setMainCategoryRecycler(categoryItemList)
+            binding.shimmerViewContainer.visibility = View.GONE
+            mainCategoryRecycler.visibility = View.VISIBLE
 
 
         }
