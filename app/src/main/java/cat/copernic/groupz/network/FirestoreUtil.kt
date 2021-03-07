@@ -61,6 +61,45 @@ object FirestoreUtil {
             }
 
     }
+
+    fun listOfChatsListener (onListen: (List<Item>) -> Unit, context: Context): ListenerRegistration {
+        return currentUserDocRef.collection("engagedChatChannels").addSnapshotListener{  querySnapshot, firebaseFirestoreException ->
+            if(firebaseFirestoreException != null) {
+                Log.e("FIRESTORE", "Users listener error.", firebaseFirestoreException)
+                return@addSnapshotListener
+            }
+            val items = mutableListOf<Item>()
+            lateinit var id : String
+            lateinit  var channelId : String
+            querySnapshot?.documents?.forEach{ query ->
+                    id = query.id
+                    channelId = query.get("channelId").toString()
+                var user : User?
+                val data = FirebaseFirestore.getInstance().collection("Users").document(id)
+                data.get()
+                    .addOnSuccessListener {
+                        if (it != null) {
+                            user = User(
+                                it.get("Name") as String,
+                                id,
+                                it.get("Birth") as String,
+                                it.get("Hobbies") as String,
+                                it.get("Image") as String,
+                                it.get("Description") as String,
+                                it.get("Location") as String
+                            )
+                            Log.d(FirebaseClient.TAG, "Success")
+                            items.add(ChatListItem(user!!, channelId, context))
+                            onListen(items)
+                        }
+
+                    }
+
+            }
+
+        }
+    }
+
     fun addChatMessageListener(channelId: String, onListen: (List<Item>) -> Unit) : ListenerRegistration {
         return chatChannelsCollectionRef.document(channelId).collection("messages")
             .orderBy("time")
