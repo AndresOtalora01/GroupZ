@@ -74,7 +74,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvforgotPaswort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -94,6 +94,24 @@
             android:text="@string/login"
             android:textColor="@color/white"
             android:textSize="18sp" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+            <android.widget.Button
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
 
     </LinearLayout>

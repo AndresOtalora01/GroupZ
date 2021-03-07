@@ -58,6 +58,9 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
         binding.btnRegister.setOnClickListener { //cuando se presiona el boton de register.
 
             if (comprovate()) {
+                binding.btnRegister.visibility = View.GONE
+                binding.shimmerViewContainer.visibility = View.VISIBLE
+                binding.shimmerViewContainer.stopShimmer()
                 FirebaseClient.auth
                     .createUserWithEmailAndPassword( //Se hace el usuario con el mail y la contraseña
                         binding.etMail.text.toString(),
@@ -72,22 +75,15 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
                                 val dialog = builder.create()
                                 dialog.show()
                                 startActivity( Intent(context, MainActivity::class.java))
-
-                            } else {
-                                Log.w(TAG, "Error adding document to Firestore")
-                                builder.setMessage(R.string.errorUserNotCreated);
-                                //FirebaseAuth.getInstance().currentUser?.delete()
-                                val dialog = builder.create()
-                                dialog.show()
-
                             }
-
                         } else {
+                            binding.shimmerViewContainer.visibility = View.GONE
+                            binding.shimmerViewContainer.stopShimmer()
+                            binding.btnRegister.visibility = View.VISIBLE
                             Log.w(TAG, "Error adding user to Authentication")
                             builder.setMessage(R.string.errorUserNotCreated);
                             val dialog = builder.create()
                             dialog.show()
-
                         }
 
                     }
