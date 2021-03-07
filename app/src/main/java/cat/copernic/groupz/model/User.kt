@@ -9,7 +9,7 @@ class User (
     var hobbies : String,
     var image: String,
     var description : String,
-    var location : String,
+    var location : String
 ) {
     constructor() : this("", "", "","","","", "")
 }

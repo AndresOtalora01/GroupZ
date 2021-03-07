@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
 import androidx.navigation.fragment.navArgs
@@ -14,7 +17,10 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentChatBinding
 import cat.copernic.groupz.model.Message
+import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.network.FirestoreUtil
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ListenerRegistration
@@ -52,8 +58,22 @@ class ChatFragment : Fragment() {
         btndrawerLayout.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility =
-            View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
+        activity?.findViewById<CardView>(R.id.imagechatTulbar)!!.visibility = View.VISIBLE
+        val imageChat = activity?.findViewById<ImageView>(R.id.imagechat)!!
+        val titleToolbar = activity?.findViewById<TextView>(R.id.tvTittleToolBar)
+        val data = FirebaseClient.db.collection("Users").document(args.userId)
+        data.get()
+            .addOnSuccessListener {
+                if (it != null) {
+                    titleToolbar!!.text = it.get("Name") as String
+                    Glide.with(this)
+                        .load(it.get("Image").toString())
+                        .placeholder(R.drawable.animated_progress)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(imageChat)
+                }
+            }
 
         val otherUserId = args.userId
         FirestoreUtil.getOrCreateChatChannel(otherUserId) { channelId ->
@@ -99,6 +119,7 @@ class ChatFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        activity?.findViewById<CardView>(R.id.imagechatTulbar)!!.visibility = View.GONE
         FirestoreUtil.removeListener(messagesListenerRegistration)
         shouldInitRecyclerView = true
     }
