@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_nearbyPeopleFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_nearbyPeopleFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatsListFragment"
@@ -51,7 +54,14 @@
     <fragment
         android:id="@+id/chatFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.chat.ChatFragment"
-        android:label="ChatFragment" />
+        android:label="ChatFragment" >
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="cat.copernic.groupz.ui.activities.main.fragments.profile.ProfileFragment"

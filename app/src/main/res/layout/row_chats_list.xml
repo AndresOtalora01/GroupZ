@@ -30,7 +30,7 @@
         android:layout_marginStart="76dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_regular"
-        android:text="Invitación a grupo"
+        android:text="Pedra la curiosa"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"

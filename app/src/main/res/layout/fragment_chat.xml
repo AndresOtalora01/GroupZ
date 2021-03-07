@@ -9,7 +9,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagesView"
+        android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayoutSendMessage"
@@ -53,6 +53,7 @@
             android:paddingBottom="3dp"
             android:src="@drawable/ic_camera_alt"/>
         <ImageView
+            android:id="@+id/ivSendMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

@@ -1,11 +1,17 @@
 package cat.copernic.groupz.network
 
+import android.content.Context
 import android.util.Log
 import cat.copernic.groupz.model.Event
 import cat.copernic.groupz.model.User
+import cat.copernic.groupz.ui.activities.main.fragments.chat.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.storage.FirebaseStorage
+import com.xwray.groupie.kotlinandroidextensions.Item
+import java.lang.NullPointerException
 
 class FirebaseClient {
     companion object {
@@ -122,6 +128,8 @@ class FirebaseClient {
 
     }
 }
+
+
 
 //            email: String,
 //            dateOfBirth: String,

@@ -1,5 +1,7 @@
 package cat.copernic.groupz.model
 
+import android.content.Context
+
 class User (
     var name : String,
     var mail : String,
@@ -7,5 +9,7 @@ class User (
     var hobbies : String,
     var image: String,
     var description : String,
-    var location : String
-)
+    var location : String,
+) {
+    constructor() : this("", "", "","","","", "")
+}

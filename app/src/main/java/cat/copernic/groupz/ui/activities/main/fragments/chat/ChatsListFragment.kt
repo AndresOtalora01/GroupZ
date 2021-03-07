@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.SearchView
 import android.widget.TextView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_UNLOCKED
@@ -26,6 +25,7 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var binding: FragmentChatsListBinding
     private lateinit var searchView: androidx.appcompat.widget.SearchView
+    private lateinit var  categoryItemList: MutableList<ChatListRow>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +47,7 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
         //FirebaseClient.getDatabaseChatsFromUser(FirebaseClient.auth.currentUser?.email as String)
         chatListRecycler = view.findViewById(R.id.chatViewList)
-        val categoryItemList: MutableList<ChatListRow> = ArrayList()
+        categoryItemList = ArrayList()
         categoryItemList.add(ChatListRow(R.drawable.pedra, "Manolo", "Tu: Hola Manolo"))
         categoryItemList.add(ChatListRow(R.drawable.pedra, "Andrea", "Tu: Hola Manolo"))
         categoryItemList.add(ChatListRow(R.drawable.pedra, "Carla", "Tu: Hola Manolo"))
@@ -87,11 +87,12 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        findNavController().navigate(R.id.action_chatsListFragment_to_chatFragment)
+        val action = ChatsListFragmentDirections.actionChatsListFragmentToChatFragment(categoryItemList[position].chatName, categoryItemList[position].chatName)
+        findNavController().navigate(action)
     }
 
-    private fun addChats() {
 
+    private fun addChats() {
 
     }
 
