@@ -37,6 +37,9 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             if (checkLoginFields()) {
+                binding.btnLogin.visibility = View.GONE
+                binding.shimmerViewContainer.visibility = View.VISIBLE
+                binding.shimmerViewContainer.startShimmer()
                 FirebaseClient.auth.signInWithEmailAndPassword(
                     binding.etEmail.text.toString(),
                     binding.etPassword.text.toString()
@@ -45,17 +48,19 @@ class LoginFragment : Fragment() {
                         startActivity( Intent(context, MainActivity::class.java))
                         activity?.finish()
                     } else {
+                        binding.shimmerViewContainer.visibility = View.GONE
+                        binding.shimmerViewContainer.stopShimmer()
+                        binding.btnLogin.visibility = View.VISIBLE
                         binding.etEmail.error = getString(R.string.errorAuthEmailPassword)
                         binding.etPassword.error = getString(R.string.errorAuthEmailPassword)
                     }
                 }
-
             }
         }
         binding.tvSignUp.setOnClickListener{
             findNavController().navigate(R.id.action_login_to_register)
         }
-        binding.textView2.setOnClickListener{
+        binding.tvforgotPaswort.setOnClickListener{
             findNavController().navigate(R.id.action_login_to_forgotten_password)
         }
 
