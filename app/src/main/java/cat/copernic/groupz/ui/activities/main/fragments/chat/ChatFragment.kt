@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
@@ -58,7 +59,8 @@ class ChatFragment : Fragment() {
         btndrawerLayout.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.VISIBLE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.GONE
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility =
+            View.GONE
         activity?.findViewById<CardView>(R.id.imagechatTulbar)!!.visibility = View.VISIBLE
         val imageChat = activity?.findViewById<ImageView>(R.id.imagechat)!!
         val titleToolbar = activity?.findViewById<TextView>(R.id.tvTittleToolBar)
@@ -80,18 +82,19 @@ class ChatFragment : Fragment() {
             messagesListenerRegistration =
                 FirestoreUtil.addChatMessageListener(channelId, this::updateRecyclerView)
             ivSendMessage.setOnClickListener {
-                val messageToSend =
-                    TextMessage(
-                        etMessage.text.toString(),
-                        Calendar.getInstance().time,
-                        FirebaseAuth.getInstance().currentUser!!.uid,
-                        MessageType.TEXT
-                    )
-                etMessage.setText("")
-                FirestoreUtil.sendMessage(messageToSend, channelId)
+                if (!etMessage.text.toString().isEmpty()) {
+                    val messageToSend =
+                        TextMessage(
+                            etMessage.text.toString(),
+                            Calendar.getInstance().time,
+                            FirebaseAuth.getInstance().currentUser!!.uid,
+                            MessageType.TEXT
+                        )
+                    etMessage.setText("")
+                    FirestoreUtil.sendMessage(messageToSend, channelId)
+                }
             }
         }
-
         return binding.root
     }
 
