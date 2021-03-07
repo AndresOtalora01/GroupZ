@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/messageRoot"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -18,30 +20,25 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="5dp"
-            android:layout_toEndOf="@id/ivImageFrom"
-            android:background="@drawable/ic_message_to"
+            android:background="@drawable/to_message"
             android:fontFamily="@font/poppins_regular"
             android:maxWidth="250dp"
-            android:minWidth="120dp"
+            android:minWidth="70dp"
+            android:textAlignment="center"
             android:paddingStart="8dp"
             android:paddingTop="4dp"
             android:paddingEnd="8dp"
-            android:text="Mensaje"
+            android:text="Hola"
             android:textColor="@color/white" />
-
-        <ImageView
-            android:id="@+id/ivImageFrom"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvMessageTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/ivImageFrom"
             android:layout_marginEnd="10dp"
             android:layout_toEndOf="@id/tvMessageText"
+            android:layout_alignBottom="@+id/tvMessageText"
+            android:layout_marginStart="5dp"
             android:text="12:20 am" />
 
     </RelativeLayout>

@@ -8,6 +8,7 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.row_message_chat.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 
 class TextMessageItem(val message: TextMessage) : Item() {
@@ -19,14 +20,17 @@ class TextMessageItem(val message: TextMessage) : Item() {
 
     private fun setTimeText(viewHolder: ViewHolder) {
         val dateFormat = SimpleDateFormat
-            .getDateTimeInstance(SimpleDateFormat.SHORT, SimpleDateFormat.SHORT)
-        viewHolder.itemView.tvMessageTime.text = dateFormat.format(message.time)
+            .getTimeInstance(SimpleDateFormat.SHORT)
+        val calendar = Calendar.getInstance()
+        calendar.time = message.time
+        calendar.add(Calendar.HOUR, 1)
+        viewHolder.itemView.tvMessageTime.text = dateFormat.format(calendar.time)
     }
 
     private fun setMessageRootGravity(viewHolder: ViewHolder) {
         if (message.senderId == FirebaseAuth.getInstance().currentUser?.uid) {
             viewHolder.itemView.messageRoot.apply {
-                setBackgroundResource(R.drawable.ic_message_to)
+              tvMessageText.setBackgroundResource(R.drawable.to_message)
                 val lParams = FrameLayout.LayoutParams(
                     FrameLayout.LayoutParams.WRAP_CONTENT,
                     FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -36,7 +40,7 @@ class TextMessageItem(val message: TextMessage) : Item() {
             }
         } else {
             viewHolder.itemView.messageRoot.apply {
-                setBackgroundResource(R.drawable.ic_message_from)
+                tvMessageText.setBackgroundResource(R.drawable.from_message)
                 val lParams = FrameLayout.LayoutParams(
                     FrameLayout.LayoutParams.WRAP_CONTENT,
                     FrameLayout.LayoutParams.WRAP_CONTENT,

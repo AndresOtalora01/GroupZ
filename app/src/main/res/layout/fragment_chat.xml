@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toTopOf="@+id/relativeLayoutSendMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/row_message_chat" />
 
 
     <RelativeLayout
@@ -32,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/rounded_send_message"
@@ -39,29 +41,30 @@
             android:fontFamily="@font/poppins_regular"
             android:hint="@string/write_message"
             android:padding="8dp"
-            android:textColor="@color/white"
             android:paddingStart="50dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
             android:elevation="5dp"
             android:paddingBottom="3dp"
-            android:src="@drawable/ic_camera_alt"/>
+            android:src="@drawable/ic_camera_alt" />
+
         <ImageView
             android:id="@+id/ivSendMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="5dp"
             android:elevation="5dp"
             android:paddingBottom="2dp"
-            app:srcCompat="@drawable/ic_send"/>
+            app:srcCompat="@drawable/ic_send" />
     </RelativeLayout>
 
 
