@@ -28,8 +28,8 @@ import kotlin.collections.ArrayList
 
 
 class ChatFragment : Fragment() {
-   // private var chatRecycler: RecyclerView? = null
-   // private var chatAdapter: ChatAdapter? = null
+    // private var chatRecycler: RecyclerView? = null
+    // private var chatAdapter: ChatAdapter? = null
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
     private val args by navArgs<ChatFragmentArgs>()
@@ -45,6 +45,7 @@ class ChatFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
         binding = FragmentChatBinding.bind(view)
+
         btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
         drawerLayout = activity?.findViewById(R.id.drawerLayout)!!
         drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED)
@@ -71,32 +72,8 @@ class ChatFragment : Fragment() {
             }
         }
 
-
-
-
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-      //  chatRecycler = view.findViewById(R.id.rvMessages)
-     //   val categoryItemList: MutableList<Message> = ArrayList()
-        //  categoryItemList.add(Message("Hola", "Manolo"))
-        // categoryItemList.add(Message("Hola", FirebaseClient.auth.currentUser?.email as String))
-        //  categoryItemList.add(Message("Como Estas?", "Manolo"))
-       // setChatRecycler(categoryItemList)
-
-//        binding.sendButton.setOnClickListener{
-//            binding.messageText.setText("")
-//        }
-    }
-
-//    private fun setChatRecycler(Messages: List<Message>) {
-//        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-//        chatRecycler!!.layoutManager = layoutManager
-//        chatAdapter = ChatAdapter(Messages)
-//        chatRecycler!!.adapter = chatAdapter
-//    }
 
     private fun updateRecyclerView(messages: List<Item>) {
         fun init() {
@@ -120,5 +97,10 @@ class ChatFragment : Fragment() {
         rvMessages.scrollToPosition(rvMessages.adapter!!.itemCount - 1)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        FirestoreUtil.removeListener(messagesListenerRegistration)
+        shouldInitRecyclerView = true
+    }
 
 }

@@ -20,7 +20,7 @@ object FirestoreUtil {
     private val currentUserDocRef: DocumentReference
         get() = firestoreInstance.document(
             "Users/${
-                FirebaseAuth.getInstance().currentUser?.uid ?: throw NullPointerException(
+                FirebaseAuth.getInstance().currentUser?.email ?: throw NullPointerException(
                     "UID is null."
                 )
             }"
@@ -44,7 +44,7 @@ object FirestoreUtil {
                     return@addOnSuccessListener
                 }
 
-                val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+                val currentUserId = FirebaseAuth.getInstance().currentUser!!.email.toString()
 
                 val newChannel = chatChannelsCollectionRef.document()
                 newChannel.set(ChatChannel(mutableListOf(currentUserId, otherUserId)))
