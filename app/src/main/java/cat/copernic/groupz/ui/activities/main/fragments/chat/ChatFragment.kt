@@ -76,7 +76,7 @@ class ChatFragment : Fragment() {
             messagesListenerRegistration =
                 FirestoreUtil.addChatMessageListener(channelId, this::updateRecyclerView)
             ivSendMessage.setOnClickListener {
-                if (!etMessage.text.toString().isEmpty()) {
+                if (etMessage.text.toString().isNotEmpty()) {
                     val messageToSend =
                         TextMessage(
                             etMessage.text.toString(),

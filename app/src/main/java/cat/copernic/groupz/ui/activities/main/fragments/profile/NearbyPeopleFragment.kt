@@ -118,8 +118,8 @@ class NearbyPeopleFragment : Fragment(){
 
     private val onItemClick = OnItemClickListener { item, view ->
         if (item is UserItem) {
-            val action = NearbyPeopleFragmentDirections.actionNearbyPeopleFragmentToChatFragment(item.user.name , item.userId)
-            findNavController().navigate(action)
+           val action = NearbyPeopleFragmentDirections.actionNearbyPeopleFragmentToChatFragment(item.user.name , item.userId)
+           findNavController().navigate(action)
         }
     }
 }

@@ -61,7 +61,7 @@ class EditProfileFragment : Fragment() {
         binding.btnSave.setOnClickListener {
             binding.btnSave.visibility = View.GONE
             binding.btnSaveGone.visibility = View.VISIBLE
-            binding.shimmerViewContainer.startShimmer()
+           // binding.shimmerViewContainer.startShimmer()
             upload()
         }
     }

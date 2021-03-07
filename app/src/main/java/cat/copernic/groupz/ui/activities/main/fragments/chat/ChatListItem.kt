@@ -9,7 +9,7 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.row_chats_list.view.*
 
-class ChatListItem (val user: User, val channelId : String, val context: Context ) : Item() {
+class ChatListItem (val user: User,val userId:String, val context: Context ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.chatName.text = user.name
         Glide.with(context)

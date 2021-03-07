@@ -70,10 +70,9 @@ object FirestoreUtil {
             }
             val items = mutableListOf<Item>()
             lateinit var id : String
-            lateinit  var channelId : String
             querySnapshot?.documents?.forEach{ query ->
                     id = query.id
-                    channelId = query.get("channelId").toString()
+
                 var user : User?
                 val data = FirebaseFirestore.getInstance().collection("Users").document(id)
                 data.get()
@@ -81,7 +80,7 @@ object FirestoreUtil {
                         if (it != null) {
                             user = User(
                                 it.get("Name") as String,
-                                id,
+                                it.get("Mail") as String,
                                 it.get("Birth") as String,
                                 it.get("Hobbies") as String,
                                 it.get("Image") as String,
@@ -89,7 +88,7 @@ object FirestoreUtil {
                                 it.get("Location") as String
                             )
                             Log.d(FirebaseClient.TAG, "Success")
-                            items.add(ChatListItem(user!!, channelId, context))
+                            items.add(ChatListItem(user!!, id, context))
                             onListen(items)
                         }
 

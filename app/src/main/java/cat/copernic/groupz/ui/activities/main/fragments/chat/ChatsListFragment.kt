@@ -17,9 +17,11 @@ import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentChatsListBinding
 import cat.copernic.groupz.model.ChatListRow
 import cat.copernic.groupz.network.FirestoreUtil
+import cat.copernic.groupz.ui.activities.main.fragments.profile.NearbyPeopleFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ListenerRegistration
 import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
@@ -28,7 +30,7 @@ import kotlinx.android.synthetic.main.fragment_nearby_people.*
 import kotlinx.android.synthetic.main.fragment_nearby_people.nearbyPeopleList
 
 
-class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
+class ChatsListFragment : Fragment() {
     private var chatListRecycler: RecyclerView? = null
     private var chatListAdapter: ChatListAdapter? = null
     private lateinit var btndrawerLayout: ImageButton
@@ -55,61 +57,40 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
         activity?.findViewById<ImageButton>(R.id.btnBack)!!.visibility = View.GONE
         activity?.findViewById<ImageButton>(R.id.btnNotifications)!!.visibility = View.VISIBLE
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
-
         chatsListener = FirestoreUtil.listOfChatsListener(this::updateRecyclerView, requireContext())
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+       // setSearchView()
+    }
 
-        //FirebaseClient.getDatabaseChatsFromUser(FirebaseClient.auth.currentUser?.email as String)
-//        chatListRecycler = view.findViewById(R.id.chatViewList)
-//        categoryItemList = ArrayList()
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Manolo", "Tu: Hola Manolo"))
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Andrea", "Tu: Hola Manolo"))
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Carla", "Tu: Hola Manolo"))
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Emilio", "Tu: Hola Manolo"))
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Marta", "Tu: Hola Manolo"))
-//        categoryItemList.add(ChatListRow(R.drawable.pedra, "Pedro", "Tu: Hola Manolo"))
-
-        setSearchView()
+//    private fun setSearchView() {
+//        searchView = binding.etSearchChat
+//        searchView.setOnQueryTextListener(object :
+//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                chatListAdapter!!.filter.filter(query)
+//                return true
+//            }
 //
-//        setChatListRecycler(categoryItemList)
-
-
-    }
-
-    private fun setSearchView() {
-        searchView = binding.etSearchChat
-        searchView.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                chatListAdapter!!.filter.filter(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                chatListAdapter!!.filter.filter(newText)
-                return true
-            }
-
-        })
-    }
-
-
-//    private fun setChatListRecycler(chatList: List<ChatListRow>) {
-//        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-//        chatListRecycler!!.layoutManager = layoutManager
-//        chatListAdapter = ChatListAdapter()
-//        chatListRecycler!!.adapter = chatListAdapter
-//        chatListAdapter!!.setData(chatList, this)
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                chatListAdapter!!.filter.filter(newText)
+//                return true
+//            }
+//
+//        })
 //    }
 
-    override fun onItemClick(position: Int) {
-        val action = ChatsListFragmentDirections.actionChatsListFragmentToChatFragment(categoryItemList[position].chatName, categoryItemList[position].chatName)
-        findNavController().navigate(action)
+
+    private val onItemClick = OnItemClickListener { item, view ->
+        if (item is ChatListItem) {
+            val action = ChatsListFragmentDirections.actionChatsListFragmentToChatFragment(item.user.name, item.user.mail)
+            findNavController().navigate(action)
+        }
     }
+
 
 
     private fun updateRecyclerView(items: List<Item>) {
@@ -120,7 +101,7 @@ class ChatsListFragment : Fragment(), ChatListAdapter.OnItemClickListener {
                 adapter = GroupAdapter<ViewHolder>().apply {
                     chatsSection = Section(items)
                     add(chatsSection)
-                  //  setOnItemClickListener(onItemClick)
+                    setOnItemClickListener(onItemClick)
                 }
             }
             shouldInitRecyclerView = false
