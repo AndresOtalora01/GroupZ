@@ -1,23 +1,22 @@
 package cat.copernic.groupz.ui.activities.main.fragments.chat
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentChatBinding
-import cat.copernic.groupz.model.Message
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.network.FirestoreUtil
 import com.bumptech.glide.Glide
@@ -31,12 +30,9 @@ import com.xwray.groupie.ViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.fragment_chat.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class ChatFragment : Fragment() {
-    // private var chatRecycler: RecyclerView? = null
-    // private var chatAdapter: ChatAdapter? = null
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
     private val args by navArgs<ChatFragmentArgs>()
@@ -48,8 +44,6 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
         binding = FragmentChatBinding.bind(view)
 
@@ -91,6 +85,7 @@ class ChatFragment : Fragment() {
                             MessageType.TEXT
                         )
                     etMessage.setText("")
+                    closeKeyboard()
                     FirestoreUtil.sendMessage(messageToSend, channelId)
                 }
             }
@@ -125,6 +120,15 @@ class ChatFragment : Fragment() {
         activity?.findViewById<CardView>(R.id.imagechatTulbar)!!.visibility = View.GONE
         FirestoreUtil.removeListener(messagesListenerRegistration)
         shouldInitRecyclerView = true
+    }
+
+    private fun closeKeyboard() {
+        val view : View? = requireActivity().currentFocus
+        if (view != null) {
+            val imm =
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
 }
