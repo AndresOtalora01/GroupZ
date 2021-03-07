@@ -35,7 +35,6 @@ class NearbyPeopleFragment : Fragment(){
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var binding: FragmentNearbyPeopleBinding
     private lateinit var userListenerRegistration : ListenerRegistration
-    private var shouldInitRecyclerView = true
     private lateinit var peopleSection: Section
     private lateinit var people: List<Item>
     override fun onCreateView(
@@ -98,21 +97,14 @@ class NearbyPeopleFragment : Fragment(){
                     setOnItemClickListener(onItemClick)
                 }
             }
-            shouldInitRecyclerView = false
         }
-
-        fun updateItems() = peopleSection.update(items)
-
-        if(shouldInitRecyclerView)
             init()
-        else
-            updateItems()
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
         FirestoreUtil.removeListener(userListenerRegistration)
-        shouldInitRecyclerView = true
     }
 
 

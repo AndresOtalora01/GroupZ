@@ -93,9 +93,7 @@ object FirestoreUtil {
                         }
 
                     }
-
             }
-
         }
     }
 
