@@ -21,10 +21,7 @@ class TextMessageItem(val message: TextMessage) : Item() {
     private fun setTimeText(viewHolder: ViewHolder) {
         val dateFormat = SimpleDateFormat
             .getTimeInstance(SimpleDateFormat.SHORT)
-        val calendar = Calendar.getInstance()
-        calendar.time = message.time
-        calendar.add(Calendar.HOUR, 1)
-        viewHolder.itemView.tvMessageTime.text = dateFormat.format(calendar.time)
+        viewHolder.itemView.tvMessageTime.text = dateFormat.format(message.time)
     }
 
     private fun setMessageRootGravity(viewHolder: ViewHolder) {

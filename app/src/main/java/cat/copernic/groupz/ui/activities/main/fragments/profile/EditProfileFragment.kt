@@ -2,6 +2,7 @@ package cat.copernic.groupz.ui.activities.main.fragments.profile
 
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -27,16 +29,25 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.util.*
 import kotlin.math.log
 
 
-class EditProfileFragment : Fragment() {
+class EditProfileFragment : Fragment() , DatePickerDialog.OnDateSetListener {
 
     private lateinit var binding: FragmentEditProfileBinding
     var userAuth = FirebaseAuth.getInstance().currentUser
     private var GALERI_INTENT = 1000
     private var uri: Uri? = Uri.EMPTY
     private lateinit var userData: User
+
+    var day = 0
+    var month = 0
+    var year = 0
+
+    var savedDay = 0
+    var savedMonth = 0
+    var savedYear= 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +60,7 @@ class EditProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentEditProfileBinding.bind(view)
+        picKDate()
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility =
             View.GONE
 
@@ -78,15 +90,16 @@ class EditProfileFragment : Fragment() {
                     if (it.get("Image")
                             .toString() != "https://firebasestorage.googleapis.com/v0/b/groupz-c793a.appspot.com/o/imageProfile%2FDefault_profile.png?alt=media&token=108bdb29-c173-48ad-807d-31c3d2a5ce0e"
                     ) {
+                        binding.ivIconEditProfile.visibility = View.GONE
                         Glide.with(this)
                             .load(it.get("Image").toString())
                             .placeholder(R.drawable.animated_progress)
                             .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .into(binding.ivAddEdit)
+
                     }
                     binding.etDescriptionEdit.setText(it.get("Description") as String)
                     binding.etLocationEdit.setText(it.get("Location") as String)
-                } else {
                 }
             }
             .addOnFailureListener { exception ->
@@ -132,11 +145,6 @@ class EditProfileFragment : Fragment() {
 
                             if (FirebaseClient.addDatabaseUser(userData)) {
                                 Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
-                                Toast.makeText(
-                                    context,
-                                    "tu perfil a sido editado correctamente",
-                                    Toast.LENGTH_LONG
-                                ).show()
                             }
                             activity?.onBackPressed()
                         }
@@ -159,17 +167,10 @@ class EditProfileFragment : Fragment() {
                     )
                     if (FirebaseClient.addDatabaseUser(userData)) {
                         Log.d(FirebaseClient.TAG, "Firestore Added Succesfully")
-                        Toast.makeText(
-                            context,
-                            "tu perfil a sido editado correctamente",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
                     activity?.onBackPressed()
                 }
         }
-
-
     }
 
     private fun pickImageFromGallery() {
@@ -188,9 +189,29 @@ class EditProfileFragment : Fragment() {
                 .placeholder(R.drawable.animated_progress)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(binding.ivAddEdit)
-
-
+                binding.ivIconEditProfile.visibility = View.GONE
         }
+    }
+
+    private fun getDateCalendar(){
+        val cal : Calendar = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
+
+    private fun picKDate() {
+        getDateCalendar()
+        binding.etDateEdit.setOnClickListener {
+            DatePickerDialog(requireContext(), this, year, month, day).show()
+        }
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month+1
+        savedYear = year
+        binding.etDateEdit.setText("$savedDay/$savedMonth/$savedYear")
     }
 
 }

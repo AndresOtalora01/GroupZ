@@ -47,7 +47,7 @@ class CreateGroupFragment : Fragment() {
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility =
             View.GONE
 
-        binding.ivAddEdit.setOnClickListener {
+        binding.ivImageGroup.setOnClickListener {
             localPictureChooser()
         }
 
@@ -100,7 +100,7 @@ class CreateGroupFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             mImageUri = data.data!!
-            Glide.with(requireActivity()).load(mImageUri).into(binding.ivAddEdit)
+            Glide.with(requireActivity()).load(mImageUri).into(binding.ivImageGroup)
             binding.ivIconPlus.visibility = View.GONE
         }
     }

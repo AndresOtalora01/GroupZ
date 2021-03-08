@@ -46,6 +46,12 @@
 
                 <ImageView
                     android:id="@+id/ivAddEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/ivIconEditProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -88,6 +94,7 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/custom_edit_text_grey"
                 android:ems="10"
+                android:focusable="false"
                 android:fontFamily="@font/poppins_regular"
                 android:inputType="date"
                 android:paddingStart="20dp"
@@ -182,6 +189,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
         <android.widget.Button
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
@@ -195,17 +203,17 @@
             android:id="@+id/shimmer_view_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-        <android.widget.Button
-            android:id="@+id/btnSaveGone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/save"
-            android:visibility="gone"
-            android:textColor="@color/white" />
+            android:orientation="vertical">
+
+            <android.widget.Button
+                android:id="@+id/btnSaveGone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_button"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:visibility="gone" />
         </com.facebook.shimmer.ShimmerFrameLayout>
 
     </LinearLayout>
