@@ -2,8 +2,11 @@ package cat.copernic.groupz.network
 
 import android.content.Context
 import android.util.Log
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.ui.activities.main.fragments.chat.*
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -139,6 +142,7 @@ object FirestoreUtil {
                   }
                 }
                 onListen(items)
+
             }
     }
 

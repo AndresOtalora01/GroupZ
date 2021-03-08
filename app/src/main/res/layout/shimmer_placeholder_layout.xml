@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -16,7 +15,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="180dp"
+            android:layout_width="160dp"
             android:layout_height="92dp"
             android:backgroundTint="@android:color/darker_gray"
             app:cardCornerRadius="5dp"
@@ -33,7 +32,7 @@
         <TextView
             android:id="@+id/tvGroupName2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"
@@ -46,7 +45,7 @@
         <TextView
             android:id="@+id/tvCategoryItemLocation2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"
@@ -59,7 +58,7 @@
         <TextView
             android:id="@+id/tvEventDate2"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"
@@ -76,14 +75,14 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="180dp"
+            android:layout_width="160dp"
             android:layout_height="92dp"
             android:backgroundTint="@android:color/darker_gray"
             app:cardCornerRadius="5dp"
@@ -93,13 +92,12 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.003">
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintVertical_bias="0.003"></androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tvGroupName"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"
@@ -112,7 +110,7 @@
         <TextView
             android:id="@+id/tvCategoryItemLocation"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"
@@ -125,7 +123,7 @@
         <TextView
             android:id="@+id/tvEventDate"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/darker_gray"
             android:fontFamily="@font/poppins_regular"

@@ -55,6 +55,7 @@ class NearbyPeopleFragment : Fragment(){
         activity?.findViewById<BottomNavigationView>(R.id.bottomNavigationView)!!.visibility = View.VISIBLE
 
         userListenerRegistration = FirestoreUtil.addUsersListener(this::updateRecyclerView)
+
         return binding.root
     }
 
@@ -76,7 +77,6 @@ class NearbyPeopleFragment : Fragment(){
             }
         }
             init()
-
     }
 
     override fun onDestroy() {

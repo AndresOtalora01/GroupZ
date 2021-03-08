@@ -21,7 +21,7 @@ import java.util.*
 import java.util.regex.Pattern
 
 
-class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
+class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var binding: FragmentRegisterBinding //Instanciamos binding para recoger los elementos del fragmento
     var db = FirebaseFirestore.getInstance() //Instanciamos la base de datos
@@ -34,7 +34,7 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     var savedDay = 0
     var savedMonth = 0
-    var savedYear= 0
+    var savedYear = 0
 
 
     override fun onCreateView(
@@ -47,7 +47,8 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding =FragmentRegisterBinding.bind(view) //Cuando la vista se crea, se asigna la vista al binding, y asi puede acceder a los elementos.
+        binding =
+            FragmentRegisterBinding.bind(view) //Cuando la vista se crea, se asigna la vista al binding, y asi puede acceder a los elementos.
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
         builder.setTitle("Registre")
         builder.setPositiveButton("Aceptar", null)
@@ -68,13 +69,13 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
                     ).addOnCompleteListener {
                         if (it.isSuccessful) { //Si es correcto
                             Log.d(TAG, "Auth Worked Succesful")
-                            var userAdd:User = createUserObj()
-                            if (FirebaseClient.addDatabaseUser(userAdd)){
+                            var userAdd: User = createUserObj()
+                            if (FirebaseClient.addDatabaseUser(userAdd)) {
                                 Log.d(TAG, "Firestore Added Succesfully")
                                 builder.setMessage(R.string.userCreated);
                                 val dialog = builder.create()
                                 dialog.show()
-                                startActivity( Intent(context, MainActivity::class.java))
+                                startActivity(Intent(context, MainActivity::class.java))
                             }
                         } else {
                             binding.shimmerViewContainer.visibility = View.GONE
@@ -108,20 +109,25 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
     }
 
     private fun isValidBirth(): Boolean {
-        var birthInput = binding.etBirth.text.toString()
-        val date_pattern: Pattern =
-            Pattern.compile("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))\$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$");
+        var rdate =   Calendar.getInstance().get(Calendar.DATE) -savedDay
+        var rmonth =  (Calendar.getInstance().get(Calendar.MONTH)+1) - savedMonth
+        var ryear =  Calendar.getInstance().get(Calendar.YEAR) - savedYear
         if (binding.etBirth.text.isEmpty()) {
             binding.etBirth.error = getString(R.string.errorEmptyField)
             return false
-        } else if (!date_pattern.matcher(birthInput).matches()) {
-            binding.etMail.error = getString(R.string.errorDate)
-            return false
         } else {
-            binding.etMail.error = null
-            return true
-
+            if (rmonth >= 0 && rdate >= 0 && ryear>=16){
+                binding.etBirth.error = null
+                return true
+            }else if((ryear-1)>=16){
+                binding.etBirth.error = null
+                return true
+            }else{
+                binding.etBirth.error = "La edad mínima para crear una cuenta son 16 años."
+                return false
+            }
         }
+
     }
 
     private fun isValidHobbies(): Boolean {
@@ -143,6 +149,7 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
             return true
         }
     }
+
     private fun isValidEmail(): Boolean {
         val mailRegCheck =
             android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etMail.text.toString())
@@ -179,7 +186,8 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
         }
 
     }
-    private fun isMatchPassword(): Boolean{
+
+    private fun isMatchPassword(): Boolean {
         if (binding.etPassConfirm.text.isEmpty()) {
             binding.etPassConfirm.error = getString(R.string.errorEmptyField)
             return false
@@ -204,35 +212,34 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
     }
 
 
-
-    private fun comprovate(): Boolean{
+    private fun comprovate(): Boolean {
         var boolean: Boolean = true
-        if (!isValidName()){
+        if (!isValidName()) {
             boolean = false
         }
-        if (!isValidBirth()){
-            boolean = false
-        }
-
-        if (!isValidHobbies()){
-            boolean = false
-        }
-        if (!isValidLocation()){
+        if (!isValidBirth()) {
             boolean = false
         }
 
-        if (!isValidEmail()){
+        if (!isValidHobbies()) {
+            boolean = false
+        }
+        if (!isValidLocation()) {
             boolean = false
         }
 
-        if (!isValidPassword()){
-            boolean = false
-        }
-        if (!isMatchPassword()){
+        if (!isValidEmail()) {
             boolean = false
         }
 
-        if (!isValidTerms()){
+        if (!isValidPassword()) {
+            boolean = false
+        }
+        if (!isMatchPassword()) {
+            boolean = false
+        }
+
+        if (!isValidTerms()) {
             boolean = false
         }
 
@@ -240,7 +247,7 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     }
 
-    fun createUserObj() : User {
+    fun createUserObj(): User {
         var userObj = User(
             binding.etName.text.toString(),
             binding.etMail.text.toString(),
@@ -254,8 +261,8 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
 
     }
 
-    private fun getDateCalendar(){
-        val cal : Calendar = Calendar.getInstance()
+    private fun getDateCalendar() {
+        val cal: Calendar = Calendar.getInstance()
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
         year = cal.get(Calendar.YEAR)
@@ -264,16 +271,15 @@ class RegisterFragment : Fragment() , DatePickerDialog.OnDateSetListener{
     private fun picKDate() {
         getDateCalendar()
         binding.etBirth.setOnClickListener {
-        DatePickerDialog(requireContext(), this, year, month, day).show()
+            DatePickerDialog(requireContext(), this, year, month, day).show()
         }
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         savedDay = dayOfMonth
-        savedMonth = month+1
+        savedMonth = month + 1
         savedYear = year
         binding.etBirth.setText("$savedDay/$savedMonth/$savedYear")
     }
-
 
 }
