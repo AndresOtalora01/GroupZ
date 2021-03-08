@@ -58,29 +58,6 @@ class NearbyPeopleFragment : Fragment(){
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-//        nearbyPeopleRecycler = view.findViewById(R.id.nearbyPeopleList)
-//        val categoryItemList : MutableList<ProfileNearbyRow> = ArrayList()
-//        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Joan Padilla", "29","Manresa"))
-//        categoryItemList.add(ProfileNearbyRow(R.drawable.pedra, "Manolo Lama", "23","Terrassa"))
-//
-//        setNearbyListRecycler(categoryItemList)
-
-    }
-//    private fun setNearbyListRecycler(profileNearbyList: List<ProfileNearbyRow>) {
-//        val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,2)
-//        nearbyPeopleRecycler!!.layoutManager = layoutManager
-//        nearbyPeopleAdapter = ProfileNearbyAdapter(profileNearbyList,this)
-//        nearbyPeopleRecycler!!.adapter = nearbyPeopleAdapter
-//    }
-
-
-
-
     private fun updateRecyclerView(items: List<Item>) {
         people = items
         val groupAdapter = GroupAdapter<ViewHolder>().apply {

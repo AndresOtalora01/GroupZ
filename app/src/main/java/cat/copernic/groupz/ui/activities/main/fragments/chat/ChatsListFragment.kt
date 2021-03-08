@@ -121,4 +121,9 @@ class ChatsListFragment : Fragment() {
         shouldInitRecyclerView = true
     }
 
+    override fun onResume() {
+        super.onResume()
+        shouldInitRecyclerView = true
+    }
+
 }

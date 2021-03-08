@@ -85,7 +85,7 @@ class ChatFragment : Fragment() {
                             MessageType.TEXT
                         )
                     etMessage.setText("")
-                    closeKeyboard()
+                   // closeKeyboard()
                     FirestoreUtil.sendMessage(messageToSend, channelId)
                 }
             }
