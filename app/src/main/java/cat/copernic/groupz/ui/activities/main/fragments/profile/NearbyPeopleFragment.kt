@@ -42,7 +42,7 @@ class NearbyPeopleFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       var view = inflater.inflate(R.layout.fragment_nearby_people, container, false)
+       val view = inflater.inflate(R.layout.fragment_nearby_people, container, false)
 
         binding = FragmentNearbyPeopleBinding.bind(view)
         btndrawerLayout = activity?.findViewById(R.id.btnMenu)!!
@@ -87,8 +87,10 @@ class NearbyPeopleFragment : Fragment(){
 
     private val onItemClick = OnItemClickListener { item, view ->
         if (item is UserItem) {
-           val action = NearbyPeopleFragmentDirections.actionNearbyPeopleFragmentToChatFragment(item.user.name , item.userId)
+         //  val action = NearbyPeopleFragmentDirections.actionNearbyPeopleFragmentToChatFragment(item.user.name , item.userId)
+            val action = NearbyPeopleFragmentDirections.actionNearbyPeopleFragmentToProfileFragment(item.user, false)
            findNavController().navigate(action)
         }
     }
+
 }

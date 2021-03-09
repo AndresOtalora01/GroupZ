@@ -1,6 +1,7 @@
 package cat.copernic.groupz.model
 
-import android.content.Context
+
+import java.io.Serializable
 
 class User (
     var name : String,
@@ -10,6 +11,6 @@ class User (
     var image: String,
     var description : String,
     var location : String
-) {
+): Serializable {
     constructor() : this("", "", "","","","", "")
 }
