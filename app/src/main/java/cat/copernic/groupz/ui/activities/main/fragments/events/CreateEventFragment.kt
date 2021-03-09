@@ -77,6 +77,9 @@ class CreateEventFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }
         binding.btnSaveEvent.setOnClickListener {
             if (comprovate()) {
+                binding.btnSaveEvent.visibility = View.GONE
+                binding.btnSaveGone.visibility = View.VISIBLE
+                binding.shimmerViewContainer.startShimmer()
                 upload()
             }
         }

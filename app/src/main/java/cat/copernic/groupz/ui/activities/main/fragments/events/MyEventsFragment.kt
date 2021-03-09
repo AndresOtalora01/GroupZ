@@ -54,8 +54,6 @@ class MyEventsFragment : Fragment() {
         getDatabaseMyCommunityEvents()
     }
 
-
-
     private fun setMainCategoryRecycler(categoryItemList: List<CategoryItem>) {
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(context,2)
         mainCategoryRecycler!!.layoutManager = layoutManager
@@ -63,7 +61,7 @@ class MyEventsFragment : Fragment() {
         mainCategoryRecycler!!.adapter = mainRecyclerAdapter
     }
 
-    fun getDatabaseMyCommunityEvents() {
+    fun getDatabaseMyCommunityEvents(){
         val categoryItemList : MutableList<CategoryItem> = ArrayList()
         var resultEvent = arrayListOf<Event>()
         var data = FirebaseClient.db.collection("CommunityEvents")
@@ -82,7 +80,6 @@ class MyEventsFragment : Fragment() {
                             members,
                             event.data["Name"].toString(),
                             event.data["Privacity"] as Boolean
-
                         )
                     )
                 }

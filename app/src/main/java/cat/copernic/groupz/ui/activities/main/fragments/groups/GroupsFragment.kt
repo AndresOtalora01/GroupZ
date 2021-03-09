@@ -1,6 +1,7 @@
 package cat.copernic.groupz.ui.activities.main.fragments.groups
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,14 +17,18 @@ import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentDeleteConfirmationBinding
 import cat.copernic.groupz.databinding.FragmentGroupsBinding
+import cat.copernic.groupz.model.Event
+import cat.copernic.groupz.model.Group
+import cat.copernic.groupz.network.FirebaseClient
+import cat.copernic.groupz.ui.activities.main.fragments.events.CategoryItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class GroupsFragment : Fragment() {
     private lateinit var binding: FragmentGroupsBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var titles : MutableList<String>
-    private lateinit var images : MutableList<Int>
+    private lateinit var titles : ArrayList<String>
+    private lateinit var images : ArrayList<String>
     private lateinit var btndrawerLayout: ImageButton
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreateView(
@@ -48,81 +53,51 @@ class GroupsFragment : Fragment() {
         binding.fabCreatGroup.setOnClickListener{
         findNavController().navigate(R.id.action_groupsFragment_to_create_GroupFragment)
     }
-        setRecyclerView()
+        binding.shimmerViewContainer.startShimmer()
+        getDatabaseMygroups()
     }
 
-    fun setRecyclerView(){
+    fun setRecyclerView(titles: ArrayList<String>,images: ArrayList<String>){
         recyclerView = binding.recyclerViewGroups
-        titles = arrayListOf()
-        images = arrayListOf()
 
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Bikers Barcelona")
-        titles.add("Amantes del teatro")
-        titles.add("Kotlin lovers")
-        titles.add("Gimnasio y más")
-        titles.add("Cocineros Terrassa")
-        titles.add("Cocineros Terrassa")
-
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-        images.add(R.drawable.pedra)
-
-        recyclerView.adapter = GroupsAdapter(titles, images)
+        recyclerView.adapter = GroupsAdapter(titles, images, requireContext())
         val manager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = manager
+
+    }
+
+    fun getDatabaseMygroups(){
+        var groupresult = arrayListOf<Group>()
+        var data = FirebaseClient.db.collection("Group")
+        images = arrayListOf()
+        titles = arrayListOf()
+        data.get().addOnCompleteListener { groups ->
+            for (group in groups.result!!) {
+                Log.d("dsusdfuisdbfksdifb", "${group.id} => ${group.data}")
+                var members = group.data["Members"] as List<String>
+                if (members.contains(FirebaseClient.auth.currentUser?.email.toString())) {
+                    groupresult.add(
+                        Group(
+                            group.data["Admin"].toString(),
+                            group.data["Description"].toString(),
+                            group.data["Image"].toString(),
+                            members,
+                            group.data["Hobbies"].toString(),
+                            group.data["Name"].toString()
+                        )
+                    )
+                }
+            }
+            for (group in groupresult){
+                images.add(group.image)
+                titles.add(group.name)
+            }
+            setRecyclerView(titles,images);
+            binding.shimmerViewContainer.visibility = View.GONE
+            binding.recyclerViewGroups.visibility = View.VISIBLE
+
+
+        }
 
     }
 }

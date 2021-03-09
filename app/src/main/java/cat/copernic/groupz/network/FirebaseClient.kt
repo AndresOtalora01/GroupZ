@@ -3,6 +3,7 @@ package cat.copernic.groupz.network
 import android.content.Context
 import android.util.Log
 import cat.copernic.groupz.model.Event
+import cat.copernic.groupz.model.Group
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.ui.activities.main.fragments.chat.*
 import com.google.firebase.auth.FirebaseAuth
@@ -45,33 +46,6 @@ class FirebaseClient {
             return added
         }
 
-        fun getDatabaseUser(userMail: String): User? {
-            val USERS = "Users"
-            var userGet: User? = null
-            val data = db.collection(USERS).document(userMail)
-            data.get()
-                .addOnSuccessListener {
-                    if (it != null) {
-                        userGet = User(
-                            it.get("Name") as String,
-                            userMail,
-                            it.get("Birth") as String,
-                            it.get("Hobbies") as String,
-                            it.get("Images") as String,
-                            it.get("Description") as String,
-                            it.get("Location") as String
-                        )
-                        Log.d(TAG, "Success")
-                    }
-
-                }
-                .addOnFailureListener { exception ->
-                    Log.d(TAG, "Failure")
-                }
-
-            return userGet
-        }
-
         fun addDatabaseCommunityEvent(eventAdd: Event): Boolean {
             var added: Boolean = true
             val eventMap = hashMapOf( //Rellenamos los datos para la base de datos
@@ -95,43 +69,32 @@ class FirebaseClient {
             return added
         }
 
+        fun addDatabaseGroup(group: Group): Boolean {
+            var added: Boolean = true
+            val groupMap = hashMapOf( //Rellenamos los datos para la base de datos
+                "Admin" to group.admin,
+                "Name" to group.name,
+                "Description" to group.description,
+                "Members" to group.members,
+                "Image" to group.image,
+                "Hobbies" to group.hobbies
+            )
+            db.collection("Group")
+                .add(groupMap)
+                .addOnSuccessListener { e -> //Si es correcto, avisa al usuario de que la cuenta se ha creado correctamente, y manda al siguiente fragment
+                    added = true
+                }
+                .addOnFailureListener { e -> //En caso de fallar, avisa al usuario de que ha habido un error.
+                    added = false
+                }
+            return added
+        }
+
         fun userLogIn(): Boolean {
             return auth.currentUser != null
         }
 
-        fun insertMessageChatFromUser() {
-
-
-        }
-
-        fun getDatabaseChatsFromUser(userMail: String) {
-            val messages = "Mensaje"
-            val chats = "Chats"
-            var queryMessages = db.collection(messages).whereEqualTo("from", userMail)
-
-            queryMessages.get()
-                .addOnSuccessListener { documents ->
-
-                    for (document in documents) {
-                        /*var data = db.collection("Chat").document(document.get("idChat").toString())
-                        data.get().addOnSuccessListener {
-                            Log.d(TAG,it.get("name")as String)
-                        }*/
-
-                    }
-                }
-                .addOnFailureListener {
-
-                }
-        }
 
 
     }
 }
-
-
-
-//            email: String,
-//            dateOfBirth: String,
-//            hobbies: String,
-//            dbCollection: String
