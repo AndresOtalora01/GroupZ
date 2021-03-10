@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hobbies">
+        <item>Selecciona tus hobbies</item>
+        <item>Baile</item>
+        <item>Tecnología</item>
+        <item>Economía</item>
+        <item>Naturaleza</item>
+        <item>Fitness</item>
+        <item>Moda</item>
+        <item>Cocina</item>
+        <item>Viajes</item>
+        <item>Amistad</item>
+        <item>Psicología</item>
+        <item>Netflix</item>
+        <item>Twitch</item>
+        <item>Series</item>
+        <item>Películas</item>
+        <item>Música</item>
+        <item>Emprendimiento</item>
+    </string-array>
+</resources>

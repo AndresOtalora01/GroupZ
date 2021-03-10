@@ -15,6 +15,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -32,6 +34,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_register.*
 import java.lang.StringBuilder
 import java.util.*
 import java.util.jar.Manifest
@@ -73,6 +76,43 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         picKDate()
         binding.tvAccountLog.setOnClickListener {
             findNavController().navigate(R.id.action_register_to_login)
+        }
+
+        //spinner
+        var hobbiesCounter = 0
+       // val hobbies = resources.getStringArray(R.array.hobbies)
+        val spinnerAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.hobbies, R.layout.custom_spinner)
+        spinnerAdapter.setDropDownViewResource(R.layout.custom_spinner)
+        binding.spHobbies.adapter = spinnerAdapter
+        binding.spHobbies.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                  if(hobbiesCounter <= 3 && position != 0) {
+                      hobbiesCounter++
+                      var sHobbies : String = parent!!.getItemAtPosition(position).toString()
+                      if(hobbiesCounter == 1) {
+                          binding.etHobbies.setText(sHobbies)
+
+                      } else  binding.etHobbies.setText(etHobbies.text.toString() + ", " + sHobbies)
+
+                  }
+
+                  if(hobbiesCounter == 3) {
+                      binding.spHobbies.isEnabled = false
+                      binding.spHobbies.isClickable = false
+                  }
+                  binding.spHobbies.setSelection(0)
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
         }
 
         binding.btnRegister.setOnClickListener { //cuando se presiona el boton de register.

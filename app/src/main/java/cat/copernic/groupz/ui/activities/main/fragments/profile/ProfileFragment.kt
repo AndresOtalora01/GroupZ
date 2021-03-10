@@ -45,9 +45,21 @@ class ProfileFragment : Fragment() {
         if (!args.isMyProfile) {
             val user = args.user
             binding.tvNameProfile.text = user!!.name
-            binding.tag1.text = user.hobbies
-            binding.tag2.text = "Cantar"
-            binding.tag3.text = "Pescar"
+            val hobbies = user.hobbies.split(",").map {
+                it.trim()
+            }
+            binding.tag1.text = hobbies[0]
+            binding.tag1.visibility = View.VISIBLE
+            if (hobbies.size > 1) {
+                binding.tag2.text = hobbies[1]
+                binding.tag2.visibility = View.VISIBLE
+            }
+
+            if (hobbies.size > 2) {
+                binding.tag3.text = hobbies[2]
+                binding.tag3.visibility = View.VISIBLE
+            }
+
             binding.tvDescriptionProfile.text = user.description
             Glide.with(this)
                 .load(user.image)
@@ -81,6 +93,21 @@ class ProfileFragment : Fragment() {
                     binding.tvNameProfile.text = it.get("Name") as String
                     binding.tag1.text = it.get("Hobbies") as String
                     binding.tvDescriptionProfile.text = it.get("Description") as String
+                    var string = it.get("Hobbies") as String
+                    var hobbies = string.split(",").map {hobbie ->
+                        hobbie.trim()
+                    }
+                    binding.tag1.text = hobbies[0]
+                    binding.tag1.visibility = View.VISIBLE
+                    if (hobbies.size > 1) {
+                        binding.tag2.text = hobbies[1]
+                        binding.tag2.visibility = View.VISIBLE
+                    }
+
+                    if (hobbies.size > 2) {
+                        binding.tag3.text = hobbies[2]
+                        binding.tag3.visibility = View.VISIBLE
+                    }
                     Glide.with(this)
                         .load(it.get("Image").toString())
                         .placeholder(R.drawable.animated_progress)
@@ -90,5 +117,6 @@ class ProfileFragment : Fragment() {
 
             }
     }
+
 
 }

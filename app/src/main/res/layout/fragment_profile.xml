@@ -132,7 +132,8 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="5dp"
-                android:text="Programacion"
+                android:text=""
+                android:visibility="gone"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -148,7 +149,8 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="5dp"
-                android:text="Correr"
+                android:text=""
+                android:visibility="gone"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -164,7 +166,8 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="5dp"
-                android:text="Música"
+                android:text=""
+                android:visibility="gone"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
