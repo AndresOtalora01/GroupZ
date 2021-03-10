@@ -57,16 +57,14 @@ class DeleteConfirmationFragment : Fragment() {
                     data.delete()
                 }
             user.delete()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        openDeletedAccountDialog()
-                    }
-                }
+            openDeletedAccountDialog()
 
             val handler = Handler()
             handler.postDelayed({
                 startActivity(Intent(context, HomeActivity::class.java))
+                activity?.finish()
             }, 2000)
+
         }
     }
 

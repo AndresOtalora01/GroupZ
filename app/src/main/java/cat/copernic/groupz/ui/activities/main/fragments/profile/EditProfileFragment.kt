@@ -71,10 +71,13 @@ class EditProfileFragment : Fragment() , DatePickerDialog.OnDateSetListener {
 
         }
         binding.btnSave.setOnClickListener {
-            binding.btnSave.visibility = View.GONE
-            binding.btnSaveGone.visibility = View.VISIBLE
-            binding.shimmerViewContainer.startShimmer()
-            upload()
+            if (comprovate()){
+                binding.btnSave.visibility = View.GONE
+                binding.btnSaveGone.visibility = View.VISIBLE
+                binding.shimmerViewContainer.startShimmer()
+                upload()
+            }
+
         }
     }
 
@@ -191,6 +194,88 @@ class EditProfileFragment : Fragment() , DatePickerDialog.OnDateSetListener {
                 .into(binding.ivAddEdit)
                 binding.ivIconEditProfile.visibility = View.GONE
         }
+    }
+    private fun isValidBirth(): Boolean {
+        var rdate = Calendar.getInstance().get(Calendar.DATE) - savedDay
+        var rmonth = (Calendar.getInstance().get(Calendar.MONTH) + 1) - savedMonth
+        var ryear = Calendar.getInstance().get(Calendar.YEAR) - savedYear
+        if (binding.etDateEdit.text.isEmpty()) {
+            binding.etDateEdit.error = getString(R.string.errorEmptyField)
+            return false
+        } else {
+            if (rmonth >= 0 && rdate >= 0 && ryear >= 16) {
+                binding.etDateEdit.error = null
+                return true
+            } else if ((ryear - 1) >= 16) {
+                binding.etDateEdit.error = null
+                return true
+            } else {
+                binding.etDateEdit.error = "La edad mínima para crear una cuenta son 16 años."
+                return false
+            }
+        }
+
+    }
+
+    fun isValidName(): Boolean {
+        var nameInput = binding.etNameEdit.text.toString()
+        if (nameInput.isEmpty()) {
+            binding.etNameEdit.error = getString(R.string.errorEmptyField)
+            return false
+
+        } else {
+            binding.etNameEdit.error = null
+            return true
+        }
+
+    }
+    private fun isValidHobbies(): Boolean {
+        if (binding.etHobbieEdit.text.isEmpty()) {
+            binding.etHobbieEdit.error = getString(R.string.errorEmptyField)
+            return false
+        } else {
+            binding.etHobbieEdit.error = null
+            return true
+        }
+    }
+    private fun isValidLocation(): Boolean {
+        if (binding.etLocationEdit.text.isEmpty()) {
+            binding.etLocationEdit.error = getString(R.string.errorEmptyField)
+            return false
+        } else {
+            binding.etLocationEdit.error = null
+            return true
+        }
+    }
+    private fun isValidDescription(): Boolean {
+        if (binding.etDescriptionEdit.text.isEmpty()) {
+            binding.etDescriptionEdit.error = getString(R.string.errorEmptyField)
+            return false
+        } else {
+            binding.etDescriptionEdit.error = null
+            return true
+        }
+    }
+    private fun comprovate(): Boolean {
+        var boolean: Boolean = true
+        if (!isValidName()) {
+            boolean = false
+        }
+        if (!isValidBirth()) {
+            boolean = false
+        }
+
+        if (!isValidHobbies()) {
+            boolean = false
+        }
+        if (!isValidLocation()) {
+            boolean = false
+        }
+        if (!isValidDescription()) {
+            boolean = false
+        }
+        return boolean
+
     }
 
     private fun getDateCalendar(){

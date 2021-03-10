@@ -18,26 +18,21 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentRegisterBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_register.*
-import java.lang.StringBuilder
 import java.util.*
-import java.util.jar.Manifest
 import java.util.regex.Pattern
 
 
@@ -135,6 +130,7 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                                 val dialog = builder.create()
                                 dialog.show()
                                 startActivity(Intent(context, MainActivity::class.java))
+                                activity?.finish()
                             }
                         } else {
                             binding.shimmerViewContainer.visibility = View.GONE

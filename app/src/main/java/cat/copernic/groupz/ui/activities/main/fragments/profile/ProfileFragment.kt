@@ -20,6 +20,7 @@ import cat.copernic.groupz.ui.activities.main.fragments.chat.ChatFragmentArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.*
 
 class ProfileFragment : Fragment() {
 
@@ -45,6 +46,20 @@ class ProfileFragment : Fragment() {
         if (!args.isMyProfile) {
             val user = args.user
             binding.tvNameProfile.text = user!!.name
+            binding.tag1.text = user.hobbies
+            binding.tag2.text = "Cantar"
+            binding.tag3.text = "Pescar"
+            var date = user.birth.split("/").map {
+                it.trim()
+            }
+            var rdate = Calendar.getInstance().get(Calendar.DATE) - date.get(0).toInt()
+            var rmonth = (Calendar.getInstance().get(Calendar.MONTH) + 1) - date.get(1).toInt()
+            var ryear = Calendar.getInstance().get(Calendar.YEAR) - date.get(2).toInt()
+            if (rmonth >= 0 && rdate >= 0) {
+                binding.tvYears.text = ", "+ryear.toString()
+            } else{
+                binding.tvYears.text = ", "+(ryear-1).toString()
+            }
             val hobbies = user.hobbies.split(",").map {
                 it.trim()
             }
@@ -113,6 +128,17 @@ class ProfileFragment : Fragment() {
                         .placeholder(R.drawable.animated_progress)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(binding.ivImage)
+                    var date = it.get("Birth").toString().split("/").map {
+                        it.trim()
+                    }
+                    var rdate = Calendar.getInstance().get(Calendar.DATE) - date.get(0).toInt()
+                    var rmonth = (Calendar.getInstance().get(Calendar.MONTH) + 1) - date.get(1).toInt()
+                    var ryear = Calendar.getInstance().get(Calendar.YEAR) - date.get(2).toInt()
+                    if (rmonth >= 0 && rdate >= 0) {
+                        binding.tvYears.text = ", "+ryear.toString()
+                    } else{
+                        binding.tvYears.text = ", "+(ryear-1).toString()
+                    }
                 }
 
             }
