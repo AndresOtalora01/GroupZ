@@ -1,23 +1,40 @@
 package cat.copernic.groupz.ui.activities.home.fragments
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import cat.copernic.groupz.R
 import cat.copernic.groupz.databinding.FragmentRegisterBinding
 import cat.copernic.groupz.model.User
 import cat.copernic.groupz.network.FirebaseClient
 import cat.copernic.groupz.ui.activities.main.MainActivity
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.firebase.firestore.FirebaseFirestore
+import java.lang.StringBuilder
 import java.util.*
+import java.util.jar.Manifest
 import java.util.regex.Pattern
 
 
@@ -36,17 +53,18 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     var savedMonth = 0
     var savedYear = 0
 
+    private lateinit var client: FusedLocationProviderClient
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_register, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         binding =
             FragmentRegisterBinding.bind(view) //Cuando la vista se crea, se asigna la vista al binding, y asi puede acceder a los elementos.
         builder = AlertDialog.Builder(context) //Preparamos el Alert dialog
@@ -56,6 +74,7 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.tvAccountLog.setOnClickListener {
             findNavController().navigate(R.id.action_register_to_login)
         }
+
         binding.btnRegister.setOnClickListener { //cuando se presiona el boton de register.
 
             if (comprovate()) {
@@ -92,7 +111,14 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
         }
 
+        client = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        binding.etLocation.setOnClickListener {
+            checkPermissions()
+        }
+        return binding.root
     }
+
 
 
     fun isValidName(): Boolean {
@@ -109,20 +135,20 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun isValidBirth(): Boolean {
-        var rdate =   Calendar.getInstance().get(Calendar.DATE) -savedDay
-        var rmonth =  (Calendar.getInstance().get(Calendar.MONTH)+1) - savedMonth
-        var ryear =  Calendar.getInstance().get(Calendar.YEAR) - savedYear
+        var rdate = Calendar.getInstance().get(Calendar.DATE) - savedDay
+        var rmonth = (Calendar.getInstance().get(Calendar.MONTH) + 1) - savedMonth
+        var ryear = Calendar.getInstance().get(Calendar.YEAR) - savedYear
         if (binding.etBirth.text.isEmpty()) {
             binding.etBirth.error = getString(R.string.errorEmptyField)
             return false
         } else {
-            if (rmonth >= 0 && rdate >= 0 && ryear>=16){
+            if (rmonth >= 0 && rdate >= 0 && ryear >= 16) {
                 binding.etBirth.error = null
                 return true
-            }else if((ryear-1)>=16){
+            } else if ((ryear - 1) >= 16) {
                 binding.etBirth.error = null
                 return true
-            }else{
+            } else {
                 binding.etBirth.error = "La edad mínima para crear una cuenta son 16 años."
                 return false
             }
@@ -282,4 +308,56 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.etBirth.setText("$savedDay/$savedMonth/$savedYear")
     }
 
+    private fun checkPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            getCurrentLocation()
+        } else {
+            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION), 100)
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getCurrentLocation() {
+        val locationManager: LocationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+                LocationManager.NETWORK_PROVIDER
+            )
+        ) {
+            val cancellationTokenSource = CancellationTokenSource()
+            client.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, cancellationTokenSource.token).addOnCompleteListener {
+                if(it.result != null) {
+                    latitude = it.result.latitude
+                    longitude = it.result.longitude
+
+                    val geoCoder = Geocoder(context)
+                    val addresses : List<Address> = geoCoder.getFromLocation(latitude, longitude, 1)
+                    val address : Address = addresses[0]
+                    val locality : String = address.locality
+                    //val subLocality : String = address.subLocality
+                    binding.etLocation.setText(locality)
+                }
+            }
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 100 && (grantResults.isNotEmpty()) && (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)) {
+            getCurrentLocation()
+        }
+    }
 }
