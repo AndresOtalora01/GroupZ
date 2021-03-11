@@ -22,8 +22,8 @@
     <string name="signUp">Sign Up</string>
     <string name="signIn">Iniciar Sesió</string>
     <string name="titleRegister">Registre</string>
-    <string name="name">Nom</string>
-    <string name="location">Ubicacio</string>
+    <string name="name">Nombre</string>
+    <string name="location">Ubicación</string>
     <string name="birth">Data de Naixement</string>
     <string name="hobbies">Hobbies</string>
     <string name="cbTerms">Accepto els termes i condicions de l\'aplicació</string>
@@ -34,20 +34,20 @@
     <string name="delAccount">Eliminar Compte</string>
     <string name="accountDeleted">Usuari Eliminat </string>
     <string name="LogOut">Sessió tancada </string>
-    <string name="messageChat">Escriu un missatge</string>
+    <string name="messageChat">Escribe un mensaje</string>
     <string name="editProfile">Editar Perfil</string>
-    <string name="createGroup">Crear Grup</string>
-    <string name="from">Prop a tu</string>
+    <string name="createGroup">Crear Grupo</string>
+    <string name="from">Cerca de ti</string>
     <string name="save">Guardar</string>
-    <string name="images">Imatges</string>
+    <string name="images">Imágenes</string>
     <string name="newimages">Afegir Imatge</string>
-    <string name="description">Descripció</string>
+    <string name="description">Descripción</string>
     <string name="members">Membres</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
-    <string name="search">Cercar…</string>
-    <string name="recommendedEvents">Recomenats</string>
-    <string name="my_profile">Mi perfil</string>
+    <string name="search">Buscar…</string>
+    <string name="recommendedEvents">Recomendados</string>
+    <string name="my_profile">Perfil</string>
     <string name="account">Cuenta</string>
     <string name="swipe">Swipe</string>
     <string name="near_people">Gente Cerca</string>
@@ -57,10 +57,10 @@
     <string name="my_events">Mis Eventos</string>
     <string name="notifications">Notificaciones</string>
     <string name="create_event">Nuevo Evento</string>
-    <string name="event_date">Fecha evento</string>
+    <string name="event_date">Fecha</string>
     <string name="privacy">Privacidad</string>
     <string name="public_">Publico</string>
-    <string name="private_">privado</string>
+    <string name="private_">Privado</string>
     <!--Alerts-->
 
     <!--hints-->
