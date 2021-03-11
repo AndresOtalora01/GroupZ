@@ -56,12 +56,12 @@
             android:drawablePadding="16dp"
             android:ems="10"
             android:focusable="false"
-            android:gravity="start|top"
             android:fontFamily="@font/poppins_regular"
+            android:gravity="start|top"
             android:hint="@string/birth"
             android:inputType="number"
-            android:paddingTop="5dp"
             android:paddingStart="20dp"
+            android:paddingTop="5dp"
             android:paddingEnd="20dp" />
 
 
@@ -72,12 +72,10 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
-            android:background="@android:color/transparent"
-            />
+            android:background="@android:color/transparent" />
 
         <EditText
             android:id="@+id/etHobbies"
-            android:focusable="false"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
@@ -87,12 +85,13 @@
             android:drawableStart="@drawable/custom_icon_heart"
             android:drawablePadding="16dp"
             android:ems="10"
-            android:paddingTop="5dp"
+            android:focusable="false"
             android:fontFamily="@font/poppins_regular"
             android:gravity="start|top"
             android:hint="@string/hobbies"
             android:inputType="textMultiLine"
             android:paddingStart="20dp"
+            android:paddingTop="5dp"
             android:paddingEnd="20dp" />
 
         <EditText
@@ -167,18 +166,30 @@
             android:paddingStart="20dp"
             android:paddingEnd="20dp" />
 
-        <CheckBox
-            android:id="@+id/cbTerms"
-
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="start"
-            android:text="@string/cbTerms"
-            android:textColor="@color/blue_no_focused" />
+            android:orientation="horizontal"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvLinkTerms"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/cbTerms"
+                android:textColor="@color/blue_no_focused" />
+        </LinearLayout>
+
 
         <android.widget.Button
             android:id="@+id/btnRegister"
@@ -192,13 +203,14 @@
             android:text="@string/btnRegister"
             android:textColor="@color/white"
             android:textSize="18sp" />
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <android.widget.Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,7 +238,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"

@@ -26,7 +26,7 @@
     <string name="location">Ubicación</string>
     <string name="birth">Data de Naixement</string>
     <string name="hobbies">Hobbies</string>
-    <string name="cbTerms">Accepto els termes i condicions de l\'aplicació</string>
+    <string name="cbTerms"><u>Accepto els termes i condicions de l\'aplicació</u></string>
     <string name="btnRegister">Continuar</string>
     <string name="tvAccountLog">Ja tens compte?</string>
     <string name="userCreated">Compte Creat correctament</string>

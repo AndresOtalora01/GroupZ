@@ -10,6 +10,7 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -72,6 +73,12 @@ class RegisterFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         binding.tvAccountLog.setOnClickListener {
             findNavController().navigate(R.id.action_register_to_login)
         }
+
+        binding.tvLinkTerms.setOnClickListener {
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.websitepolicies.com/policies/view/epVCfW2f"))
+            startActivity(i)
+        }
+
 
         //spinner
         var hobbiesCounter = 0
